@@ -1,2 +1,2 @@
 # thesis
-Catching threat by using ELK. Language: Python
+Catching windows's threats by using ELK. Language: Python
