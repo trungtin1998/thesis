@@ -1,0 +1,19 @@
+{
+    "_shards": {
+        "failed": 0, 
+        "skipped": 0, 
+        "successful": 60, 
+        "total": 60
+    }, 
+    "hits": {
+        "hits": [], 
+        "max_score": null, 
+        "total": {
+            "relation": "eq", 
+            "value": 0
+        }
+    }, 
+    "timed_out": false, 
+    "took": 769
+}
+Tong so event trong /home/trungtin/Documents/Thesis/thesis/testcase1 la: 0
