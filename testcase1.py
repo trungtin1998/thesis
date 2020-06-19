@@ -10,6 +10,16 @@ script = str(script)[2:-5]
 # Global Variables
 BASEURL = "http://192.168.255.200:9200/_search"
 QUERY =json.dumps({
+    "aggs": {
+        "2": {
+            "date_histogram": {
+                "field": "@timestamp",
+                "fixed_interval": "30s",
+                "time_zone": "Asia/Ho_Chi_Minh",
+                "min_doc_count": 1
+            }
+        }
+    },
     "query": {
         "bool": {
             "filter": [{
@@ -39,9 +49,11 @@ HEADER = {"Content-Type" : "application/json"}
 # Get current time and get time before 5 minutes
 def getTimestamp():
     test1 = datetime.datetime.now()
+    # Convert from Asia/Ho_Chi_Minh to UTC+0 (minus 7 hours)
+    test1 -= datetime.timedelta(hours=7)
     test2 = test1 - datetime.timedelta(minutes=5)
-    s1 = test1.strftime("%Y-%m-%dT%H:%M:%S.888Z")
-    s2 = test2.strftime("%Y-%m-%dT%H:%M:%S.888Z")
+    s1 = test1.strftime("%Y-%m-%dT%H:%M:%S.327Z")
+    s2 = test2.strftime("%Y-%m-%dT%H:%M:%S.327Z")
     return [s2, s1]
 
 # Send Post Request to ELK
