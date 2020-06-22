@@ -1,0 +1,116 @@
+Test case 1: PsExec
+{
+    "aggs": {
+        "2": {
+            "date_histogram": {
+                "field": "@timestamp",
+                "fixed_interval": "30s",
+                "time_zone": "Asia/Ho_Chi_Minh",
+                "min_doc_count": 1
+            }
+        }
+    },
+    "query": {
+        "bool": {
+            "filter": [{
+                "match_all": {}
+            }, {
+                "match_phrase": {
+                    "event.code": "7045"
+                }
+            }, {
+                "match_phrase": {
+                    "winlog.event_data.ImagePath": "%SystemRoot%\\PSEXESVC.exe"
+                }
+            }, {
+                "range": {
+                    "@timestamp": {
+                        "gte": "AAAAAAAAAAAA",
+                        "lte": "BBBBBBBBBBBB",
+                        "format": "strict_date_optional_time"
+                    }
+                }
+            }]
+        }
+    }
+}
+
+-----------------------------------------------------------------------------------------------------
+
+Test case 2: Powershell _ Empire
+{
+    "aggs": {
+        "2": {
+            "date_histogram": {
+                "field": "@timestamp",
+                "fixed_interval": "30s",
+                "time_zone": "Asia/Ho_Chi_Minh",
+                "min_doc_count": 1
+            }
+        }
+    },
+    "query": {
+        "bool": {
+            "filter": [{
+                "match_all": {}
+            }, {
+                "match_phrase": {
+                    "winlog.event_id": "400"
+                }
+            }, {
+                "match_phrase": {
+                    "winlog.event_data.param3": "powershell -noP -sta -w 1 -enc"
+                }
+            }, {
+                "range": {
+                    "@timestamp": {
+                        "gte": "AAAAAAAAAAAA",
+                        "lte": "BBBBBBBBBBBB",
+                        "format": "strict_date_optional_time"
+                    }
+                }
+            }]
+        }
+    }
+}
+
+-----------------------------------------------------------------------------------------------------
+
+Test case 15: Mimikatz
+{
+
+    "query": {
+        "bool": {
+            "must": [],
+            "filter": [{
+                "match_all": {}
+            }, {
+                "match_phrase": {
+                    "event.code": "4624"
+                }
+            }, {
+                "match_phrase": {
+                    "winlog.event_data.LogonType": "3"
+                }
+            }],
+            "must_not": [{
+                "bool": {
+                    "should": [{
+                        "match_phrase": {
+                            "user.name": "sv"
+                        }
+                    }, {
+                        "match_phrase": {
+                            "user.name": "administrator"
+                        }
+                    }, {
+                        "match_phrase": {
+                            "user.name": "WINSRV"
+                        }
+                    }],
+                    "minimum_should_match": 1
+                }
+            }]
+        }
+    }
+}
