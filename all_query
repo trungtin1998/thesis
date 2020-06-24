@@ -186,6 +186,100 @@ Test case 6: wmiexec.vbs
 
 -----------------------------------------------------------------------------------------------------
 
+Test case 9: WCE - Password and Hash Dump
+{
+   "query": {
+    "bool": {
+      "must": [],
+      "filter": [
+        {
+          "match_phrase": {
+            "event.code": "11"
+          }
+        },
+        {
+          "match_phrase": {
+            "file.path": "wceaux.dll"
+          }
+        },
+        {
+          "range": {
+            "@timestamp": {
+              "gte": "2020-06-24T03:58:31.880Z",
+              "lte": "2020-06-24T04:13:31.880Z",
+              "format": "strict_date_optional_time"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+
+-----------------------------------------------------------------------------------------------------
+
+Test case 10: WCE Remote Login
+{
+  "query": {
+    "bool": {
+      "filter": [
+        {
+          "match_phrase": {
+            "event.code": "7045"
+          }
+        },
+        {
+          "match_phrase": {
+            "winlog.event_data.ServiceName": "WCESERVICE"
+          }
+        },
+        {
+          "range": {
+            "@timestamp": {
+              "gte": "2020-06-24T08:35:06.332Z",
+              "lte": "2020-06-24T08:50:06.332Z",
+              "format": "strict_date_optional_time"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+
+-----------------------------------------------------------------------------------------------------
+
+Test case 13: AT Command
+{
+   "query": {
+    "bool": {
+      "filter": [
+        {
+          "match_phrase": {
+            "event.code": "106"
+          }
+        },
+        {
+          "match_phrase_prefix": {
+            "winlog.event_data.TaskName": "\\At"
+          }
+        },
+        {
+          "range": {
+            "@timestamp": {
+              "gte": "2020-06-23T17:00:00.000Z",
+              "lte": "2020-06-24T16:59:59.999Z",
+              "format": "strict_date_optional_time"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+
+-----------------------------------------------------------------------------------------------------
+
 Test case 15: Mimikatz
 {
 
@@ -224,3 +318,67 @@ Test case 15: Mimikatz
         }
     }
 }
+
+
+-----------------------------------------------------------------------------------------------------
+
+Test case 17: ntdsutil
+POST _search
+{
+  "query": {
+    "bool": {
+      "should": [
+        {
+          "bool": {
+            "filter": [
+              {
+                "match_phrase": {
+                "event.code": "8222"
+                }
+              },
+              {
+                "range": {
+                  "@timestamp": {
+                    "gte": "2020-06-23T17:00:00.000Z",
+                    "lte": "2020-06-24T16:59:59.999Z",
+                    "format": "strict_date_optional_time"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "bool": {
+            "filter": [
+              {
+                "match_phrase": {
+                  "event.code": "216"
+                }
+              },
+              {
+                "match_phrase": {
+                  "winlog.event_data.param4": "C:\\Windows\\NTDS\\ntds.dit"
+                }
+              },
+              {
+                "range": {
+                  "@timestamp": {
+                    "gte": "2020-06-23T17:00:00.000Z",
+                    "lte": "2020-06-24T16:59:59.999Z",
+                    "format": "strict_date_optional_time"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "minimum_should_match": 1
+    }
+  }
+}
+
+-----------------------------------------------------------------------------------------------------
+
+
