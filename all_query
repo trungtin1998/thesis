@@ -498,3 +498,88 @@ Test case 22: ldifde
     }
   }
 }
+
+-----------------------------------------------------------------------------------------------------
+
+Test case 23: Timestomp
+{
+  "query": {
+    "bool": {
+      "filter": [
+        {
+          "match_phrase": {
+            "event.code": "4663"
+          }
+        },
+        {
+          "match_phrase": {
+            "winlog.keywords": "Audit Success"
+          }
+        },
+        {
+          "match_phrase": {
+            "message": "Accesses: WriteAttributes"
+          }
+        },
+        {
+          "range": {
+            "@timestamp": {
+              "gte": "2020-06-25T16:33:24.331Z",
+              "lte": "2020-06-25T16:48:24.331Z",
+              "format": "strict_date_optional_time"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+
+-----------------------------------------------------------------------------------------------------
+
+Test case 24: wevtutil
+{
+  "query": {
+    "bool": {
+      "filter": [
+        {
+          "bool": {
+            "should": [
+              {
+                "match_phrase": {
+                  "event.code": "104"
+                }
+              },
+              {
+                "bool": {
+                  "filter": [
+                    {
+                      "match_phrase": {
+                        "event.code": "1"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "process.executable": "C:\\Windows\\System32\\wevtutil.exe"
+                      }
+                    }
+                  ]
+                }
+              }
+            ],
+            "minimum_should_match": 1
+          }
+        },
+        {
+          "range": {
+            "@timestamp": {
+              "gte": "2020-06-25T16:52:02.726Z",
+              "lte": "2020-06-25T17:07:02.726Z",
+              "format": "strict_date_optional_time"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
