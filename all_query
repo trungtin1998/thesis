@@ -323,7 +323,6 @@ Test case 15: Mimikatz
 -----------------------------------------------------------------------------------------------------
 
 Test case 17: ntdsutil
-POST _search
 {
   "query": {
     "bool": {
@@ -351,16 +350,21 @@ POST _search
         {
           "bool": {
             "filter": [
-              {
-                "match_phrase": {
-                  "event.code": "216"
-                }
-              },
-              {
-                "match_phrase": {
-                  "winlog.event_data.param4": "C:\\Windows\\NTDS\\ntds.dit"
-                }
-              },
+            {
+              "match_phrase": {
+                "event.code": "4663"
+              }
+            },
+            {
+              "match_phrase": {
+                "winlog.event_data.ProcessName": "C:\\Windows\\System32\\ntdsutil.exe"
+              }
+            },
+            {
+              "match_phrase": {
+                "winlog.event_data.ObjectName": "\\Windows\\NTDS"
+              }
+            },
               {
                 "range": {
                   "@timestamp": {
@@ -378,7 +382,47 @@ POST _search
     }
   }
 }
-
 -----------------------------------------------------------------------------------------------------
 
-
+Test case 18: VSSAdmin
+{
+  "query": {
+    "bool": {
+      "should": [
+        {
+          "bool": {
+            "filter": [
+              {
+                "match_phrase": {
+                  "event.code": "8222"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "bool": {
+            "filter": [
+              {
+                "match_phrase": {
+                  "event.code": "4663"
+                }
+              },
+              {
+                "match_phrase": {
+                  "winlog.event_data.ProcessName": "C:\\Windows\\System32\\cmd.exe"
+                }
+              },
+              {
+                "match_phrase": {
+                  "winlog.event_data.ObjectName": "\\Windows\\NTDS"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "minimum_should_match": 1
+    }
+  }
+}
