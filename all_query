@@ -426,3 +426,75 @@ Test case 18: VSSAdmin
     }
   }
 }
+
+-----------------------------------------------------------------------------------------------------
+
+Test case 21: csvde
+{
+    "query": {
+    "bool": {
+      "filter": [
+        {
+          "match_phrase": {
+            "event.code": "1"
+          }
+        },
+        {
+          "match_phrase": {
+            "process.executable": "C:\\Windows\\System32\\csvde.exe"
+          }
+        },
+        {
+          "match_phrase": {
+            "process.args": "-f"
+          }
+        },
+        {
+          "range": {
+            "@timestamp": {
+              "gte": "AAAAAAAAAAAA",
+              "lte": "BBBBBBBBBBBB",
+              "format": "strict_date_optional_time"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+
+-----------------------------------------------------------------------------------------------------
+
+Test case 22: ldifde
+{
+"query": {
+    "bool": {
+      "filter": [
+        {
+          "match_phrase": {
+            "event.code": "1"
+          }
+        },
+        {
+          "match_phrase": {
+            "process.executable": "C:\\Windows\\System32\\ldifde.exe"
+          }
+        },
+        {
+          "match_phrase": {
+            "process.args": "-f"
+          }
+        },
+        {
+          "range": {
+            "@timestamp": {
+              "gte": "AAAAAAAAAAAA",
+              "lte": "BBBBBBBBBBBB",
+              "format": "strict_date_optional_time"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -2,8 +2,8 @@
     "_shards": {
         "failed": 0, 
         "skipped": 0, 
-        "successful": 77, 
-        "total": 77
+        "successful": 80, 
+        "total": 80
     }, 
     "aggregations": {
         "2": {
@@ -19,6 +19,6 @@
         }
     }, 
     "timed_out": false, 
-    "took": 961
+    "took": 933
 }
 Tong so event trong /home/trungtin/Documents/Thesis/thesis/testcase1 la: 0
