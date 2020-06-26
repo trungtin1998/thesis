@@ -54,21 +54,21 @@ def recognizeAttack(response):
 
 # Send gmail using library smtplib
 def sendGmail(body):
-    subject = 'ELK ' + str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+    subject = "ELK " + str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
     
     email_text = """\
-    From: %s
-    To: %s
-    Subject: %s
+From: %s
+To: %s
+Subject: %s
 
-    %s
-    """ % (gmail_user, send_to, subject, body)
+%s
+""" % (gmail_user, send_to, subject, body)
     
     try:
         smtpserver = smtplib.SMTP("smtp.gmail.com", 587)
         smtpserver.starttls()
         smtpserver.login(gmail_user, gmail_password)
-        smtpserver.sendmail(sent_from, to, email_text)
+        smtpserver.sendmail(gmail_user, send_to, email_text)
         smtpserver.close()
 
         print('Email sent!')
@@ -77,7 +77,8 @@ def sendGmail(body):
 
 
 if __name__ == "__main__":
-    body = ""
+    body1 = ""
+    body2 = ""
     for i in range(1,25):
         fname = DIR + "testcase" + str(i)
 
@@ -94,17 +95,17 @@ if __name__ == "__main__":
             res = recognizeAttack(response)
             if res["hits"]["total"]["value"] != 0:
                 print("\tPhat hien su tan cong cua %s"%(threats[i - 1]))
-                body += "Phat hien su tan cong cua %s\n"%(threats[i - 1])
-                body += "\tTong: %s\n"%(res["hits"]["total"]["value"])
-                body += "\n------------------\n"
-                body += json.dumps(res, indent=4, sort_keys=True)
-                body += "\n------------------\n"
+                body1 += "Phat hien su tan cong cua %s\n"%(threats[i - 1])
+                body1 += "\tTong event: %s\n"%(res["hits"]["total"]["value"])
+                body1 += "\n"
+                body2 += json.dumps(res, indent=4, sort_keys=True)
+                body2 += "\n\n-----------------------------------------------\n\n\n"
         except Exception as e:
             print("cURL to ELK error")
             print(str(e))
             exit()
-    if body != "":
-        sendGmail(body)
+    if body1 != "":
+        sendGmail(body1 + body2)
     else:
         print("Khong phat hien bat ki nguy co nao")
 
