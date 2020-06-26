@@ -1,0 +1,35 @@
+{
+    "aggs": {
+        "2": {
+            "date_histogram": {
+                "field": "@timestamp",
+                "fixed_interval": "30s",
+                "time_zone": "Asia/Ho_Chi_Minh",
+                "min_doc_count": 1
+            }
+        }
+    },
+    "query": {
+        "bool": {
+            "filter": [{
+                "match_all": {}
+            }, {
+                "match_phrase": {
+                    "winlog.event_id": "400"
+                }
+            }, {
+                "match_phrase": {
+                    "winlog.event_data.param3": "powershell -noP -sta -w 1 -enc"
+                }
+            }, {
+                "range": {
+                    "@timestamp": {
+                        "gte": "AAAAAAAAAAAA",
+                        "lte": "BBBBBBBBBBBB",
+                        "format": "strict_date_optional_time"
+                    }
+                }
+            }]
+        }
+    }
+}

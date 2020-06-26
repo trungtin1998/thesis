@@ -1,5 +1,4 @@
 #!/usr/bin/python
-#-*- coding: utf-8 -*-
 import requests
 import json
 import datetime
@@ -8,43 +7,10 @@ script = argv
 script = str(script)[2:-5]
 
 # Global Variables
+DIR = "Testcase/"
 BASEURL = "http://192.168.255.200:9200/_search"
-QUERY =json.dumps({
-    "aggs": {
-        "2": {
-            "date_histogram": {
-                "field": "@timestamp",
-                "fixed_interval": "30s",
-                "time_zone": "Asia/Ho_Chi_Minh",
-                "min_doc_count": 1
-            }
-        }
-    },
-    "query": {
-        "bool": {
-            "filter": [{
-                "match_all": {}
-            }, {
-                "match_phrase": {
-                    "event.code": "7045"
-                }
-            }, {
-                "match_phrase": {
-                    "winlog.event_data.ImagePath": "%SystemRoot%\\PSEXESVC.exe"
-                }
-            }, {
-                "range": {
-                    "@timestamp": {
-                        "gte": "AAAAAAAAAAAA",
-                        "lte": "BBBBBBBBBBBB",
-                        "format": "strict_date_optional_time"
-                    }
-                }
-            }]
-        }
-    }
-})
 HEADER = {"Content-Type" : "application/json"}
+threats = ["Test case 1 PsExec", "Test case 2 Powershell", "Test case 3 WinRS"]
 
 # Get current time and get time before 5 minutes
 def getTimestamp():
@@ -57,11 +23,11 @@ def getTimestamp():
     return [s2, s1]
 
 # Send Post Request to ELK
-def TestCase1():
+def postRequest(data):
     try:
         # Send Query to ELK
         l = getTimestamp()
-        tmp = QUERY.replace("AAAAAAAAAAAA", l[0])
+        tmp = data.replace("AAAAAAAAAAAA", l[0])
         tmp = tmp.replace("BBBBBBBBBBBB", l[1])
         response = requests.post(BASEURL, headers = HEADER, data = tmp)
         return response
@@ -72,21 +38,33 @@ def TestCase1():
 # Print Response as prettyprint Format
 def printResponse(response):
     parsed = json.loads(response.text)
-    print(json.dumps(parsed, indent=4, sort_keys=True))
+    #print(json.dumps(parsed, indent=4, sort_keys=True))
 
 # Recognize attack
 def recognizeAttack(response):
     parsed = json.loads(response.text)
-    print("Tong so event trong %s la: %s"%(script, parsed["hits"]["total"]["value"]))
-
+    #print("Tong so event la: %s"%(parsed["hits"]["total"]["value"]))
+        #print(json.dumps(parsed, indent=4, sort_keys=True))
+    return parsed
 
 if __name__ == "__main__":
-    response = TestCase1()
-    try:
-        printResponse(response)
-        recognizeAttack(response)
-    except:
-        print("cURL to ELK error")
-        exit()
+    for i in range(1,4):
+        fname = DIR + "testcase" + str(i) + ".txt"
+        #print fname
+
+        with open(fname) as json_file:
+            data = json.load(json_file)
+            data = json.dumps(data)
+
+        response = postRequest(data)
+        try:
+            printResponse(response)
+            res = recognizeAttack(response)
+            print("Tong so event %s la: %d"%(threats[i - 1], res["hits"]["total"]["value"]))
+            if res["hits"]["total"]["value"] != 0:
+                print("Co su tan cong tu %s"%(threats[i - 1]))
+        except:
+            print("cURL to ELK error")
+            exit()
 
 

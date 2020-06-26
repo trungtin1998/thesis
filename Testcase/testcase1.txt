@@ -1,9 +1,18 @@
-curl -XPOST "192.168.255.200:9200/_search" -H 'content-type: application/json' -d '
-{ "query": {
+{
+    "aggs": {
+        "2": {
+            "date_histogram": {
+                "field": "@timestamp",
+                "fixed_interval": "30s",
+                "time_zone": "Asia/Ho_Chi_Minh",
+                "min_doc_count": 1
+            }
+        }
+    },
+    "query": {
         "bool": {
-            "filter": [{
-                "match_all": {}
-            }, {
+            "filter": [
+                {
                 "match_phrase": {
                     "event.code": "7045"
                 }
@@ -14,13 +23,12 @@ curl -XPOST "192.168.255.200:9200/_search" -H 'content-type: application/json' -
             }, {
                 "range": {
                     "@timestamp": {
-                        "gte": "2020-05-10T15:59:56.888Z",
-                        "lte": "2020-06-09T15:59:56.888Z",
+                        "gte": "AAAAAAAAAAAA",
+                        "lte": "BBBBBBBBBBBB",
                         "format": "strict_date_optional_time"
                     }
                 }
             }]
         }
     }
-}'
-
+}
