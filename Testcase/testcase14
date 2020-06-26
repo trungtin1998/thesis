@@ -1,0 +1,49 @@
+{
+    "aggs": {
+        "2": {
+            "date_histogram": {
+                "field": "@timestamp",
+                "fixed_interval": "30s",
+                "time_zone": "Asia/Ho_Chi_Minh",
+                "min_doc_count": 1
+            }
+        }
+    },
+  "query": {
+    "bool": {
+      "filter": [
+        {
+          "bool": {
+            "should": [
+              {
+                "match_phrase": {
+                  "event.code": "21"
+                }
+              },
+              {
+                "match_phrase": {
+                  "event.code": "25"
+                }
+              }
+            ],
+            "minimum_should_match": 1,
+            "must_not": {
+              "match_phrase": {
+                "winlog.user_data.Address": "LOCAL"
+              }
+            }
+          }
+        },
+        {
+          "range": {
+            "@timestamp": {
+              "gte": "AAAAAAAAAAAA",
+              "lte": "BBBBBBBBBBBB",
+              "format": "strict_date_optional_time"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

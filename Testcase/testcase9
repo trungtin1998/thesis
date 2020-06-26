@@ -1,0 +1,38 @@
+{
+    "aggs": {
+        "2": {
+            "date_histogram": {
+                "field": "@timestamp",
+                "fixed_interval": "30s",
+                "time_zone": "Asia/Ho_Chi_Minh",
+                "min_doc_count": 1
+            }
+        }
+    },
+   "query": {
+    "bool": {
+      "must": [],
+      "filter": [
+        {
+          "match_phrase": {
+            "event.code": "11"
+          }
+        },
+        {
+          "match_phrase": {
+            "file.path": "wceaux.dll"
+          }
+        },
+        {
+          "range": {
+            "@timestamp": {
+              "gte": "AAAAAAAAAAAA",
+              "lte": "BBBBBBBBBBBB",
+              "format": "strict_date_optional_time"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

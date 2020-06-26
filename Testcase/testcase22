@@ -1,0 +1,42 @@
+{
+    "aggs": {
+        "2": {
+            "date_histogram": {
+                "field": "@timestamp",
+                "fixed_interval": "30s",
+                "time_zone": "Asia/Ho_Chi_Minh",
+                "min_doc_count": 1
+            }
+        }
+    },
+    "query": {
+    "bool": {
+      "filter": [
+        {
+          "match_phrase": {
+            "event.code": "1"
+          }
+        },
+        {
+          "match_phrase": {
+            "process.executable": "C:\\Windows\\System32\\ldifde.exe"
+          }
+        },
+        {
+          "match_phrase": {
+            "process.args": "-f"
+          }
+        },
+        {
+          "range": {
+            "@timestamp": {
+              "gte": "AAAAAAAAAAAA",
+              "lte": "BBBBBBBBBBBB",
+              "format": "strict_date_optional_time"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

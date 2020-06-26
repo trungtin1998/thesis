@@ -48,23 +48,24 @@ def recognizeAttack(response):
     return parsed
 
 if __name__ == "__main__":
-    for i in range(1,4):
-        fname = DIR + "testcase" + str(i) + ".txt"
-        #print fname
+    fname = "Testcase/" + str(argv[1])
+    print(fname)
+    with open(fname) as json_file:
+        data = json.load(json_file)
+        data = json.dumps(data)
 
-        with open(fname) as json_file:
-            data = json.load(json_file)
-            data = json.dumps(data)
-
-        response = postRequest(data)
-        try:
-            printResponse(response)
-            res = recognizeAttack(response)
-            print("Tong so event %s la: %d"%(threats[i - 1], res["hits"]["total"]["value"]))
-            if res["hits"]["total"]["value"] != 0:
-                print("Co su tan cong tu %s"%(threats[i - 1]))
-        except:
-            print("cURL to ELK error")
-            exit()
-
-
+    response = postRequest(data)
+    try:
+        printResponse(response)
+        res = recognizeAttack(response)
+        print("Tong so event la: %d"%(res["hits"]["total"]["value"]))
+        if res["hits"]["total"]["value"] != 0:
+            print("Co su tan cong tu %s"%(argv[1]))
+            print("\n--------------------------\n")
+            print(json.dumps(res, indent=4, sort_keys=True))
+        else:
+            print("Khong co tan cong")
+    except Exception as e:
+        print("cURL to ELK error")
+        print(e)
+        exit()

@@ -1,0 +1,75 @@
+{
+  "query": {
+    "bool": {
+      "should": [
+        {
+          "bool": {
+            "filter": [
+              {
+                "match_phrase": {
+                  "event.code": "1"
+                }
+              },
+              {
+                "match_phrase": {
+                  "process.parent.executable": "C:\\Windows\\System32\\wbem\\WmiPrvSE.exe"
+                }
+              },
+              {
+                "bool": {
+                  "must": [
+                    {
+                      "match_phrase": {
+                        "process.args": "C:\\windows\\temp\\wmi.dll"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "process.args": "del"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "range": {
+                  "@timestamp": {
+                    "gte": "AAAAAAAAAAAA",
+                    "lte": "BBBBBBBBBBBB",
+                    "format": "strict_date_optional_time"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "bool": {
+            "filter": [
+              {
+                "match_phrase": {
+                  "event.code": "11"
+                }
+              },
+              {
+                "match_phrase": {
+                  "file.path": "C:\\Windows\\Temp\\wmi.dll"
+                }
+              },
+              {
+                "range": {
+                  "@timestamp": {
+                    "gte": "AAAAAAAAAAAA",
+                    "lte": "BBBBBBBBBBBB",
+                    "format": "strict_date_optional_time"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "minimum_should_match": 1
+    }
+  }
+}
