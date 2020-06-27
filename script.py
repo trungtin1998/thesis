@@ -41,11 +41,13 @@ def postRequest(data):
     except:
         print("Error when create Post Request")
         exit()
+def printJSON(parsed):
+    print(json.dumps(json.loads(parsed.text), indent=4, sort_keys=True))
 
 # Print Response as prettyprint Format
 def printResponse(response):
     parsed = json.loads(response.text)
-    #print(json.dumps(parsed, indent=4, sort_keys=True))
+    print(json.dumps(parsed, indent=4, sort_keys=True))
 
 # Recognize attack
 def recognizeAttack(response):
@@ -75,6 +77,23 @@ Subject: %s
     except Exception as e:
         print('Something went wrong... ' + str(e))
 
+def testcase10():
+    with open(DIR + "testcase10_auxiliary") as json_file:
+        data = json.load(json_file)
+        data = json.dumps(data)
+    response = postRequest(data)
+    parsed = json.loads(response.text)
+    res = []
+    
+    for i in range(parsed["hits"]["total"]["value"]):
+        tmp = parsed["hits"]["hits"][i]["_source"]["process"]["args"]
+        print tmp    
+        # Kiem tra xem co phai dang: wce.exe -s sv:WINSRV2008:NT:LM
+        if tmp.count("-s") != 0 and len(tmp) == 3:
+            for s in tmp:
+                if s.count(":") == 3:
+                    res.append(parsed)
+    return res
 
 if __name__ == "__main__":
     body1 = ""
@@ -91,21 +110,33 @@ if __name__ == "__main__":
 
         response = postRequest(data)
         try:
-            printResponse(response)
             res = recognizeAttack(response)
             if res["hits"]["total"]["value"] != 0:
+                if i == 10:
+                    res10 = testcase10()
+                
                 print("\tPhat hien su tan cong cua %s"%(threats[i - 1]))
                 body1 += "Phat hien su tan cong cua %s\n"%(threats[i - 1])
-                body1 += "\tTong event: %s\n"%(res["hits"]["total"]["value"])
+                
+                if i == 10:
+                    body1 += "\tTong event: %s\n"%(len(res10))
+                    for tmp in res10:
+                        body2 += json.dumps(tmp, indent=4, sort_keys=True)
+                else:
+                    body1 += "\tTong event: %s\n"%(res["hits"]["total"]["value"])
+                    body2 += json.dumps(res, indent=4, sort_keys=True)
+                
                 body1 += "\n"
-                body2 += json.dumps(res, indent=4, sort_keys=True)
                 body2 += "\n\n-----------------------------------------------\n\n\n"
         except Exception as e:
             print("cURL to ELK error")
             print(str(e))
             exit()
     if body1 != "":
-        sendGmail(body1 + body2)
+        #sendGmail(body1 + body2)
+        res = body1+body2
+        print body1
+        #print body2
     else:
         print("Khong phat hien bat ki nguy co nao")
 

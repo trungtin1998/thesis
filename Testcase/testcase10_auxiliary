@@ -14,17 +14,12 @@
       "filter": [
         {
           "match_phrase": {
-            "event.code": "7045"
+            "event.code": "1"
           }
         },
         {
           "match_phrase": {
-            "winlog.event_data.ServiceName": "WCESERVICE"
-          }
-        },
-        {
-          "match_phrase": {
-            "winlog.event_data.ImagePath": "C:\\Windows\\System32\\wce64.exe -S"
+            "process.args": "-s"
           }
         },
         {
@@ -36,6 +31,7 @@
             }
           }
         }
+
       ]
     }
   }
