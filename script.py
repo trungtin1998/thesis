@@ -41,16 +41,14 @@ def postRequest(data):
     except:
         print("Error when create Post Request")
         exit()
-def printJSON(parsed):
-    print(json.dumps(json.loads(parsed.text), indent=4, sort_keys=True))
 
 # Print Response as prettyprint Format
 def printResponse(response):
     parsed = json.loads(response.text)
     print(json.dumps(parsed, indent=4, sort_keys=True))
 
-# Recognize attack
-def recognizeAttack(response):
+# Parsed JSON
+def parsedJSON(response):
     parsed = json.loads(response.text)
     return parsed
 
@@ -77,66 +75,121 @@ Subject: %s
     except Exception as e:
         print('Something went wrong... ' + str(e))
 
-def testcase10():
+# Time Substration
+def timeSubstraction(t1, t2):
+    if (t1 >= t2):
+        return (t1 - t2).total_seconds()
+    else:
+        return (t2 - t1).total_seconds()
+
+# Detect test case 10: WCE Remote Login
+def recognizeWCERemoteLogin(listArgs):
+    # Kiem tra co phai dang: wce.exe -s sv:WINSRV2008:NT:LM
+    ok = 0
+    if listArgs.count("-s") != 0 and len(listArgs) == 3:
+        for s in listArgs:
+            # Kiem tra xem co phai dang sv:WINSRV2008:NT:LM
+            if s.count(":") == 3:
+                ok += 1
+            # Kiem tra xem co phai la file exe va duoc thuc thi tai C:\Windows\System32
+            elif s.find("C:\Windows\system32") != -1 and s[-4:] == ".exe":
+                ok += 1
+        if ok == 2:
+            return True
+    return False
+
+# Distinguish Test case 9: WCE - Password and Hash Dump and Test case 10: WCE - Remote Login
+def wce(a):
     with open(DIR + "testcase10_auxiliary") as json_file:
         data = json.load(json_file)
         data = json.dumps(data)
     response = postRequest(data)
-    parsed = json.loads(response.text)
-    res = []
-    
-    for i in range(parsed["hits"]["total"]["value"]):
-        tmp = parsed["hits"]["hits"][i]["_source"]["process"]["args"]
-        print tmp    
-        # Kiem tra xem co phai dang: wce.exe -s sv:WINSRV2008:NT:LM
-        if tmp.count("-s") != 0 and len(tmp) == 3:
-            for s in tmp:
-                if s.count(":") == 3:
-                    res.append(parsed)
-    return res
+    b = parsedJSON(response)
+    # a is list of event wceaux.dll
+    # b is list of event 1 at sysmon (catch wce.exe -s) 
+    n = a["hits"]["total"]["value"]
+    m = b["hits"]["total"]["value"]
+
+    tc9 = []        # Test case 9: WCE - Password and Hash Dump
+    tc10 = []       # Test case 10: WCE - Remote Login
+    j = 0
+
+    for i in range(n):
+        t1 = a["hits"]["hits"][i]["_source"]["@timestamp"]
+        t1 = datetime.datetime.strptime(t1, "%Y-%m-%dT%H:%M:%S.%fZ")
+        
+        t2 = b["hits"]["hits"][j]["_source"]["@timestamp"]
+        t2 = datetime.datetime.strptime(t2, "%Y-%m-%dT%H:%M:%S.%fZ")
+        if timeSubstraction(t1, t2) < 1 and recognizeWCERemoteLogin(b["hits"]["hits"][j]["_source"]["process"]["args"]):
+            tc10.append(b["hits"]["hits"][j])
+            j += 2
+            continue
+        else:
+            tc9.append(a["hits"]["hits"][i])
+            j += 1
+            continue
+
+    return [tc9, tc10]
+
+def writeFull(i, n, header, body, res):
+    print("\tPhat hien su tan cong cua %s"%(threats[i - 1]))
+    header += "Phat hien su tan cong cua %s\n"%(threats[i - 1])
+    header += "\tTong event: %s\n"%(n)
+    body += "---------------------------------------------------------------------------------------"
+    body += threats[9]
+    body += "---------------------------------------------------------------------------------------"
+    body += json.dumps(res, indent=4, sort_keys=True)
+
+def writeHalf(i, n, header, body, res):
+    print("\tPhat hien su tan cong cua %s"%(threats[i - 1]))
+    header += "Phat hien su tan cong cua %s\n"%(threats[i - 1])
+    header += "\tTong event: %s\n"%(n)
+    body += "---------------------------------------------------------------------------------------"
+    body += threats[9]
+    body += "---------------------------------------------------------------------------------------"
+    for tmp in res:
+        body += json.dumps(tmp, indent=4, sort_keys=True)
 
 if __name__ == "__main__":
-    body1 = ""
-    body2 = ""
+    header = ""
+    body = ""
     for i in range(1,25):
         fname = DIR + "testcase" + str(i)
-
-        if i == 4  or i == 7 or i == 8 or i == 11 or i == 15 or i == 12 or i == 16 or i == 19 or i ==20:
+        if i != 10:
+            print(threats[i - 1])
+        if i == 4  or i == 7 or i == 8 or i == 10 or i == 11 or i == 15 or i == 12 or i == 16 or i == 19 or i ==20:
             continue
-        print(threats[i - 1])
         with open(fname) as json_file:
             data = json.load(json_file)
             data = json.dumps(data)
-
+        
+        # recognize Attack by sending query to ELK
         response = postRequest(data)
         try:
-            res = recognizeAttack(response)
+            res = parsedJSON(response)
             if res["hits"]["total"]["value"] != 0:
-                if i == 10:
-                    res10 = testcase10()
-                
-                print("\tPhat hien su tan cong cua %s"%(threats[i - 1]))
-                body1 += "Phat hien su tan cong cua %s\n"%(threats[i - 1])
-                
-                if i == 10:
-                    body1 += "\tTong event: %s\n"%(len(res10))
-                    for tmp in res10:
-                        body2 += json.dumps(tmp, indent=4, sort_keys=True)
+                if i == 9:
+                    res = wce(res)
+                    # Test case 9: WCE - Password and Hash Dump
+                    if len(res[0]) != 0:
+                        writeHalf(9, len(res[0]), header, body, res)
+                    # Test case 10: WCE - Remote Login
+                    elif len(res[1]) != 0:
+                        print(threats[10 - 1])
+                        writeHalf(10, len(res[1]), header, body, res)
                 else:
-                    body1 += "\tTong event: %s\n"%(res["hits"]["total"]["value"])
-                    body2 += json.dumps(res, indent=4, sort_keys=True)
+                    writeFull(i, res["hits"]["total"]["value"], header, body, res)
                 
-                body1 += "\n"
-                body2 += "\n\n-----------------------------------------------\n\n\n"
+                header += "\n"
+                body += "\n\n-----------------------------------------------\n\n\n"
         except Exception as e:
             print("cURL to ELK error")
             print(str(e))
             exit()
-    if body1 != "":
-        #sendGmail(body1 + body2)
-        res = body1+body2
-        print body1
-        #print body2
+    if header != "":
+        #sendGmail(header + body)
+        res = header+body
+        print header
     else:
         print("Khong phat hien bat ki nguy co nao")
 

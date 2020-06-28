@@ -1,4 +1,12 @@
 {
+  "sort": [
+    {
+      "@timestamp": {
+        "order": "asc",
+        "unmapped_type": "boolean"
+      }
+    }
+  ],
     "aggs": {
         "2": {
             "date_histogram": {
