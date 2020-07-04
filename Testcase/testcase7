@@ -7,17 +7,50 @@
       }
     }
   ],
-  "query": {
+"query": {
     "bool": {
       "filter": [
         {
-          "match_phrase": {
-            "event.code": "11"
-          }
-        },
-        {
-          "match_phrase": {
-            "file.path": "libeay32.dll"
+          "bool": {
+            "should": [
+              {
+                "bool": {
+                  "filter": [
+                  {
+                    "match_phrase": {
+                      "event.code": "11"
+                    }
+                  },
+                  {
+                    "match_phrase": {
+                      "file.path": "libeay32.dll"
+                    }
+                  }
+                ]}
+              },
+              {
+                "bool": {
+                  "filter": [
+                    {
+                      "match_phrase": {
+                        "event.code": "4663"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "winlog.event_data.ObjectName": "libeay32.dll"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "message": "Accesses: Execute/Traverse"
+                      }
+                    }
+                  ]
+                }
+              }
+            ],
+            "minimum_should_match": 1
           }
         },
         {

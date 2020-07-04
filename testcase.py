@@ -17,7 +17,7 @@ def getTimestamp():
     test1 = datetime.datetime.now()
     # Convert from Asia/Ho_Chi_Minh to UTC+0 (minus 7 hours)
     test1 -= datetime.timedelta(hours=7)
-    test2 = test1 - datetime.timedelta(minutes=5)
+    test2 = test1 - datetime.timedelta(hours = 2)
     s1 = test1.strftime("%Y-%m-%dT%H:%M:%S.327Z")
     s2 = test2.strftime("%Y-%m-%dT%H:%M:%S.327Z")
     return [s2, s1]
@@ -29,6 +29,7 @@ def postRequest(data):
         l = getTimestamp()
         tmp = data.replace("AAAAAAAAAAAA", l[0])
         tmp = tmp.replace("BBBBBBBBBBBB", l[1])
+        print tmp
         response = requests.post(BASEURL, headers = HEADER, data = tmp)
         return response
     except:
@@ -62,7 +63,7 @@ def recognizeWCERemoteLogin(listArgs):
             if s.count(":") == 3:
                 ok += 1
             # Kiem tra xem co phai la file exe va duoc thuc thi tai C:\Windows\System32
-            elif s.find("C:\Windows\system32") != -1 and s[-4:] == ".exe":
+            elif s.find("C:\\Windows\\system32") != -1 and s[-4:] == ".exe":
                 ok += 1
         if ok == 2:
             return True
@@ -146,19 +147,47 @@ def csvde_at_destination():
             print res
         print "Khong co tan cong"
 
+def checkName(name):
+    # Allow Computer
+    if name.find("$") != -1:
+        return True
+    # Allow 2 user account sv and administrator to remote login
+    if name == "sv" or name == "administrator":
+        return True
+    return False
 
 def golden_ticket():
     # Catch all events 4769
-    res = sendRequest("testcase11")
-
-    for tmp in res["hits"]["hits"]:
+    response = sendRequest("testcase11")
+    print response["hits"]["total"]["value"]
+    index = 1
+    res = []
+    for tmp in response["hits"]["hits"]:
+        print index
+        index+=1
         try:
-            print tmp["_source"]["winlog"]["event_data"]["TargetUserName"]
-            print tmp["_source"]["winlog"]["event_data"]["TargetDomainName"]
+            i = tmp["_source"]["winlog"]["event_data"]["TargetUserName"].find("@")
+            if i != -1:
+                name = tmp["_source"]["winlog"]["event_data"]["TargetUserName"][:i]
+                domain = tmp["_source"]["winlog"]["event_data"]["TargetUserName"][i+1:]
+                if checkName(name) == False or domain.isupper() == False:
+                   res.append(tmp)
         except:
+            # Filter all event having blank user account name
             continue
+    return res
 
+def quarksPwDump(res):
+    result = []
+    for tmp in res["hits"]["hits"]:
+        s = tmp["_source"]["file"]["path"]
+        if s.find("C:\\Users\\") < s.find("\\AppData\\Local\\Temp\\SAM") and s.find("dmp") != -1:
+            result.append(tmp)
+    return result
 
 
 if __name__ == "__main__":
-    golden_ticket()
+    res = sendRequest("testcase8")
+    res = quarksPwDump(res)
+    for tmp in res:
+        print(json.dumps(tmp, indent=4, sort_keys=True))

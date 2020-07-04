@@ -1,0 +1,941 @@
+{
+    "_id": "gD5VjHIBCFtVnIPZo7Js", 
+    "_index": "winlogbeat-7.7.0-2020.06.07", 
+    "_score": null, 
+    "_source": {
+        "@timestamp": "2020-06-07T01:09:41.875Z", 
+        "@version": "1", 
+        "agent": {
+            "ephemeral_id": "c6933f21-eef5-434e-a0da-47c4c083add4", 
+            "hostname": "WINSRV", 
+            "id": "b002425b-af48-4008-8d0a-9e3014604a59", 
+            "type": "winlogbeat", 
+            "version": "7.7.0"
+        }, 
+        "ecs": {
+            "version": "1.5.0"
+        }, 
+        "event": {
+            "action": "Kerberos Service Ticket Operations", 
+            "code": 4769, 
+            "created": "2020-06-07T01:12:00.777Z", 
+            "kind": "event", 
+            "provider": "Microsoft-Windows-Security-Auditing"
+        }, 
+        "host": {
+            "architecture": "x86_64", 
+            "hostname": "WINSRV", 
+            "id": "f4be2742-f414-4caa-bb87-f4003a376c01", 
+            "ip": [
+                "fe80::f072:ce34:86ef:7229", 
+                "192.168.1.100", 
+                "fe80::5efe:c0a8:164", 
+                "fe80::100:7f:fffe"
+            ], 
+            "mac": [
+                "00:0c:29:fc:f0:a9", 
+                "00:00:00:00:00:00:00:e0", 
+                "00:00:00:00:00:00:00:e0"
+            ], 
+            "name": "WINSRV.winsrv2008.local", 
+            "os": {
+                "build": "7601.0", 
+                "family": "windows", 
+                "kernel": "6.1.7601.18741 (win7sp1_gdr.150202-1526)", 
+                "name": "Windows Server 2008 R2 Datacenter", 
+                "platform": "windows", 
+                "version": "6.1"
+            }
+        }, 
+        "log": {
+            "level": "information"
+        }, 
+        "message": "A Kerberos service ticket was requested.\n\nAccount Information:\n\tAccount Name:\t\tWINSRV$@WINSRV2008.LOCAL\n\tAccount Domain:\t\tWINSRV2008.LOCAL\n\tLogon GUID:\t\t{6A7CA229-1E59-A954-8EB8-58A15767ACB8}\n\nService Information:\n\tService Name:\t\tWINSRV$\n\tService ID:\t\tS-1-5-21-4220747943-3152432350-320651364-1001\n\nNetwork Information:\n\tClient Address:\t\t::1\n\tClient Port:\t\t0\n\nAdditional Information:\n\tTicket Options:\t\t0x40810000\n\tTicket Encryption Type:\t0x12\n\tFailure Code:\t\t0x0\n\tTransited Services:\t-\n\nThis event is generated every time access is requested to a resource such as a computer or a Windows service.  The service name indicates the resource to which access was requested.\n\nThis event can be correlated with Windows logon events by comparing the Logon GUID fields in each event.  The logon event occurs on the machine that was accessed, which is often a different machine than the domain controller which issued the service ticket.\n\nTicket options, encryption types, and failure codes are defined in RFC 4120.", 
+        "tags": [
+            "beats_input_codec_plain_applied"
+        ], 
+        "winlog": {
+            "api": "wineventlog", 
+            "channel": "Security", 
+            "computer_name": "WINSRV.winsrv2008.local", 
+            "event_data": {
+                "IpAddress": "::1", 
+                "IpPort": "0", 
+                "LogonGuid": "{6A7CA229-1E59-A954-8EB8-58A15767ACB8}", 
+                "ServiceName": "WINSRV$", 
+                "ServiceSid": "S-1-5-21-4220747943-3152432350-320651364-1001", 
+                "Status": "0x0", 
+                "TargetDomainName": "WINSRV2008.LOCAL", 
+                "TargetUserName": "WINSRV$@WINSRV2008.LOCAL", 
+                "TicketEncryptionType": "0x12", 
+                "TicketOptions": "0x40810000", 
+                "TransmittedServices": "-"
+            }, 
+            "event_id": 4769, 
+            "keywords": [
+                "Audit Success"
+            ], 
+            "opcode": "Info", 
+            "process": {
+                "pid": 500, 
+                "thread": {
+                    "id": 552
+                }
+            }, 
+            "provider_guid": "{54849625-5478-4994-A5BA-3E3B0328C30D}", 
+            "provider_name": "Microsoft-Windows-Security-Auditing", 
+            "record_id": 411326, 
+            "task": "Kerberos Service Ticket Operations"
+        }
+    }, 
+    "_type": "_doc", 
+    "sort": [
+        1591492181875
+    ]
+}{
+    "_id": "gT5VjHIBCFtVnIPZo7Js", 
+    "_index": "winlogbeat-7.7.0-2020.06.07", 
+    "_score": null, 
+    "_source": {
+        "@timestamp": "2020-06-07T01:09:41.875Z", 
+        "@version": "1", 
+        "agent": {
+            "ephemeral_id": "c6933f21-eef5-434e-a0da-47c4c083add4", 
+            "hostname": "WINSRV", 
+            "id": "b002425b-af48-4008-8d0a-9e3014604a59", 
+            "type": "winlogbeat", 
+            "version": "7.7.0"
+        }, 
+        "ecs": {
+            "version": "1.5.0"
+        }, 
+        "event": {
+            "action": "Kerberos Service Ticket Operations", 
+            "code": 4769, 
+            "created": "2020-06-07T01:12:00.777Z", 
+            "kind": "event", 
+            "provider": "Microsoft-Windows-Security-Auditing"
+        }, 
+        "host": {
+            "architecture": "x86_64", 
+            "hostname": "WINSRV", 
+            "id": "f4be2742-f414-4caa-bb87-f4003a376c01", 
+            "ip": [
+                "fe80::f072:ce34:86ef:7229", 
+                "192.168.1.100", 
+                "fe80::5efe:c0a8:164", 
+                "fe80::100:7f:fffe"
+            ], 
+            "mac": [
+                "00:0c:29:fc:f0:a9", 
+                "00:00:00:00:00:00:00:e0", 
+                "00:00:00:00:00:00:00:e0"
+            ], 
+            "name": "WINSRV.winsrv2008.local", 
+            "os": {
+                "build": "7601.0", 
+                "family": "windows", 
+                "kernel": "6.1.7601.18741 (win7sp1_gdr.150202-1526)", 
+                "name": "Windows Server 2008 R2 Datacenter", 
+                "platform": "windows", 
+                "version": "6.1"
+            }
+        }, 
+        "log": {
+            "level": "information"
+        }, 
+        "message": "A Kerberos service ticket was requested.\n\nAccount Information:\n\tAccount Name:\t\tWINSRV$@WINSRV2008.LOCAL\n\tAccount Domain:\t\tWINSRV2008.LOCAL\n\tLogon GUID:\t\t{6A7CA229-1E59-A954-8EB8-58A15767ACB8}\n\nService Information:\n\tService Name:\t\tWINSRV$\n\tService ID:\t\tS-1-5-21-4220747943-3152432350-320651364-1001\n\nNetwork Information:\n\tClient Address:\t\t::1\n\tClient Port:\t\t0\n\nAdditional Information:\n\tTicket Options:\t\t0x40810000\n\tTicket Encryption Type:\t0x12\n\tFailure Code:\t\t0x0\n\tTransited Services:\t-\n\nThis event is generated every time access is requested to a resource such as a computer or a Windows service.  The service name indicates the resource to which access was requested.\n\nThis event can be correlated with Windows logon events by comparing the Logon GUID fields in each event.  The logon event occurs on the machine that was accessed, which is often a different machine than the domain controller which issued the service ticket.\n\nTicket options, encryption types, and failure codes are defined in RFC 4120.", 
+        "tags": [
+            "beats_input_codec_plain_applied"
+        ], 
+        "winlog": {
+            "api": "wineventlog", 
+            "channel": "Security", 
+            "computer_name": "WINSRV.winsrv2008.local", 
+            "event_data": {
+                "IpAddress": "::1", 
+                "IpPort": "0", 
+                "LogonGuid": "{6A7CA229-1E59-A954-8EB8-58A15767ACB8}", 
+                "ServiceName": "WINSRV$", 
+                "ServiceSid": "S-1-5-21-4220747943-3152432350-320651364-1001", 
+                "Status": "0x0", 
+                "TargetDomainName": "WINSRV2008.LOCAL", 
+                "TargetUserName": "WINSRV$@WINSRV2008.LOCAL", 
+                "TicketEncryptionType": "0x12", 
+                "TicketOptions": "0x40810000", 
+                "TransmittedServices": "-"
+            }, 
+            "event_id": 4769, 
+            "keywords": [
+                "Audit Success"
+            ], 
+            "opcode": "Info", 
+            "process": {
+                "pid": 500, 
+                "thread": {
+                    "id": 2720
+                }
+            }, 
+            "provider_guid": "{54849625-5478-4994-A5BA-3E3B0328C30D}", 
+            "provider_name": "Microsoft-Windows-Security-Auditing", 
+            "record_id": 411327, 
+            "task": "Kerberos Service Ticket Operations"
+        }
+    }, 
+    "_type": "_doc", 
+    "sort": [
+        1591492181875
+    ]
+}{
+    "_id": "hj5VjHIBCFtVnIPZo7Js", 
+    "_index": "winlogbeat-7.7.0-2020.06.07", 
+    "_score": null, 
+    "_source": {
+        "@timestamp": "2020-06-07T01:09:41.891Z", 
+        "@version": "1", 
+        "agent": {
+            "ephemeral_id": "c6933f21-eef5-434e-a0da-47c4c083add4", 
+            "hostname": "WINSRV", 
+            "id": "b002425b-af48-4008-8d0a-9e3014604a59", 
+            "type": "winlogbeat", 
+            "version": "7.7.0"
+        }, 
+        "ecs": {
+            "version": "1.5.0"
+        }, 
+        "event": {
+            "action": "Kerberos Service Ticket Operations", 
+            "code": 4769, 
+            "created": "2020-06-07T01:12:00.777Z", 
+            "kind": "event", 
+            "provider": "Microsoft-Windows-Security-Auditing"
+        }, 
+        "host": {
+            "architecture": "x86_64", 
+            "hostname": "WINSRV", 
+            "id": "f4be2742-f414-4caa-bb87-f4003a376c01", 
+            "ip": [
+                "fe80::f072:ce34:86ef:7229", 
+                "192.168.1.100", 
+                "fe80::5efe:c0a8:164", 
+                "fe80::100:7f:fffe"
+            ], 
+            "mac": [
+                "00:0c:29:fc:f0:a9", 
+                "00:00:00:00:00:00:00:e0", 
+                "00:00:00:00:00:00:00:e0"
+            ], 
+            "name": "WINSRV.winsrv2008.local", 
+            "os": {
+                "build": "7601.0", 
+                "family": "windows", 
+                "kernel": "6.1.7601.18741 (win7sp1_gdr.150202-1526)", 
+                "name": "Windows Server 2008 R2 Datacenter", 
+                "platform": "windows", 
+                "version": "6.1"
+            }
+        }, 
+        "log": {
+            "level": "information"
+        }, 
+        "message": "A Kerberos service ticket was requested.\n\nAccount Information:\n\tAccount Name:\t\tWINSRV$@WINSRV2008.LOCAL\n\tAccount Domain:\t\tWINSRV2008.LOCAL\n\tLogon GUID:\t\t{6A7CA229-1E59-A954-8EB8-58A15767ACB8}\n\nService Information:\n\tService Name:\t\tWINSRV$\n\tService ID:\t\tS-1-5-21-4220747943-3152432350-320651364-1001\n\nNetwork Information:\n\tClient Address:\t\t::1\n\tClient Port:\t\t0\n\nAdditional Information:\n\tTicket Options:\t\t0x40810000\n\tTicket Encryption Type:\t0x12\n\tFailure Code:\t\t0x0\n\tTransited Services:\t-\n\nThis event is generated every time access is requested to a resource such as a computer or a Windows service.  The service name indicates the resource to which access was requested.\n\nThis event can be correlated with Windows logon events by comparing the Logon GUID fields in each event.  The logon event occurs on the machine that was accessed, which is often a different machine than the domain controller which issued the service ticket.\n\nTicket options, encryption types, and failure codes are defined in RFC 4120.", 
+        "tags": [
+            "beats_input_codec_plain_applied"
+        ], 
+        "winlog": {
+            "api": "wineventlog", 
+            "channel": "Security", 
+            "computer_name": "WINSRV.winsrv2008.local", 
+            "event_data": {
+                "IpAddress": "::1", 
+                "IpPort": "0", 
+                "LogonGuid": "{6A7CA229-1E59-A954-8EB8-58A15767ACB8}", 
+                "ServiceName": "WINSRV$", 
+                "ServiceSid": "S-1-5-21-4220747943-3152432350-320651364-1001", 
+                "Status": "0x0", 
+                "TargetDomainName": "WINSRV2008.LOCAL", 
+                "TargetUserName": "WINSRV$@WINSRV2008.LOCAL", 
+                "TicketEncryptionType": "0x12", 
+                "TicketOptions": "0x40810000", 
+                "TransmittedServices": "-"
+            }, 
+            "event_id": 4769, 
+            "keywords": [
+                "Audit Success"
+            ], 
+            "opcode": "Info", 
+            "process": {
+                "pid": 500, 
+                "thread": {
+                    "id": 660
+                }
+            }, 
+            "provider_guid": "{54849625-5478-4994-A5BA-3E3B0328C30D}", 
+            "provider_name": "Microsoft-Windows-Security-Auditing", 
+            "record_id": 411332, 
+            "task": "Kerberos Service Ticket Operations"
+        }
+    }, 
+    "_type": "_doc", 
+    "sort": [
+        1591492181891
+    ]
+}{
+    "_id": "hz5VjHIBCFtVnIPZo7Js", 
+    "_index": "winlogbeat-7.7.0-2020.06.07", 
+    "_score": null, 
+    "_source": {
+        "@timestamp": "2020-06-07T01:09:41.891Z", 
+        "@version": "1", 
+        "agent": {
+            "ephemeral_id": "c6933f21-eef5-434e-a0da-47c4c083add4", 
+            "hostname": "WINSRV", 
+            "id": "b002425b-af48-4008-8d0a-9e3014604a59", 
+            "type": "winlogbeat", 
+            "version": "7.7.0"
+        }, 
+        "ecs": {
+            "version": "1.5.0"
+        }, 
+        "event": {
+            "action": "Kerberos Service Ticket Operations", 
+            "code": 4769, 
+            "created": "2020-06-07T01:12:00.777Z", 
+            "kind": "event", 
+            "provider": "Microsoft-Windows-Security-Auditing"
+        }, 
+        "host": {
+            "architecture": "x86_64", 
+            "hostname": "WINSRV", 
+            "id": "f4be2742-f414-4caa-bb87-f4003a376c01", 
+            "ip": [
+                "fe80::f072:ce34:86ef:7229", 
+                "192.168.1.100", 
+                "fe80::5efe:c0a8:164", 
+                "fe80::100:7f:fffe"
+            ], 
+            "mac": [
+                "00:0c:29:fc:f0:a9", 
+                "00:00:00:00:00:00:00:e0", 
+                "00:00:00:00:00:00:00:e0"
+            ], 
+            "name": "WINSRV.winsrv2008.local", 
+            "os": {
+                "build": "7601.0", 
+                "family": "windows", 
+                "kernel": "6.1.7601.18741 (win7sp1_gdr.150202-1526)", 
+                "name": "Windows Server 2008 R2 Datacenter", 
+                "platform": "windows", 
+                "version": "6.1"
+            }
+        }, 
+        "log": {
+            "level": "information"
+        }, 
+        "message": "A Kerberos service ticket was requested.\n\nAccount Information:\n\tAccount Name:\t\tWINSRV$@WINSRV2008.LOCAL\n\tAccount Domain:\t\tWINSRV2008.LOCAL\n\tLogon GUID:\t\t{6A7CA229-1E59-A954-8EB8-58A15767ACB8}\n\nService Information:\n\tService Name:\t\tWINSRV$\n\tService ID:\t\tS-1-5-21-4220747943-3152432350-320651364-1001\n\nNetwork Information:\n\tClient Address:\t\t::1\n\tClient Port:\t\t0\n\nAdditional Information:\n\tTicket Options:\t\t0x40810000\n\tTicket Encryption Type:\t0x12\n\tFailure Code:\t\t0x0\n\tTransited Services:\t-\n\nThis event is generated every time access is requested to a resource such as a computer or a Windows service.  The service name indicates the resource to which access was requested.\n\nThis event can be correlated with Windows logon events by comparing the Logon GUID fields in each event.  The logon event occurs on the machine that was accessed, which is often a different machine than the domain controller which issued the service ticket.\n\nTicket options, encryption types, and failure codes are defined in RFC 4120.", 
+        "tags": [
+            "beats_input_codec_plain_applied"
+        ], 
+        "winlog": {
+            "api": "wineventlog", 
+            "channel": "Security", 
+            "computer_name": "WINSRV.winsrv2008.local", 
+            "event_data": {
+                "IpAddress": "::1", 
+                "IpPort": "0", 
+                "LogonGuid": "{6A7CA229-1E59-A954-8EB8-58A15767ACB8}", 
+                "ServiceName": "WINSRV$", 
+                "ServiceSid": "S-1-5-21-4220747943-3152432350-320651364-1001", 
+                "Status": "0x0", 
+                "TargetDomainName": "WINSRV2008.LOCAL", 
+                "TargetUserName": "WINSRV$@WINSRV2008.LOCAL", 
+                "TicketEncryptionType": "0x12", 
+                "TicketOptions": "0x40810000", 
+                "TransmittedServices": "-"
+            }, 
+            "event_id": 4769, 
+            "keywords": [
+                "Audit Success"
+            ], 
+            "opcode": "Info", 
+            "process": {
+                "pid": 500, 
+                "thread": {
+                    "id": 552
+                }
+            }, 
+            "provider_guid": "{54849625-5478-4994-A5BA-3E3B0328C30D}", 
+            "provider_name": "Microsoft-Windows-Security-Auditing", 
+            "record_id": 411333, 
+            "task": "Kerberos Service Ticket Operations"
+        }
+    }, 
+    "_type": "_doc", 
+    "sort": [
+        1591492181891
+    ]
+}{
+    "_id": "_z5VjHIBCFtVnIPZo7LW", 
+    "_index": "winlogbeat-7.7.0-2020.06.07", 
+    "_score": null, 
+    "_source": {
+        "@timestamp": "2020-06-07T01:09:41.984Z", 
+        "@version": "1", 
+        "agent": {
+            "ephemeral_id": "c6933f21-eef5-434e-a0da-47c4c083add4", 
+            "hostname": "WINSRV", 
+            "id": "b002425b-af48-4008-8d0a-9e3014604a59", 
+            "type": "winlogbeat", 
+            "version": "7.7.0"
+        }, 
+        "ecs": {
+            "version": "1.5.0"
+        }, 
+        "event": {
+            "action": "Kerberos Service Ticket Operations", 
+            "code": 4769, 
+            "created": "2020-06-07T01:12:00.843Z", 
+            "kind": "event", 
+            "provider": "Microsoft-Windows-Security-Auditing"
+        }, 
+        "host": {
+            "architecture": "x86_64", 
+            "hostname": "WINSRV", 
+            "id": "f4be2742-f414-4caa-bb87-f4003a376c01", 
+            "ip": [
+                "fe80::f072:ce34:86ef:7229", 
+                "192.168.1.100", 
+                "fe80::5efe:c0a8:164", 
+                "fe80::100:7f:fffe"
+            ], 
+            "mac": [
+                "00:0c:29:fc:f0:a9", 
+                "00:00:00:00:00:00:00:e0", 
+                "00:00:00:00:00:00:00:e0"
+            ], 
+            "name": "WINSRV.winsrv2008.local", 
+            "os": {
+                "build": "7601.0", 
+                "family": "windows", 
+                "kernel": "6.1.7601.18741 (win7sp1_gdr.150202-1526)", 
+                "name": "Windows Server 2008 R2 Datacenter", 
+                "platform": "windows", 
+                "version": "6.1"
+            }
+        }, 
+        "log": {
+            "level": "information"
+        }, 
+        "message": "A Kerberos service ticket was requested.\n\nAccount Information:\n\tAccount Name:\t\tWINSRV$@WINSRV2008.LOCAL\n\tAccount Domain:\t\tWINSRV2008.LOCAL\n\tLogon GUID:\t\t{6A7CA229-1E59-A954-8EB8-58A15767ACB8}\n\nService Information:\n\tService Name:\t\tWINSRV$\n\tService ID:\t\tS-1-5-21-4220747943-3152432350-320651364-1001\n\nNetwork Information:\n\tClient Address:\t\t::1\n\tClient Port:\t\t0\n\nAdditional Information:\n\tTicket Options:\t\t0x40800000\n\tTicket Encryption Type:\t0x12\n\tFailure Code:\t\t0x0\n\tTransited Services:\t-\n\nThis event is generated every time access is requested to a resource such as a computer or a Windows service.  The service name indicates the resource to which access was requested.\n\nThis event can be correlated with Windows logon events by comparing the Logon GUID fields in each event.  The logon event occurs on the machine that was accessed, which is often a different machine than the domain controller which issued the service ticket.\n\nTicket options, encryption types, and failure codes are defined in RFC 4120.", 
+        "tags": [
+            "beats_input_codec_plain_applied"
+        ], 
+        "winlog": {
+            "api": "wineventlog", 
+            "channel": "Security", 
+            "computer_name": "WINSRV.winsrv2008.local", 
+            "event_data": {
+                "IpAddress": "::1", 
+                "IpPort": "0", 
+                "LogonGuid": "{6A7CA229-1E59-A954-8EB8-58A15767ACB8}", 
+                "ServiceName": "WINSRV$", 
+                "ServiceSid": "S-1-5-21-4220747943-3152432350-320651364-1001", 
+                "Status": "0x0", 
+                "TargetDomainName": "WINSRV2008.LOCAL", 
+                "TargetUserName": "WINSRV$@WINSRV2008.LOCAL", 
+                "TicketEncryptionType": "0x12", 
+                "TicketOptions": "0x40800000", 
+                "TransmittedServices": "-"
+            }, 
+            "event_id": 4769, 
+            "keywords": [
+                "Audit Success"
+            ], 
+            "opcode": "Info", 
+            "process": {
+                "pid": 500, 
+                "thread": {
+                    "id": 552
+                }
+            }, 
+            "provider_guid": "{54849625-5478-4994-A5BA-3E3B0328C30D}", 
+            "provider_name": "Microsoft-Windows-Security-Auditing", 
+            "record_id": 411453, 
+            "task": "Kerberos Service Ticket Operations"
+        }
+    }, 
+    "_type": "_doc", 
+    "sort": [
+        1591492181984
+    ]
+}{
+    "_id": "vD5VjHIBCFtVnIPZpLTu", 
+    "_index": "winlogbeat-7.7.0-2020.06.07", 
+    "_score": null, 
+    "_source": {
+        "@timestamp": "2020-06-07T01:09:42.530Z", 
+        "@version": "1", 
+        "agent": {
+            "ephemeral_id": "c6933f21-eef5-434e-a0da-47c4c083add4", 
+            "hostname": "WINSRV", 
+            "id": "b002425b-af48-4008-8d0a-9e3014604a59", 
+            "type": "winlogbeat", 
+            "version": "7.7.0"
+        }, 
+        "ecs": {
+            "version": "1.5.0"
+        }, 
+        "event": {
+            "action": "Kerberos Service Ticket Operations", 
+            "code": 4769, 
+            "created": "2020-06-07T01:12:01.173Z", 
+            "kind": "event", 
+            "provider": "Microsoft-Windows-Security-Auditing"
+        }, 
+        "host": {
+            "architecture": "x86_64", 
+            "hostname": "WINSRV", 
+            "id": "f4be2742-f414-4caa-bb87-f4003a376c01", 
+            "ip": [
+                "fe80::f072:ce34:86ef:7229", 
+                "192.168.1.100", 
+                "fe80::5efe:c0a8:164", 
+                "fe80::100:7f:fffe"
+            ], 
+            "mac": [
+                "00:0c:29:fc:f0:a9", 
+                "00:00:00:00:00:00:00:e0", 
+                "00:00:00:00:00:00:00:e0"
+            ], 
+            "name": "WINSRV.winsrv2008.local", 
+            "os": {
+                "build": "7601.0", 
+                "family": "windows", 
+                "kernel": "6.1.7601.18741 (win7sp1_gdr.150202-1526)", 
+                "name": "Windows Server 2008 R2 Datacenter", 
+                "platform": "windows", 
+                "version": "6.1"
+            }
+        }, 
+        "log": {
+            "level": "information"
+        }, 
+        "message": "A Kerberos service ticket was requested.\n\nAccount Information:\n\tAccount Name:\t\tWINSRV$@WINSRV2008.LOCAL\n\tAccount Domain:\t\tWINSRV2008.LOCAL\n\tLogon GUID:\t\t{03EC5CD3-75FD-2776-9217-2C74E0659F5E}\n\nService Information:\n\tService Name:\t\tWINSRV$\n\tService ID:\t\tS-1-5-21-4220747943-3152432350-320651364-1001\n\nNetwork Information:\n\tClient Address:\t\t::1\n\tClient Port:\t\t0\n\nAdditional Information:\n\tTicket Options:\t\t0x40810000\n\tTicket Encryption Type:\t0x12\n\tFailure Code:\t\t0x0\n\tTransited Services:\t-\n\nThis event is generated every time access is requested to a resource such as a computer or a Windows service.  The service name indicates the resource to which access was requested.\n\nThis event can be correlated with Windows logon events by comparing the Logon GUID fields in each event.  The logon event occurs on the machine that was accessed, which is often a different machine than the domain controller which issued the service ticket.\n\nTicket options, encryption types, and failure codes are defined in RFC 4120.", 
+        "tags": [
+            "beats_input_codec_plain_applied"
+        ], 
+        "winlog": {
+            "api": "wineventlog", 
+            "channel": "Security", 
+            "computer_name": "WINSRV.winsrv2008.local", 
+            "event_data": {
+                "IpAddress": "::1", 
+                "IpPort": "0", 
+                "LogonGuid": "{03EC5CD3-75FD-2776-9217-2C74E0659F5E}", 
+                "ServiceName": "WINSRV$", 
+                "ServiceSid": "S-1-5-21-4220747943-3152432350-320651364-1001", 
+                "Status": "0x0", 
+                "TargetDomainName": "WINSRV2008.LOCAL", 
+                "TargetUserName": "WINSRV$@WINSRV2008.LOCAL", 
+                "TicketEncryptionType": "0x12", 
+                "TicketOptions": "0x40810000", 
+                "TransmittedServices": "-"
+            }, 
+            "event_id": 4769, 
+            "keywords": [
+                "Audit Success"
+            ], 
+            "opcode": "Info", 
+            "process": {
+                "pid": 500, 
+                "thread": {
+                    "id": 552
+                }
+            }, 
+            "provider_guid": "{54849625-5478-4994-A5BA-3E3B0328C30D}", 
+            "provider_name": "Microsoft-Windows-Security-Auditing", 
+            "record_id": 411898, 
+            "task": "Kerberos Service Ticket Operations"
+        }
+    }, 
+    "_type": "_doc", 
+    "sort": [
+        1591492182530
+    ]
+}{
+    "_id": "zT5VjHIBCFtVnIPZscql", 
+    "_index": "winlogbeat-7.7.0-2020.06.07", 
+    "_score": null, 
+    "_source": {
+        "@timestamp": "2020-06-07T01:10:36.294Z", 
+        "@version": "1", 
+        "agent": {
+            "ephemeral_id": "c6933f21-eef5-434e-a0da-47c4c083add4", 
+            "hostname": "WINSRV", 
+            "id": "b002425b-af48-4008-8d0a-9e3014604a59", 
+            "type": "winlogbeat", 
+            "version": "7.7.0"
+        }, 
+        "ecs": {
+            "version": "1.5.0"
+        }, 
+        "event": {
+            "action": "Kerberos Service Ticket Operations", 
+            "code": 4769, 
+            "created": "2020-06-07T01:12:04.727Z", 
+            "kind": "event", 
+            "provider": "Microsoft-Windows-Security-Auditing"
+        }, 
+        "host": {
+            "architecture": "x86_64", 
+            "hostname": "WINSRV", 
+            "id": "f4be2742-f414-4caa-bb87-f4003a376c01", 
+            "ip": [
+                "fe80::f072:ce34:86ef:7229", 
+                "192.168.1.100", 
+                "fe80::5efe:c0a8:164", 
+                "fe80::100:7f:fffe"
+            ], 
+            "mac": [
+                "00:0c:29:fc:f0:a9", 
+                "00:00:00:00:00:00:00:e0", 
+                "00:00:00:00:00:00:00:e0"
+            ], 
+            "name": "WINSRV.winsrv2008.local", 
+            "os": {
+                "build": "7601.0", 
+                "family": "windows", 
+                "kernel": "6.1.7601.18741 (win7sp1_gdr.150202-1526)", 
+                "name": "Windows Server 2008 R2 Datacenter", 
+                "platform": "windows", 
+                "version": "6.1"
+            }
+        }, 
+        "log": {
+            "level": "information"
+        }, 
+        "message": "A Kerberos service ticket was requested.\n\nAccount Information:\n\tAccount Name:\t\tsv@WINSRV2008.LOCAL\n\tAccount Domain:\t\tWINSRV2008.LOCAL\n\tLogon GUID:\t\t{B3B3685E-AB79-63B3-49B1-04FD388F2095}\n\nService Information:\n\tService Name:\t\tsv\n\tService ID:\t\tS-1-5-21-4220747943-3152432350-320651364-1000\n\nNetwork Information:\n\tClient Address:\t\t::1\n\tClient Port:\t\t0\n\nAdditional Information:\n\tTicket Options:\t\t0x40810008\n\tTicket Encryption Type:\t0x17\n\tFailure Code:\t\t0x0\n\tTransited Services:\t-\n\nThis event is generated every time access is requested to a resource such as a computer or a Windows service.  The service name indicates the resource to which access was requested.\n\nThis event can be correlated with Windows logon events by comparing the Logon GUID fields in each event.  The logon event occurs on the machine that was accessed, which is often a different machine than the domain controller which issued the service ticket.\n\nTicket options, encryption types, and failure codes are defined in RFC 4120.", 
+        "tags": [
+            "beats_input_codec_plain_applied"
+        ], 
+        "winlog": {
+            "api": "wineventlog", 
+            "channel": "Security", 
+            "computer_name": "WINSRV.winsrv2008.local", 
+            "event_data": {
+                "IpAddress": "::1", 
+                "IpPort": "0", 
+                "LogonGuid": "{B3B3685E-AB79-63B3-49B1-04FD388F2095}", 
+                "ServiceName": "sv", 
+                "ServiceSid": "S-1-5-21-4220747943-3152432350-320651364-1000", 
+                "Status": "0x0", 
+                "TargetDomainName": "WINSRV2008.LOCAL", 
+                "TargetUserName": "sv@WINSRV2008.LOCAL", 
+                "TicketEncryptionType": "0x17", 
+                "TicketOptions": "0x40810008", 
+                "TransmittedServices": "-"
+            }, 
+            "event_id": 4769, 
+            "keywords": [
+                "Audit Success"
+            ], 
+            "opcode": "Info", 
+            "process": {
+                "pid": 500, 
+                "thread": {
+                    "id": 2648
+                }
+            }, 
+            "provider_guid": "{54849625-5478-4994-A5BA-3E3B0328C30D}", 
+            "provider_name": "Microsoft-Windows-Security-Auditing", 
+            "record_id": 417671, 
+            "task": "Kerberos Service Ticket Operations"
+        }
+    }, 
+    "_type": "_doc", 
+    "sort": [
+        1591492236294
+    ]
+}{
+    "_id": "zz5VjHIBCFtVnIPZscql", 
+    "_index": "winlogbeat-7.7.0-2020.06.07", 
+    "_score": null, 
+    "_source": {
+        "@timestamp": "2020-06-07T01:10:36.310Z", 
+        "@version": "1", 
+        "agent": {
+            "ephemeral_id": "c6933f21-eef5-434e-a0da-47c4c083add4", 
+            "hostname": "WINSRV", 
+            "id": "b002425b-af48-4008-8d0a-9e3014604a59", 
+            "type": "winlogbeat", 
+            "version": "7.7.0"
+        }, 
+        "ecs": {
+            "version": "1.5.0"
+        }, 
+        "event": {
+            "action": "Kerberos Service Ticket Operations", 
+            "code": 4769, 
+            "created": "2020-06-07T01:12:04.727Z", 
+            "kind": "event", 
+            "provider": "Microsoft-Windows-Security-Auditing"
+        }, 
+        "host": {
+            "architecture": "x86_64", 
+            "hostname": "WINSRV", 
+            "id": "f4be2742-f414-4caa-bb87-f4003a376c01", 
+            "ip": [
+                "fe80::f072:ce34:86ef:7229", 
+                "192.168.1.100", 
+                "fe80::5efe:c0a8:164", 
+                "fe80::100:7f:fffe"
+            ], 
+            "mac": [
+                "00:0c:29:fc:f0:a9", 
+                "00:00:00:00:00:00:00:e0", 
+                "00:00:00:00:00:00:00:e0"
+            ], 
+            "name": "WINSRV.winsrv2008.local", 
+            "os": {
+                "build": "7601.0", 
+                "family": "windows", 
+                "kernel": "6.1.7601.18741 (win7sp1_gdr.150202-1526)", 
+                "name": "Windows Server 2008 R2 Datacenter", 
+                "platform": "windows", 
+                "version": "6.1"
+            }
+        }, 
+        "log": {
+            "level": "information"
+        }, 
+        "message": "A Kerberos service ticket was requested.\n\nAccount Information:\n\tAccount Name:\t\tsv@WINSRV2008.LOCAL\n\tAccount Domain:\t\tWINSRV2008.LOCAL\n\tLogon GUID:\t\t{B3B3685E-AB79-63B3-49B1-04FD388F2095}\n\nService Information:\n\tService Name:\t\tWINSRV$\n\tService ID:\t\tS-1-5-21-4220747943-3152432350-320651364-1001\n\nNetwork Information:\n\tClient Address:\t\t::1\n\tClient Port:\t\t0\n\nAdditional Information:\n\tTicket Options:\t\t0x40810000\n\tTicket Encryption Type:\t0x12\n\tFailure Code:\t\t0x0\n\tTransited Services:\t-\n\nThis event is generated every time access is requested to a resource such as a computer or a Windows service.  The service name indicates the resource to which access was requested.\n\nThis event can be correlated with Windows logon events by comparing the Logon GUID fields in each event.  The logon event occurs on the machine that was accessed, which is often a different machine than the domain controller which issued the service ticket.\n\nTicket options, encryption types, and failure codes are defined in RFC 4120.", 
+        "tags": [
+            "beats_input_codec_plain_applied"
+        ], 
+        "winlog": {
+            "api": "wineventlog", 
+            "channel": "Security", 
+            "computer_name": "WINSRV.winsrv2008.local", 
+            "event_data": {
+                "IpAddress": "::1", 
+                "IpPort": "0", 
+                "LogonGuid": "{B3B3685E-AB79-63B3-49B1-04FD388F2095}", 
+                "ServiceName": "WINSRV$", 
+                "ServiceSid": "S-1-5-21-4220747943-3152432350-320651364-1001", 
+                "Status": "0x0", 
+                "TargetDomainName": "WINSRV2008.LOCAL", 
+                "TargetUserName": "sv@WINSRV2008.LOCAL", 
+                "TicketEncryptionType": "0x12", 
+                "TicketOptions": "0x40810000", 
+                "TransmittedServices": "-"
+            }, 
+            "event_id": 4769, 
+            "keywords": [
+                "Audit Success"
+            ], 
+            "opcode": "Info", 
+            "process": {
+                "pid": 500, 
+                "thread": {
+                    "id": 2648
+                }
+            }, 
+            "provider_guid": "{54849625-5478-4994-A5BA-3E3B0328C30D}", 
+            "provider_name": "Microsoft-Windows-Security-Auditing", 
+            "record_id": 417673, 
+            "task": "Kerberos Service Ticket Operations"
+        }
+    }, 
+    "_type": "_doc", 
+    "sort": [
+        1591492236310
+    ]
+}{
+    "_id": "7j5VjHIBCFtVnIPZscql", 
+    "_index": "winlogbeat-7.7.0-2020.06.07", 
+    "_score": null, 
+    "_source": {
+        "@timestamp": "2020-06-07T01:10:36.513Z", 
+        "@version": "1", 
+        "agent": {
+            "ephemeral_id": "c6933f21-eef5-434e-a0da-47c4c083add4", 
+            "hostname": "WINSRV", 
+            "id": "b002425b-af48-4008-8d0a-9e3014604a59", 
+            "type": "winlogbeat", 
+            "version": "7.7.0"
+        }, 
+        "ecs": {
+            "version": "1.5.0"
+        }, 
+        "event": {
+            "action": "Kerberos Service Ticket Operations", 
+            "code": 4769, 
+            "created": "2020-06-07T01:12:04.798Z", 
+            "kind": "event", 
+            "provider": "Microsoft-Windows-Security-Auditing"
+        }, 
+        "host": {
+            "architecture": "x86_64", 
+            "hostname": "WINSRV", 
+            "id": "f4be2742-f414-4caa-bb87-f4003a376c01", 
+            "ip": [
+                "fe80::f072:ce34:86ef:7229", 
+                "192.168.1.100", 
+                "fe80::5efe:c0a8:164", 
+                "fe80::100:7f:fffe"
+            ], 
+            "mac": [
+                "00:0c:29:fc:f0:a9", 
+                "00:00:00:00:00:00:00:e0", 
+                "00:00:00:00:00:00:00:e0"
+            ], 
+            "name": "WINSRV.winsrv2008.local", 
+            "os": {
+                "build": "7601.0", 
+                "family": "windows", 
+                "kernel": "6.1.7601.18741 (win7sp1_gdr.150202-1526)", 
+                "name": "Windows Server 2008 R2 Datacenter", 
+                "platform": "windows", 
+                "version": "6.1"
+            }
+        }, 
+        "log": {
+            "level": "information"
+        }, 
+        "message": "A Kerberos service ticket was requested.\n\nAccount Information:\n\tAccount Name:\t\tsv@WINSRV2008.LOCAL\n\tAccount Domain:\t\tWINSRV2008.LOCAL\n\tLogon GUID:\t\t{B3B3685E-AB79-63B3-49B1-04FD388F2095}\n\nService Information:\n\tService Name:\t\tWINSRV$\n\tService ID:\t\tS-1-5-21-4220747943-3152432350-320651364-1001\n\nNetwork Information:\n\tClient Address:\t\t::1\n\tClient Port:\t\t0\n\nAdditional Information:\n\tTicket Options:\t\t0x40810000\n\tTicket Encryption Type:\t0x12\n\tFailure Code:\t\t0x0\n\tTransited Services:\t-\n\nThis event is generated every time access is requested to a resource such as a computer or a Windows service.  The service name indicates the resource to which access was requested.\n\nThis event can be correlated with Windows logon events by comparing the Logon GUID fields in each event.  The logon event occurs on the machine that was accessed, which is often a different machine than the domain controller which issued the service ticket.\n\nTicket options, encryption types, and failure codes are defined in RFC 4120.", 
+        "tags": [
+            "beats_input_codec_plain_applied"
+        ], 
+        "winlog": {
+            "api": "wineventlog", 
+            "channel": "Security", 
+            "computer_name": "WINSRV.winsrv2008.local", 
+            "event_data": {
+                "IpAddress": "::1", 
+                "IpPort": "0", 
+                "LogonGuid": "{B3B3685E-AB79-63B3-49B1-04FD388F2095}", 
+                "ServiceName": "WINSRV$", 
+                "ServiceSid": "S-1-5-21-4220747943-3152432350-320651364-1001", 
+                "Status": "0x0", 
+                "TargetDomainName": "WINSRV2008.LOCAL", 
+                "TargetUserName": "sv@WINSRV2008.LOCAL", 
+                "TicketEncryptionType": "0x12", 
+                "TicketOptions": "0x40810000", 
+                "TransmittedServices": "-"
+            }, 
+            "event_id": 4769, 
+            "keywords": [
+                "Audit Success"
+            ], 
+            "opcode": "Info", 
+            "process": {
+                "pid": 500, 
+                "thread": {
+                    "id": 2648
+                }
+            }, 
+            "provider_guid": "{54849625-5478-4994-A5BA-3E3B0328C30D}", 
+            "provider_name": "Microsoft-Windows-Security-Auditing", 
+            "record_id": 417704, 
+            "task": "Kerberos Service Ticket Operations"
+        }
+    }, 
+    "_type": "_doc", 
+    "sort": [
+        1591492236513
+    ]
+}{
+    "_id": "-j5VjHIBCFtVnIPZscql", 
+    "_index": "winlogbeat-7.7.0-2020.06.07", 
+    "_score": null, 
+    "_source": {
+        "@timestamp": "2020-06-07T01:10:37.433Z", 
+        "@version": "1", 
+        "agent": {
+            "ephemeral_id": "c6933f21-eef5-434e-a0da-47c4c083add4", 
+            "hostname": "WINSRV", 
+            "id": "b002425b-af48-4008-8d0a-9e3014604a59", 
+            "type": "winlogbeat", 
+            "version": "7.7.0"
+        }, 
+        "ecs": {
+            "version": "1.5.0"
+        }, 
+        "event": {
+            "action": "Kerberos Service Ticket Operations", 
+            "code": 4769, 
+            "created": "2020-06-07T01:12:04.799Z", 
+            "kind": "event", 
+            "provider": "Microsoft-Windows-Security-Auditing"
+        }, 
+        "host": {
+            "architecture": "x86_64", 
+            "hostname": "WINSRV", 
+            "id": "f4be2742-f414-4caa-bb87-f4003a376c01", 
+            "ip": [
+                "fe80::f072:ce34:86ef:7229", 
+                "192.168.1.100", 
+                "fe80::5efe:c0a8:164", 
+                "fe80::100:7f:fffe"
+            ], 
+            "mac": [
+                "00:0c:29:fc:f0:a9", 
+                "00:00:00:00:00:00:00:e0", 
+                "00:00:00:00:00:00:00:e0"
+            ], 
+            "name": "WINSRV.winsrv2008.local", 
+            "os": {
+                "build": "7601.0", 
+                "family": "windows", 
+                "kernel": "6.1.7601.18741 (win7sp1_gdr.150202-1526)", 
+                "name": "Windows Server 2008 R2 Datacenter", 
+                "platform": "windows", 
+                "version": "6.1"
+            }
+        }, 
+        "log": {
+            "level": "information"
+        }, 
+        "message": "A Kerberos service ticket was requested.\n\nAccount Information:\n\tAccount Name:\t\tsv@WINSRV2008.LOCAL\n\tAccount Domain:\t\tWINSRV2008.LOCAL\n\tLogon GUID:\t\t{24A20822-2F31-FF28-F09C-A29A8116047A}\n\nService Information:\n\tService Name:\t\tWINSRV$\n\tService ID:\t\tS-1-5-21-4220747943-3152432350-320651364-1001\n\nNetwork Information:\n\tClient Address:\t\t::1\n\tClient Port:\t\t0\n\nAdditional Information:\n\tTicket Options:\t\t0x40810000\n\tTicket Encryption Type:\t0x12\n\tFailure Code:\t\t0x0\n\tTransited Services:\t-\n\nThis event is generated every time access is requested to a resource such as a computer or a Windows service.  The service name indicates the resource to which access was requested.\n\nThis event can be correlated with Windows logon events by comparing the Logon GUID fields in each event.  The logon event occurs on the machine that was accessed, which is often a different machine than the domain controller which issued the service ticket.\n\nTicket options, encryption types, and failure codes are defined in RFC 4120.", 
+        "tags": [
+            "beats_input_codec_plain_applied"
+        ], 
+        "winlog": {
+            "api": "wineventlog", 
+            "channel": "Security", 
+            "computer_name": "WINSRV.winsrv2008.local", 
+            "event_data": {
+                "IpAddress": "::1", 
+                "IpPort": "0", 
+                "LogonGuid": "{24A20822-2F31-FF28-F09C-A29A8116047A}", 
+                "ServiceName": "WINSRV$", 
+                "ServiceSid": "S-1-5-21-4220747943-3152432350-320651364-1001", 
+                "Status": "0x0", 
+                "TargetDomainName": "WINSRV2008.LOCAL", 
+                "TargetUserName": "sv@WINSRV2008.LOCAL", 
+                "TicketEncryptionType": "0x12", 
+                "TicketOptions": "0x40810000", 
+                "TransmittedServices": "-"
+            }, 
+            "event_id": 4769, 
+            "keywords": [
+                "Audit Success"
+            ], 
+            "opcode": "Info", 
+            "process": {
+                "pid": 500, 
+                "thread": {
+                    "id": 2384
+                }
+            }, 
+            "provider_guid": "{54849625-5478-4994-A5BA-3E3B0328C30D}", 
+            "provider_name": "Microsoft-Windows-Security-Auditing", 
+            "record_id": 417716, 
+            "task": "Kerberos Service Ticket Operations"
+        }
+    }, 
+    "_type": "_doc", 
+    "sort": [
+        1591492237433
+    ]
+}

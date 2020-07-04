@@ -94,11 +94,21 @@ def recognizeWCERemoteLogin(listArgs):
             if s.count(":") == 3:
                 ok += 1
             # Kiem tra xem co phai la file exe va duoc thuc thi tai C:\Windows\System32
-            elif s.find("C:\Windows\system32") != -1 and s[-4:] == ".exe":
+            elif s.find("C:\\Windows\\system32") != -1 and s[-4:] == ".exe":
                 ok += 1
         if ok == 2:
             return True
     return False
+
+# Test case 8: QuarksPwDump
+def quarksPwDump(res):
+    result = []
+    for tmp in res["hits"]["hits"]:
+        s = tmp["_source"]["file"]["path"]
+        # Check position of file.path that is C:\Users\[User Account]\AppData\Local\Temp\SAM-[RandomNumber].dmp
+        if s.find("C:\\Users\\") < s.find("\\AppData\\Local\\Temp\\SAM") and s.find("dmp") != -1:
+            result.append(tmp)
+    return result
 
 # Distinguish Test case 9: WCE - Password and Hash Dump and Test case 10: WCE - Remote Login
 def wce(a):
@@ -152,17 +162,44 @@ def sendRequest(fname):
 def convert2Datetime(time):
     return datetime.datetime.strptime(time, "%Y-%m-%dT%H:%M:%S.%fZ")
 
+# Test case 11: Golden Ticket
+def checkName(name):
+    # Allow Computer
+    if name.find("$") != -1:
+        return True
+    # Allow 2 user account sv and administrator to remote login
+    if name == "sv" or name == "administrator":
+        return True
+    return False
+
+def golden_ticket(response):
+    # Catch all events 4769
+    res = []
+    for tmp in response["hits"]["hits"]:
+        try:
+            i = tmp["_source"]["winlog"]["event_data"]["TargetUserName"].find("@")
+            if i != -1:
+                name = tmp["_source"]["winlog"]["event_data"]["TargetUserName"][:i]
+                domain = tmp["_source"]["winlog"]["event_data"]["TargetUserName"][i+1:]
+                if checkName(name) == False or domain.isupper() == False:
+                   res.append(tmp)
+        except:
+            # Filter all event having blank user account name
+            continue
+    return res
+
+# Test case 21: csvde
 def csvde_at_destination():
-    f = open("csvde", "w")
+    #f = open("csvde", "w")
     # catch event 5156
     a = sendRequest("testcase21_catch5156")
     
     tam = json.dumps(a, indent=4, sort_keys=True)
-    f.write(tam)
+    #f.write(tam)
     # catch event 4624
     b = sendRequest("testcase21_catch4624")
     tam = json.dumps(b, indent=4, sort_keys=True)
-    f.write(tam)
+    #f.write(tam)
 
     res = []
     if a["hits"]["total"]["value"] == 0 or b["hits"]["total"]["value"] == 0:
@@ -179,7 +216,7 @@ def csvde_at_destination():
                     if bj["_source"]["winlog"]["event_data"]["TargetUserName"] != "WINSRV$":
                         res.append(bj["_source"])
             except:
-                print "ERROR"
+                print "ERROR: Can't parse"
                 print(json.dumps(ai, indent=4, sort_keys=True))
                 print(json.dumps(bj, indent=4, sort_keys=True))
     return res
@@ -214,13 +251,18 @@ if __name__ == "__main__":
     for i in range(1,25):
         if i != 10:
             print(threats[i - 1])
-        if i == 4  or i == 8 or i == 10 or i == 11 or i == 15 or i == 12 or i == 16 or i ==20:
+        if i == 4  or i == 10 or i == 12 or i == 15 or i == 16 or i == 20:
             continue
         fname = "testcase" + str(i)
         res = sendRequest(fname)
         if res["hits"]["total"]["value"] != 0 and i != 21:
+            # Test case 8: Quarks PwDump
+            if i == 8:
+                res = quarksPwDump(res)
+                if len(res) != 0:
+                    writeHalf(i, len(res), res)
             # Distingush Test case 9 and Test case 10
-            if i == 9:
+            elif i == 9:
                 res = wce(res)
                 # Test case 9: WCE - Password and Hash Dump
                 if len(res[0]) != 0:
@@ -229,9 +271,15 @@ if __name__ == "__main__":
                 if len(res[1]) != 0:
                     print(threats[10 - 1])
                     writeHalf(10, len(res[1]), res)
+            # Test case 11: Golden ticket
+            elif i == 11:
+                res = golden_ticket(res)
+                if len(res) != 0:
+                    writeHalf(i, len(res), res)
             else:
                 writeFull(i, res["hits"]["total"]["value"], res)
         # Catch Event at Destination and Source
+
         elif i == 21:
             # "res" stored event at Source
             if res["hits"]["total"]["value"] != 0:
@@ -248,6 +296,7 @@ if __name__ == "__main__":
         #sendGmail(header + body)
         res = header+body
         print header
+        print body
     else:
         print("Khong phat hien bat ki nguy co nao")
 

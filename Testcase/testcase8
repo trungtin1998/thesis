@@ -1,0 +1,35 @@
+{
+  "size": 500,
+  "sort": [{"@timestamp": {"unmapped_type": "boolean", "order": "asc"}}], 
+  "query": {
+    "bool": {
+      "must": [],
+      "filter": [
+        {
+          "match_phrase": {
+            "event.code": "11"
+          }
+        },
+        {
+          "match_phrase": {
+            "file.path": "C:\\Users\\"
+          }
+        },
+        {
+          "match_phrase": {
+            "file.path": "\\AppData\\Local\\Temp\\SAM"
+          }
+        },
+        {
+          "range": {
+            "@timestamp": {
+              "gte": "AAAAAAAAAAAA",
+              "lte": "BBBBBBBBBBBB",
+              "format": "strict_date_optional_time"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
