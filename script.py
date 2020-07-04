@@ -12,6 +12,8 @@ DIR = "Testcase/"
 BASEURL = "http://192.168.255.200:9200/_search"
 HEADER = {"Content-Type" : "application/json"}
 threats = ["Test case 1 PsExec", "Test case 2 Powershell", "Test case 3 WinRM", "Test case 4 WinRS", "Test case 5 WMIC", "Test case 6 vmiexec.vbs", "Test case 7 PWDump7", "Test case 8 Quarks PwDump", "Test case 9 WCE - Password and Hash Dump", "Test case 10 WCE Remote Login", "Test case 11 Golden Ticket", "Test case 12 SMB/PsExec", "Test case 13 AT Command", "Test case 14 RDP", "Test case 15 Mimikatz", "Test case 16 Ms14-058", "Test case 17 ntdsutil", "Test case 18 vssadmin", "Test case 19 net user", "Test case 20 ", "Test case 21 csvde", "Test case 22 ldifde", "Test case 23 Timestomp", "Test case 24 wevtutil"]
+header = ""
+body = ""
 
 # Gmail Information
 gmail_user = 'sonthantuvea@gmail.com'
@@ -25,8 +27,8 @@ def getTimestamp():
     # Convert from Asia/Ho_Chi_Minh to UTC+0 (minus 7 hours)
     test1 -= datetime.timedelta(hours=7)
     test2 = test1 - datetime.timedelta(minutes=5)
-    s1 = test1.strftime("%Y-%m-%dT%H:%M:%S.327Z")
-    s2 = test2.strftime("%Y-%m-%dT%H:%M:%S.327Z")
+    s1 = test1.strftime("%Y-%m-%dT%H:%M:%S.%fZ")
+    s2 = test2.strftime("%Y-%m-%dT%H:%M:%S.%fZ")
     return [s2, s1]
 
 # Send Post Request to ELK
@@ -131,61 +133,117 @@ def wce(a):
 
     return [tc9, tc10]
 
-def writeFull(i, n, header, body, res):
-    print("\tPhat hien su tan cong cua %s"%(threats[i - 1]))
-    header += "Phat hien su tan cong cua %s\n"%(threats[i - 1])
-    header += "\tTong event: %s\n"%(n)
-    body += "---------------------------------------------------------------------------------------"
-    body += threats[9]
-    body += "---------------------------------------------------------------------------------------"
-    body += json.dumps(res, indent=4, sort_keys=True)
+# Get response from server by loading query from file
+## fname is filename of file containing Query DSL
+def sendRequest(fname):
+    with open(DIR + fname) as json_file:
+        data = json.load(json_file)
+        data = json.dumps(data)
+    response = postRequest(data)
+    try:
+        res = parsedJSON(response)
+        return res
+    except Exception as e:
+        print("cURL to ELK error")
+        print(str(e))
+        exit()
 
-def writeHalf(i, n, header, body, res):
+# Convert timestamp type JSON to timestamp type datetime
+def convert2Datetime(time):
+    return datetime.datetime.strptime(time, "%Y-%m-%dT%H:%M:%S.%fZ")
+
+def csvde_at_destination():
+    f = open("csvde", "w")
+    # catch event 5156
+    a = sendRequest("testcase21_catch5156")
+    
+    tam = json.dumps(a, indent=4, sort_keys=True)
+    f.write(tam)
+    # catch event 4624
+    b = sendRequest("testcase21_catch4624")
+    tam = json.dumps(b, indent=4, sort_keys=True)
+    f.write(tam)
+
+    res = []
+    if a["hits"]["total"]["value"] == 0 or b["hits"]["total"]["value"] == 0:
+        return res
+    for ai in a["hits"]["hits"]:
+        t1 = convert2Datetime(ai["_source"]["@timestamp"])
+        for bj in b["hits"]["hits"]:
+            t2 = convert2Datetime(bj["_source"]["@timestamp"])
+
+            if timeSubstraction(t1,t2) >= 1:
+                continue
+            try:
+                if ai["_source"]["winlog"]["event_data"]["DestAddress"] == bj["_source"]["source"]["ip"] and int(ai["_source"]["winlog"]["event_data"]["DestPort"]) == int(bj["_source"]["source"]["port"]):
+                    if bj["_source"]["winlog"]["event_data"]["TargetUserName"] != "WINSRV$":
+                        res.append(bj["_source"])
+            except:
+                print "ERROR"
+                print(json.dumps(ai, indent=4, sort_keys=True))
+                print(json.dumps(bj, indent=4, sort_keys=True))
+    return res
+
+
+def writeFull(i, n, res):
+    global header
+    global body 
     print("\tPhat hien su tan cong cua %s"%(threats[i - 1]))
     header += "Phat hien su tan cong cua %s\n"%(threats[i - 1])
     header += "\tTong event: %s\n"%(n)
-    body += "---------------------------------------------------------------------------------------"
-    body += threats[9]
-    body += "---------------------------------------------------------------------------------------"
+    body += "\n-----------------------------------------------------------------------------------\n"
+    body += threats[i - 1]
+    body += "\n-----------------------------------------------------------------------------------\n"
+    body += json.dumps(res, indent=4, sort_keys=True)
+    body += "\n-----------------------------------------------------------------------------------\n"
+
+def writeHalf(i, n, res):
+    global header
+    global body 
+    print("\tPhat hien su tan cong cua %s"%(threats[i - 1]))
+    header += "Phat hien su tan cong cua %s\n"%(threats[i - 1])
+    header += "\tTong event: %s\n"%(n)
+    body += "\n-----------------------------------------------------------------------------------\n"
+    body += threats[i - 1]
+    body += "\n-----------------------------------------------------------------------------------\n"
     for tmp in res:
         body += json.dumps(tmp, indent=4, sort_keys=True)
+    body += "\n-----------------------------------------------------------------------------------\n"
 
 if __name__ == "__main__":
-    header = ""
-    body = ""
     for i in range(1,25):
-        fname = DIR + "testcase" + str(i)
         if i != 10:
             print(threats[i - 1])
-        if i == 4  or i == 7 or i == 8 or i == 10 or i == 11 or i == 15 or i == 12 or i == 16 or i == 19 or i ==20:
+        if i == 4  or i == 8 or i == 10 or i == 11 or i == 15 or i == 12 or i == 16 or i ==20:
             continue
-        with open(fname) as json_file:
-            data = json.load(json_file)
-            data = json.dumps(data)
-        
-        # recognize Attack by sending query to ELK
-        response = postRequest(data)
-        try:
-            res = parsedJSON(response)
+        fname = "testcase" + str(i)
+        res = sendRequest(fname)
+        if res["hits"]["total"]["value"] != 0 and i != 21:
+            # Distingush Test case 9 and Test case 10
+            if i == 9:
+                res = wce(res)
+                # Test case 9: WCE - Password and Hash Dump
+                if len(res[0]) != 0:
+                    writeHalf(9, len(res[0]), res)
+                # Test case 10: WCE - Remote Login
+                if len(res[1]) != 0:
+                    print(threats[10 - 1])
+                    writeHalf(10, len(res[1]), res)
+            else:
+                writeFull(i, res["hits"]["total"]["value"], res)
+        # Catch Event at Destination and Source
+        elif i == 21:
+            # "res" stored event at Source
             if res["hits"]["total"]["value"] != 0:
-                if i == 9:
-                    res = wce(res)
-                    # Test case 9: WCE - Password and Hash Dump
-                    if len(res[0]) != 0:
-                        writeHalf(9, len(res[0]), header, body, res)
-                    # Test case 10: WCE - Remote Login
-                    elif len(res[1]) != 0:
-                        print(threats[10 - 1])
-                        writeHalf(10, len(res[1]), header, body, res)
-                else:
-                    writeFull(i, res["hits"]["total"]["value"], header, body, res)
-                
-                header += "\n"
-                body += "\n\n-----------------------------------------------\n\n\n"
-        except Exception as e:
-            print("cURL to ELK error")
-            print(str(e))
-            exit()
+                writeFull(i, res["hits"]["total"]["value"], res)
+                header += "\tTai nguon\n"
+            # We need to catch event at Destination
+            res = csvde_at_destination()
+            if len(res) != 0:
+                writeHalf(i, len(res), res)
+                header += "\tTai dich\n"
+
+
     if header != "":
         #sendGmail(header + body)
         res = header+body

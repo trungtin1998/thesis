@@ -7,17 +7,22 @@
       }
     }
   ],
-  "query": {
+    "query": {
     "bool": {
       "filter": [
         {
           "match_phrase": {
-            "event.code": "11"
+            "event.code": "5156"
           }
         },
         {
           "match_phrase": {
-            "file.path": "libeay32.dll"
+            "winlog.event_data.Application": "\\device\\harddiskvolume1\\windows\\system32\\lsass.exe"
+          }
+        },
+        {
+          "match_phrase": {
+            "winlog.event_data.SourcePort": "389"
           }
         },
         {

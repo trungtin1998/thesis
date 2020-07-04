@@ -7,17 +7,17 @@
       }
     }
   ],
-  "query": {
+    "query": {
     "bool": {
       "filter": [
         {
           "match_phrase": {
-            "event.code": "11"
+            "event.code": "4624"
           }
         },
         {
           "match_phrase": {
-            "file.path": "libeay32.dll"
+            "winlog.event_data.LogonType": "3"
           }
         },
         {

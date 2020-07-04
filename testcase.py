@@ -37,35 +37,128 @@ def postRequest(data):
 
 # Print Response as prettyprint Format
 def printResponse(response):
-    parsed = json.loads(response.text)
-    #print(json.dumps(parsed, indent=4, sort_keys=True))
+    parsed = json.loads(response)
+    print(json.dumps(parsed, indent=4, sort_keys=True))
 
 # Recognize attack
-def recognizeAttack(response):
+def parsedJSON(response):
     parsed = json.loads(response.text)
-    #print("Tong so event la: %s"%(parsed["hits"]["total"]["value"]))
-        #print(json.dumps(parsed, indent=4, sort_keys=True))
     return parsed
 
-if __name__ == "__main__":
-    fname = "Testcase/" + str(argv[1])
-    print(fname)
-    with open(fname) as json_file:
+# Time Substration
+def timeSubstraction(t1, t2):
+    if (t1 >= t2):
+        return (t1 - t2).total_seconds()
+    else:
+        return (t2 - t1).total_seconds()
+
+# Detect test case 10: WCE Remote Login
+def recognizeWCERemoteLogin(listArgs):
+    # Kiem tra co phai dang: wce.exe -s sv:WINSRV2008:NT:LM
+    ok = 0
+    if listArgs.count("-s") != 0 and len(listArgs) == 3:
+        for s in listArgs:
+            # Kiem tra xem co phai dang sv:WINSRV2008:NT:LM
+            if s.count(":") == 3:
+                ok += 1
+            # Kiem tra xem co phai la file exe va duoc thuc thi tai C:\Windows\System32
+            elif s.find("C:\Windows\system32") != -1 and s[-4:] == ".exe":
+                ok += 1
+        if ok == 2:
+            return True
+    return False
+
+# Distinguish WCE - Password and Hash Dump and WCE - Remote Login
+def wce(a):
+    with open(DIR + "testcase10_auxiliary") as json_file:
         data = json.load(json_file)
         data = json.dumps(data)
-
     response = postRequest(data)
-    try:
-        printResponse(response)
-        res = recognizeAttack(response)
-        print("Tong so event la: %d"%(res["hits"]["total"]["value"]))
-        if res["hits"]["total"]["value"] != 0:
-            print("Co su tan cong tu %s"%(argv[1]))
-            print("\n--------------------------\n")
-            print(json.dumps(res, indent=4, sort_keys=True))
+    b = parsedJSON(response)
+    # a is list of event wceaux.dll
+    # b is list of event 1 at sysmon (catch wce.exe -s) 
+    n = a["hits"]["total"]["value"]
+    m = b["hits"]["total"]["value"]
+
+    tc9 = []
+    tc10 = []
+    j = 0
+
+    for i in range(n):
+        t1 = a["hits"]["hits"][i]["_source"]["@timestamp"]
+        t1 = datetime.datetime.strptime(t1, "%Y-%m-%dT%H:%M:%S.%fZ")
+        
+        t2 = b["hits"]["hits"][j]["_source"]["@timestamp"]
+        t2 = datetime.datetime.strptime(t2, "%Y-%m-%dT%H:%M:%S.%fZ")
+        if timeSubstraction(t1, t2) < 1 and recognizeWCERemoteLogin(b["hits"]["hits"][j]["_source"]["process"]["args"]):
+            tc10.append(b["hits"]["hits"][j])
+            j += 2
+            continue
         else:
-            print("Khong co tan cong")
-    except Exception as e:
-        print("cURL to ELK error")
-        print(e)
-        exit()
+            tc9.append(a["hits"]["hits"][i])
+            j += 1
+            continue
+    print "Test case 9\n\n\n\n"
+    print len(tc9)
+    for tmp in tc9:
+        print tmp["_source"]["process"]
+    print "Test case 10\n\n\n\n"
+    print len(tc10)
+    for tmp in tc10:
+        print tmp["_source"]["process"]["args"]
+
+# Get response from server by loading query from file
+## fname is filename of file containing Query DSL
+def sendRequest(fname):
+    with open(DIR + fname) as json_file:
+        data = json.load(json_file)
+        data = json.dumps(data)
+    response = postRequest(data)
+    res = parsedJSON(response)
+    return res
+
+# Convert timestamp type JSON to timestamp type datetime
+def convert2Datetime(time):
+    return datetime.datetime.strptime(time, "%Y-%m-%dT%H:%M:%S.%fZ")
+
+def csvde_at_destination():
+    if 1== 1:
+        # catch event 5156
+        a = sendRequest("testcase21_catch5156")
+        # catch event 4624
+        b = sendRequest("testcase21_catch4624")
+        
+        ok = 0
+        res = []
+        for ai in a["hits"]["hits"]:
+            t1 = convert2Datetime(ai["_source"]["@timestamp"])
+            for bj in b["hits"]["hits"]:
+                t2 = convert2Datetime(bj["_source"]["@timestamp"])
+                
+                if timeSubstraction(t1,t2) >= 1:
+                    continue
+                if ai["_source"]["winlog"]["event_data"]["DestAddress"] == bj["_source"]["source"]["ip"] and int(ai["_source"]["winlog"]["event_data"]["DestPort"]) == int(bj["_source"]["source"]["port"]):
+                    print bj["_source"]["winlog"]["event_data"]["TargetUserName"]
+                    if bj["_source"]["winlog"]["event_data"]["TargetUserName"] != "WINSRV$":
+                        ok += 1
+                        res.append(bj["_source"])
+        if ok != 0:
+            print res
+        print "Khong co tan cong"
+
+
+def golden_ticket():
+    # Catch all events 4769
+    res = sendRequest("testcase11")
+
+    for tmp in res["hits"]["hits"]:
+        try:
+            print tmp["_source"]["winlog"]["event_data"]["TargetUserName"]
+            print tmp["_source"]["winlog"]["event_data"]["TargetDomainName"]
+        except:
+            continue
+
+
+
+if __name__ == "__main__":
+    golden_ticket()
