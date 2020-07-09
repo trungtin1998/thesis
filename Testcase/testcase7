@@ -1,12 +1,16 @@
 {
-  "sort": [
-    {
-      "@timestamp": {
-        "order": "asc",
-        "unmapped_type": "boolean"
+  "size": 500,
+  "sort": [{"@timestamp": {"unmapped_type": "boolean", "order": "asc"}}], 
+  "aggs": {
+    "2": {
+      "date_histogram": {
+        "field": "@timestamp",
+        "fixed_interval": "30s",
+        "time_zone": "Asia/Ho_Chi_Minh",
+        "min_doc_count": 1
       }
     }
-  ],
+  },
 "query": {
     "bool": {
       "filter": [

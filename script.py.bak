@@ -11,7 +11,7 @@ script = str(script)[2:-5]
 DIR = "Testcase/"
 BASEURL = "http://192.168.255.200:9200/_search"
 HEADER = {"Content-Type" : "application/json"}
-threats = ["Test case 1 PsExec", "Test case 2 Powershell", "Test case 3 WinRM", "Test case 4 WinRs", "Test case 5 WMIC", "Test case 6 vmiexec.vbs", "Test case 7 PWDump7", "Test case 8 Quarks PwDump", "Test case 9 WCE - Password and Hash Dump", "Test case 10 WCE Remote Login", "Test case 11 Golden Ticket", "Test case 12 SMB/PsExec", "Test case 13 AT Command", "Test case 14 RDP", "Test case 15 Mimikatz", "Test case 16 Bypass UAC", "Test case 17 ntdsutil", "Test case 18 vssadmin", "Test case 19 net user", "Test case 21 csvde hoac Test case 22 ldifde tai dich", "Test case 21 csvde", "Test case 22 ldifde", "Test case 23 Timestomp", "Test case 24 wevtutil"]
+threats = ["Test case 1 PsExec", "Test case 2 Powershell", "Test case 3 WinRM", "Test case 4 WinRS", "Test case 5 WMIC", "Test case 6 vmiexec.vbs", "Test case 7 PWDump7", "Test case 8 Quarks PwDump", "Test case 9 WCE - Password and Hash Dump", "Test case 10 WCE Remote Login", "Test case 11 Golden Ticket", "Test case 12 SMB/PsExec", "Test case 13 AT Command", "Test case 14 RDP", "Test case 15 Mimikatz", "Test case 16 Bypass UAC", "Test case 17 ntdsutil", "Test case 18 vssadmin", "Test case 19 net user", "Test case 20 ", "Test case 21 csvde", "Test case 22 ldifde", "Test case 23 Timestomp", "Test case 24 wevtutil"]
 header = ""
 body = ""
 _id = []
@@ -192,10 +192,16 @@ def golden_ticket(response):
 
 # Test case 21: csvde
 def csvde_at_destination():
+    #f = open("csvde", "w")
     # catch event 5156
     a = sendRequest("testcase21_catch5156")
+    
+    tam = json.dumps(a, indent=4, sort_keys=True)
+    #f.write(tam)
     # catch event 4624
     b = sendRequest("testcase21_catch4624")
+    tam = json.dumps(b, indent=4, sort_keys=True)
+    #f.write(tam)
 
     res = []
     if a["hits"]["total"]["value"] == 0 or b["hits"]["total"]["value"] == 0:
@@ -217,7 +223,22 @@ def csvde_at_destination():
     return res
 
 
-def writeThreats(i, n, res):
+def writeFull(i, n, res):
+    global header
+    global body
+    global _id 
+    print("\tPhat hien su tan cong cua %s"%(threats[i - 1]))
+    header += "Phat hien su tan cong cua %s\n"%(threats[i - 1])
+    header += "\tTong event: %s\n"%(n)
+    body += "\n-----------------------------------------------------------------------------------\n"
+    body += threats[i - 1]
+    body += "\n-----------------------------------------------------------------------------------\n"
+    body += json.dumps(res, indent=4, sort_keys=True)
+    body += "\n-----------------------------------------------------------------------------------\n"
+    for tmp in res["hits"]["hits"]:
+        _id.append(tmp["_id"])
+
+def writeHalf(i, n, res):
     global header
     global body 
     global _id
@@ -237,79 +258,82 @@ def readLog():
     f = open(LOG, "r")
     ids = f.readlines()
     for id in ids:
-        res.append(id.rstrip())
+        res.append(id)
     f.close()
     return res
 
-def isNewID(new_id, ids):
-    for old_id in ids:
-        if new_id == old_id:
-            return False
-    return True
-
-def writeLog(ids, total_threats):
-    global _id
-    for threats in total_threats:
-        for _threat in threats[1]:
-            res = []
-            if isNewID(_threat["_id"], ids) or len(ids) == 0:
-                res.append(_threat)
-        if len(res) != 0:
-            writeThreats(threats[0], len(res), res)
-            f = open(LOG, "w+")
-            for tmp in res:
-                f.write("%s\n"%(tmp["_id"]))
-            f.close()
-
 
 if __name__ == "__main__":
-    total_res = []
+
+    f = open(LOG, "w+")
     for i in range(1,25):
         if i != 10:
             print(threats[i - 1])
         if i == 4  or i == 10 or i == 15 or i == 20:
             continue
-
         fname = "testcase" + str(i)
         res = sendRequest(fname)
+        if res["hits"]["total"]["value"] != 0 and i != 21:
+            # Test case 8: Quarks PwDump
+            if i == 8:
+                res = quarksPwDump(res)
+                if len(res) != 0:
+                    writeHalf(i, len(res), res)
+            # Distingush Test case 9 and Test case 10
+            elif i == 9:
+                res = wce(res)
+                # Test case 9: WCE - Password and Hash Dump
+                if len(res[0]) != 0:
+                    writeHalf(9, len(res[0]), res)
+                # Test case 10: WCE - Remote Login
+                if len(res[1]) != 0:
+                    print(threats[10 - 1])
+                    writeHalf(10, len(res[1]), res)
+            # Test case 11: Golden ticket
+            elif i == 11:
+                res = golden_ticket(res)
+                if len(res) != 0:
+                    writeHalf(i, len(res), res)
+            else:
+                writeFull(i, res["hits"]["total"]["value"], res)
+        # Catch Event at Destination and Source
 
-        # Test case 8: Quarks PwDump
-        if i == 8:
-            res = quarksPwDump(res)
-        # Distingush Test case 9 and Test case 10
-        elif i == 9:
-            res = wce(res)
-            # Test case 9: WCE - Password and Hash Dump
-            if len(res[0]) != 0:
-                total_res.append([i, res])
-            # Test case 10: WCE - Remote Login
-            if len(res[1]) != 0:
-                print(threats[10 - 1])
-                total_res.append([10, res])
-        # Test case 11: Golden ticket
-        elif i == 11:
-            res = golden_ticket(res)
-        elif i == 20:
+        elif i == 21:
+            # "res" stored event at Source
+            if res["hits"]["total"]["value"] != 0:
+                writeFull(i, res["hits"]["total"]["value"], res)
+                header += "\tTai nguon\n"
+            # We need to catch event at Destination
             res = csvde_at_destination()
-        else:
-            res = res["hits"]["hits"]
-        
-        if len(res) != 0 and i != 9:
-            total_res.append([i, res])
-
-    #print total_res
-
-    # Read old log and Write new log
+            if len(res) != 0:
+                print("\tPhat hien su tan cong cua %s hoac %s"%(threats[i - 1], threats[i]))
+                header += "Phat hien su tan cong cua %s hoac %s\n"%(threats[i - 1], threats[i])
+                header += "\tTong event: %s\n"%(len(res))
+                body += "\n-----------------------------------------------------------------------------------\n"
+                body += threats[i - 1]
+                body += "\n-----------------------------------------------------------------------------------\n"
+                for tmp in res:
+                    body += json.dumps(tmp, indent=4, sort_keys=True)
+                    _id.append(tmp["_id"])
+                body += "\n-----------------------------------------------------------------------------------\n"
+                header += "\tTai dich\n"
+    # Write log
     ids = readLog()
-    print "LOG"
-    print ids
-    writeLog(ids, total_res)
+    for new_id in _id:
+        ok = 0
+        for old_id in ids:
+            if new_id == old_id:
+                ok = 1
+                break
+        if ok == 0:
+            f.write("%s\n"%(new_id))
+    f.close()
 
     if header != "":
         #sendGmail(header + body)
         res = header+body
         print header
-        #print body
+        print body
     else:
         print("Khong phat hien bat ki nguy co nao")
 

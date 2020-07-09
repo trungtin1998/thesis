@@ -1,4 +1,16 @@
 {
+  "size": 500, 
+  "aggs": 
+  {
+    "2": {
+      "date_histogram": {
+        "field": "@timestamp",
+        "fixed_interval": "30s",
+        "time_zone": "Asia/Ho_Chi_Minh",
+        "min_doc_count": 1
+      }
+    }
+  },
   "sort": [
     {
       "@timestamp": {
@@ -7,16 +19,6 @@
       }
     }
   ],
-    "aggs": {
-        "2": {
-            "date_histogram": {
-                "field": "@timestamp",
-                "fixed_interval": "30s",
-                "time_zone": "Asia/Ho_Chi_Minh",
-                "min_doc_count": 1
-            }
-        }
-    },
    "query": {
     "bool": {
       "must": [],

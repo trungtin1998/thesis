@@ -1,0 +1,39 @@
+{
+  "size": 500,
+  "sort": [{"@timestamp": {"unmapped_type": "boolean", "order": "asc"}}], 
+    "aggs": {
+    "2": {
+      "date_histogram": {
+        "field": "@timestamp",
+        "fixed_interval": "30s",
+        "time_zone": "Asia/Ho_Chi_Minh",
+        "min_doc_count": 1
+      }
+    }
+  },
+  "query": {
+    "bool": {
+      "filter": [
+        {
+          "match_phrase": {
+            "event.code": "11"
+          }
+        },
+        {
+          "match_phrase": {
+            "file.path": "C:\\Windows\\System32\\sysprep\\cryptbase.dll"
+          }
+        },
+        {
+          "range": {
+            "@timestamp": {
+              "gte": "AAAAAAAAAAAA",
+              "lte": "BBBBBBBBBBBB",
+              "format": "strict_date_optional_time"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
