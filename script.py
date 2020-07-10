@@ -301,8 +301,6 @@ if __name__ == "__main__":
 
     # Read old log and Write new log
     ids = readLog()
-    print "LOG"
-    print ids
     writeLog(ids, total_res)
 
     if header != "":

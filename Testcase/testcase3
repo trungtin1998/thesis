@@ -1,11 +1,18 @@
 {
   "size": 500,
-  "sort": [{"@timestamp": {"unmapped_type": "boolean", "order": "asc"}}], 
+  "sort": [
+    {
+      "@timestamp": {
+        "order": "asc",
+        "unmapped_type": "boolean"
+      }
+    }
+  ],
   "aggs": {
     "2": {
       "date_histogram": {
         "field": "@timestamp",
-        "fixed_interval": "30s",
+        "calendar_interval": "1w",
         "time_zone": "Asia/Ho_Chi_Minh",
         "min_doc_count": 1
       }
@@ -16,12 +23,17 @@
       "filter": [
         {
           "match_phrase": {
-            "event.code": "1"
+            "event.code": "4656"
           }
         },
         {
           "match_phrase": {
-            "process.executable": "C:\\Windows\\System32\\winrshost.exe"
+            "winlog.event_data.ProcessName": "C:\\Windows\\System32\\wsmprovhost.exe"
+          }
+        },
+        {
+          "match_phrase": {
+            "winlog.event_data.ObjectName": "\t\\REGISTRY\\MACHINE\\SOFTWARE\\MICROSOFT\\Windows\\CurrentVersion\\WSMAN"
           }
         },
         {
