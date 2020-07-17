@@ -11,22 +11,22 @@
       }
     }
   },
-    "query": {
+  "query": {
     "bool": {
       "filter": [
         {
           "match_phrase": {
-            "event.code": "1"
+            "event.code": "4663"
           }
         },
         {
           "match_phrase": {
-            "process.executable": "C:\\Windows\\System32\\csvde.exe"
+            "winlog.keywords": "Audit Success"
           }
         },
         {
           "match_phrase": {
-            "process.args": "-f"
+            "message": "Accesses: WriteAttributes"
           }
         },
         {

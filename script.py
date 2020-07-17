@@ -11,7 +11,7 @@ script = str(script)[2:-5]
 DIR = "Testcase/"
 BASEURL = "http://192.168.255.200:9200/_search"
 HEADER = {"Content-Type" : "application/json"}
-threats = ["Test case 1 PsExec", "Test case 2 Powershell", "Test case 3 WinRM", "Test case 4 WinRs", "Test case 5 WMIC", "Test case 6 vmiexec.vbs", "Test case 7 PWDump7", "Test case 8 Quarks PwDump", "Test case 9 WCE - Password and Hash Dump", "Test case 10 WCE Remote Login", "Test case 11 Golden Ticket", "Test case 12 SMB/PsExec", "Test case 13 AT Command", "Test case 14 RDP", "Test case 15 Mimikatz", "Test case 16 Bypass UAC", "Test case 17 ntdsutil", "Test case 18 vssadmin", "Test case 19 net user", "Test case 21 csvde hoac Test case 22 ldifde tai dich", "Test case 21 csvde", "Test case 22 ldifde", "Test case 23 Timestomp", "Test case 24 wevtutil"]
+threats = ["Test case 1 PsExec", "Test case 2 Powershell", "Test case 3 Invoke-Command cmdlet", "Test case 4 WinRS", "Test case 5 WMIC", "Test case 6 vmiexec.vbs", "Test case 7 PWDump7", "Test case 8 Quarks PwDump", "Test case 9 WCE - Password and Hash Dump", "Test case 10 WCE Remote Login", "Test case 11 Golden Ticket", "Test case 12 AT Command", "Test case 13 RDP", "Test case 14 Mimikatz", "Test case 15 Bypass UAC", "Test case 16 ntdsutil", "Test case 17 vssadmin", "Test case 18 net user", "Test case 19 csvde", "Test case 20 ldifde", "Test case 21 Timestomp", "Test case 22 wevtutil", "Test case 19 csvde hoac Test case 20 ldifde tai dich"]
 header = ""
 body = ""
 _id = []
@@ -28,7 +28,7 @@ def getTimestamp():
     test1 = datetime.datetime.now()
     # Convert from Asia/Ho_Chi_Minh to UTC+0 (minus 7 hours)
     test1 -= datetime.timedelta(hours=7)
-    test2 = test1 - datetime.timedelta(minutes=5)
+    test2 = test1 - datetime.timedelta(seconds = 70)    # 1 minute and 10s
     s1 = test1.strftime("%Y-%m-%dT%H:%M:%S.%fZ")
     s2 = test2.strftime("%Y-%m-%dT%H:%M:%S.%fZ")
     return [s2, s1]
@@ -86,11 +86,48 @@ def timeSubstraction(t1, t2):
     else:
         return (t2 - t1).total_seconds()
 
+
+# Distingush Test case 5: WMIC and Test case 6: wmiexec.vbs
+def wmi(res):
+    tc5 = []
+    tc6 = []
+
+    #print json.dumps(res, indent=4, sort_keys=True)
+    for tmp in res["hits"]["hits"]:
+        try:
+            args = tmp["_source"]["process"]["args"]
+            score = 0
+            # Check process.args must have "del" and "C:\\windows\\temp\\wmi.dll"
+            for _arg in args:
+                if _arg == "del":
+                    score += 1
+                if _arg == "C:\\windows\\temp\\wmi.dll":
+                    score += 1
+            if score == 2:
+                tc6.append(tmp)
+            else:
+                tc5.append(tmp)
+        except:
+            # Ignore if event doesn't have field "process.args"
+            tc5.append(tmp)
+    return [tc5, tc6]
+
+
+# Test case 8: QuarksPwDump
+def quarksPwDump(response):
+    res = []
+    for tmp in response["hits"]["hits"]:
+        s = tmp["_source"]["file"]["path"]
+        # Check position of file.path that is C:\Users\[User Account]\AppData\Local\Temp\SAM-[RandomNumber].dmp
+        if s.find("C:\\Users\\") < s.find("\\AppData\\Local\\Temp\\SAM") and s[:-3] == "dmp":
+            res.append(tmp)
+    return res
+
 # Detect test case 10: WCE Remote Login
 def recognizeWCERemoteLogin(listArgs):
     # Kiem tra co phai dang: wce.exe -s sv:WINSRV2008:NT:LM
     ok = 0
-    if listArgs.count("-s") != 0 and len(listArgs) == 3:
+    if listArgs.count("-s") == 1 and len(listArgs) == 3:
         for s in listArgs:
             # Kiem tra xem co phai dang sv:WINSRV2008:NT:LM
             if s.count(":") == 3:
@@ -101,16 +138,6 @@ def recognizeWCERemoteLogin(listArgs):
         if ok == 2:
             return True
     return False
-
-# Test case 8: QuarksPwDump
-def quarksPwDump(res):
-    result = []
-    for tmp in res["hits"]["hits"]:
-        s = tmp["_source"]["file"]["path"]
-        # Check position of file.path that is C:\Users\[User Account]\AppData\Local\Temp\SAM-[RandomNumber].dmp
-        if s.find("C:\\Users\\") < s.find("\\AppData\\Local\\Temp\\SAM") and s[:-3] == "dmp":
-            result.append(tmp)
-    return result
 
 # Distinguish Test case 9: WCE - Password and Hash Dump and Test case 10: WCE - Remote Login
 def wce(a):
@@ -134,6 +161,7 @@ def wce(a):
         
         t2 = b["hits"]["hits"][j]["_source"]["@timestamp"]
         t2 = datetime.datetime.strptime(t2, "%Y-%m-%dT%H:%M:%S.%fZ")
+
         if timeSubstraction(t1, t2) < 1 and recognizeWCERemoteLogin(b["hits"]["hits"][j]["_source"]["process"]["args"]):
             tc10.append(b["hits"]["hits"][j])
             j += 2
@@ -164,16 +192,17 @@ def sendRequest(fname):
 def convert2Datetime(time):
     return datetime.datetime.strptime(time, "%Y-%m-%dT%H:%M:%S.%fZ")
 
-# Test case 11: Golden Ticket
+# Checking UserAccount wonder member of Domain by using Whitelist 
 def checkName(name):
     # Allow Computer
     if name.find("$") != -1:
         return True
     # Allow 2 user account sv and administrator to remote login
-    if name == "sv" or name == "administrator":
+    if name == "sv" or name == "administrator" or name == "Administrator":
         return True
     return False
 
+# Test case 11: Golden Ticket
 def golden_ticket(response):
     # Catch all events 4769
     res = []
@@ -190,7 +219,17 @@ def golden_ticket(response):
             continue
     return res
 
-# Test case 21: csvde
+def mimikatz(response):
+    res = []
+    for tmp in response["hits"]["hits"]:
+        try:
+            if tmp["_source"]["winlog"]["event_data"]["TargetUserName"].find("$") == -1:
+                res.append(tmp)
+        except:
+            continue
+    return res
+
+# Test case 19: csvde and Test case 20: Ldifde at destination
 def csvde_at_destination():
     # catch event 5156
     a = sendRequest("testcase21_catch5156")
@@ -221,7 +260,7 @@ def writeThreats(i, n, res):
     global header
     global body 
     global _id
-    print("\tPhat hien su tan cong cua %s"%(threats[i - 1]))
+    #sprint("\tPhat hien su tan cong cua %s"%(threats[i - 1]))
     header += "Phat hien su tan cong cua %s\n"%(threats[i - 1])
     header += "\tTong event: %s\n"%(n)
     body += "\n-----------------------------------------------------------------------------------\n"
@@ -230,7 +269,7 @@ def writeThreats(i, n, res):
     for tmp in res:
         body += json.dumps(tmp, indent=4, sort_keys=True)
         _id.append(tmp["_id"])
-    body += "\n-----------------------------------------------------------------------------------\n"
+    #body += "\n-----------------------------------------------------------------------------------\n"
 
 def readLog():
     res = []
@@ -249,14 +288,15 @@ def isNewID(new_id, ids):
 
 def writeLog(ids, total_threats):
     global _id
+
     for threats in total_threats:
+        res = []
         for _threat in threats[1]:
-            res = []
-            if isNewID(_threat["_id"], ids) or len(ids) == 0:
+            if isNewID(_threat["_id"], ids) == True or len(ids) == 0:
                 res.append(_threat)
         if len(res) != 0:
             writeThreats(threats[0], len(res), res)
-            f = open(LOG, "w+")
+            f = open(LOG, "w")
             for tmp in res:
                 f.write("%s\n"%(tmp["_id"]))
             f.close()
@@ -264,37 +304,51 @@ def writeLog(ids, total_threats):
 
 if __name__ == "__main__":
     total_res = []
-    for i in range(1,25):
+    for i in range(1,23):
         if i != 10:
             print(threats[i - 1])
-        if i == 4  or i == 10 or i == 15 or i == 20:
+        if i == 6 or i == 10:
             continue
 
-        fname = "testcase" + str(i)
-        res = sendRequest(fname)
+        # Test case csvde and ldifde at destination
+        if i != 23:
+            fname = "testcase" + str(i)
+            res = sendRequest(fname)
 
+        # Distingush Test case 5 and Test case 6
+        if i == 5:
+            res = wmi(res)
+            # Test case 5: WMIC
+            if len(res[0]) != 0:
+                total_res.append([i, res[0]])
+            # Test case 6: wmiexec.vbs
+            if len(res[1]) != 0:
+                print(threats[i])   # (i + 1) - 1 = i
+                total_res.append([i + 1, res[1]])
         # Test case 8: Quarks PwDump
-        if i == 8:
+        elif i == 8:
             res = quarksPwDump(res)
         # Distingush Test case 9 and Test case 10
         elif i == 9:
             res = wce(res)
             # Test case 9: WCE - Password and Hash Dump
             if len(res[0]) != 0:
-                total_res.append([i, res])
+                total_res.append([i, res[0]])
             # Test case 10: WCE - Remote Login
             if len(res[1]) != 0:
-                print(threats[10 - 1])
-                total_res.append([10, res])
+                print(threats[i])
+                total_res.append([i + 1, res[1]])
         # Test case 11: Golden ticket
         elif i == 11:
             res = golden_ticket(res)
-        elif i == 20:
+        elif i == 14:
+            res = mimikatz(res)
+        elif i == 23:
             res = csvde_at_destination()
         else:
             res = res["hits"]["hits"]
         
-        if len(res) != 0 and i != 9:
+        if len(res) != 0 and i != 5 and i != 9:
             total_res.append([i, res])
 
     #print total_res
@@ -304,10 +358,10 @@ if __name__ == "__main__":
     writeLog(ids, total_res)
 
     if header != "":
-        #sendGmail(header + body)
+        sendGmail(header + body)
         res = header+body
         print header
-        #print body
+        print body
     else:
         print("Khong phat hien bat ki nguy co nao")
 

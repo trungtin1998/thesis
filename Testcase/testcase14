@@ -1,39 +1,62 @@
 {
   "size": 500,
   "sort": [{"@timestamp": {"unmapped_type": "boolean", "order": "asc"}}], 
-    "aggs": {
-        "2": {
-            "date_histogram": {
-                "field": "@timestamp",
-                "fixed_interval": "30s",
-                "time_zone": "Asia/Ho_Chi_Minh",
-                "min_doc_count": 1
-            }
-        }
-    },
+  "aggs": {
+    "2": {
+      "date_histogram": {
+        "field": "@timestamp",
+        "fixed_interval": "30s",
+        "time_zone": "Asia/Ho_Chi_Minh",
+        "min_doc_count": 1
+      }
+    }
+  },
   "query": {
     "bool": {
       "filter": [
         {
           "bool": {
-            "should": [
+            "filter": [
               {
                 "match_phrase": {
-                  "event.code": "21"
+                  "event.code": "4624"
                 }
               },
               {
                 "match_phrase": {
-                  "event.code": "25"
+                  "winlog.event_data.LogonType": "3"
                 }
               }
             ],
-            "minimum_should_match": 1,
-            "must_not": {
-              "match_phrase": {
-                "winlog.user_data.Address": "LOCAL"
+            "must_not": [
+              {
+                "bool": {
+                  "should": [
+                    {
+                      "match_phrase": {
+                        "winlog.event_data.TargetUserName": "sv"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "winlog.event_data.TargetUserName": "administrator"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "winlog.event_data.TargetUserName": "Administrator"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "winlog.event_data.TargetUserName": "WINSRV$"
+                      }
+                    }
+                  ],
+                  "minimum_should_match": 1
+                }
               }
-            }
+            ]
           }
         },
         {

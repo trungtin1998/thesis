@@ -1,6 +1,5 @@
 {
   "size": 500,
-  "sort": [{"@timestamp": {"unmapped_type": "boolean", "order": "asc"}}], 
   "aggs": {
     "2": {
       "date_histogram": {
@@ -11,49 +10,37 @@
       }
     }
   },
+  "sort": [
+    {
+      "@timestamp": {
+        "order": "asc",
+        "unmapped_type": "boolean"
+      }
+    }
+  ],
   "query": {
     "bool": {
       "filter": [
         {
-          "match_all": {}
-        },
-        {
           "bool": {
+            "minimum_should_match": 1,
             "should": [
               {
-                "bool": {
-                  "filter": [
-                    {
-                      "match_phrase": {
-                        "event.code": "8222"
-                      }
-                    }
-                  ]
+                "match_phrase": {
+                  "winlog.event_id": "4720"
                 }
               },
               {
-                "bool": {
-                  "filter": [
-                    {
-                      "match_phrase": {
-                        "event.code": "4663"
-                      }
-                    },
-                    {
-                      "match_phrase": {
-                        "winlog.event_data.ProcessName": "C:\\Windows\\System32\\cmd.exe"
-                      }
-                    },
-                    {
-                      "match_phrase": {
-                        "winlog.event_data.ObjectName": "\\Windows\\NTDS"
-                      }
-                    }
-                  ]
+                "match_phrase": {
+                  "winlog.event_id": "4724"
+                }
+              },
+              {
+                "match_phrase": {
+                  "winlog.event_id": "4726"
                 }
               }
-            ],
-            "minimum_should_match": 1
+            ]
           }
         },
         {

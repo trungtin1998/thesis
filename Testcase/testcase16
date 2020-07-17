@@ -1,7 +1,7 @@
 {
   "size": 500,
   "sort": [{"@timestamp": {"unmapped_type": "boolean", "order": "asc"}}], 
-    "aggs": {
+  "aggs": {
     "2": {
       "date_histogram": {
         "field": "@timestamp",
@@ -15,13 +15,39 @@
     "bool": {
       "filter": [
         {
-          "match_phrase": {
-            "event.code": "11"
-          }
+          "match_all": {}
         },
         {
-          "match_phrase": {
-            "file.path": "C:\\Windows\\System32\\sysprep\\cryptbase.dll"
+          "bool": {
+            "should": [
+              {
+                "match_phrase": {
+                  "event.code": "8222"
+                }
+              },
+              {
+                "bool": {
+                  "filter": [
+                    {
+                      "match_phrase": {
+                        "event.code": "4663"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "winlog.event_data.ProcessName": "C:\\Windows\\System32\\ntdsutil.exe"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "winlog.event_data.ObjectName": "\\Windows\\NTDS"
+                      }
+                    }
+                  ]
+                }
+              }
+            ],
+            "minimum_should_match": 1
           }
         },
         {

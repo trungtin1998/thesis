@@ -11,17 +11,29 @@
             }
         }
     },
-   "query": {
+  "query": {
     "bool": {
       "filter": [
         {
-          "match_phrase": {
-            "event.code": "106"
-          }
-        },
-        {
-          "match_phrase_prefix": {
-            "winlog.event_data.TaskName": "\\At"
+          "bool": {
+            "should": [
+              {
+                "match_phrase": {
+                  "event.code": "21"
+                }
+              },
+              {
+                "match_phrase": {
+                  "event.code": "25"
+                }
+              }
+            ],
+            "minimum_should_match": 1,
+            "must_not": {
+              "match_phrase": {
+                "winlog.user_data.Address": "LOCAL"
+              }
+            }
           }
         },
         {

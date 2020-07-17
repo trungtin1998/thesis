@@ -1,5 +1,6 @@
 {
   "size": 500,
+  "sort": [{"@timestamp": {"unmapped_type": "boolean", "order": "asc"}}], 
   "aggs": {
     "2": {
       "date_histogram": {
@@ -10,37 +11,22 @@
       }
     }
   },
-  "sort": [
-    {
-      "@timestamp": {
-        "order": "asc",
-        "unmapped_type": "boolean"
-      }
-    }
-  ],
-  "query": {
+    "query": {
     "bool": {
       "filter": [
         {
-          "bool": {
-            "minimum_should_match": 1,
-            "should": [
-              {
-                "match_phrase": {
-                  "winlog.event_id": "4720"
-                }
-              },
-              {
-                "match_phrase": {
-                  "winlog.event_id": "4724"
-                }
-              },
-              {
-                "match_phrase": {
-                  "winlog.event_id": "4726"
-                }
-              }
-            ]
+          "match_phrase": {
+            "event.code": "1"
+          }
+        },
+        {
+          "match_phrase": {
+            "process.executable": "C:\\Windows\\System32\\csvde.exe"
+          }
+        },
+        {
+          "match_phrase": {
+            "process.args": "-f"
           }
         },
         {

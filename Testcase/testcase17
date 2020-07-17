@@ -21,8 +21,14 @@
           "bool": {
             "should": [
               {
-                "match_phrase": {
-                  "event.code": "8222"
+                "bool": {
+                  "filter": [
+                    {
+                      "match_phrase": {
+                        "event.code": "8222"
+                      }
+                    }
+                  ]
                 }
               },
               {
@@ -35,7 +41,7 @@
                     },
                     {
                       "match_phrase": {
-                        "winlog.event_data.ProcessName": "C:\\Windows\\System32\\ntdsutil.exe"
+                        "winlog.event_data.ProcessName": "C:\\Windows\\System32\\cmd.exe"
                       }
                     },
                     {

@@ -1,7 +1,7 @@
 {
   "size": 500,
   "sort": [{"@timestamp": {"unmapped_type": "boolean", "order": "asc"}}], 
-  "aggs": {
+    "aggs": {
     "2": {
       "date_histogram": {
         "field": "@timestamp",
@@ -15,48 +15,13 @@
     "bool": {
       "filter": [
         {
-          "bool": {
-            "filter": [
-              {
-                "match_phrase": {
-                  "event.code": "4624"
-                }
-              },
-              {
-                "match_phrase": {
-                  "winlog.event_data.LogonType": "3"
-                }
-              }
-            ],
-            "must_not": [
-              {
-                "bool": {
-                  "should": [
-                    {
-                      "match_phrase": {
-                        "winlog.event_data.TargetUserName": "sv"
-                      }
-                    },
-                    {
-                      "match_phrase": {
-                        "winlog.event_data.TargetUserName": "administrator"
-                      }
-                    },
-                    {
-                      "match_phrase": {
-                        "winlog.event_data.TargetUserName": "Administrator"
-                      }
-                    },
-                    {
-                      "match_phrase": {
-                        "winlog.event_data.TargetUserName": "WINSRV$"
-                      }
-                    }
-                  ],
-                  "minimum_should_match": 1
-                }
-              }
-            ]
+          "match_phrase": {
+            "event.code": "11"
+          }
+        },
+        {
+          "match_phrase": {
+            "file.path": "C:\\Windows\\System32\\sysprep\\cryptbase.dll"
           }
         },
         {
