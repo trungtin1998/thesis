@@ -1,6 +1,13 @@
 {
   "size": 500,
-  "sort": [{"@timestamp": {"unmapped_type": "boolean", "order": "asc"}}], 
+  "sort": [
+    {
+      "@timestamp": {
+        "order": "asc",
+        "unmapped_type": "boolean"
+      }
+    }
+  ],
   "aggs": {
     "2": {
       "date_histogram": {
@@ -11,27 +18,32 @@
       }
     }
   },
-    "query": {
-        "bool": {
-            "filter": [{
-                "match_all": {}
-            }, {
-                "match_phrase": {
-                    "winlog.event_id": "400"
-                }
-            }, {
-                "match_phrase": {
-                    "winlog.event_data.param3": "powershell -noP -sta -w 1 -enc"
-                }
-            }, {
-                "range": {
-                    "@timestamp": {
-                        "gte": "AAAAAAAAAAAA",
-                        "lte": "BBBBBBBBBBBB",
-                        "format": "strict_date_optional_time"
-                    }
-                }
-            }]
+  "query": {
+    "bool": {
+      "filter": [
+        {
+          "match_all": {}
+        },
+        {
+          "match_phrase": {
+            "winlog.event_id": "400"
+          }
+        },
+        {
+          "match_phrase": {
+            "winlog.event_data.param3": "powershell -noP -sta -w 1 -enc"
+          }
+        },
+        {
+          "range": {
+            "@timestamp": {
+              "gte": "AAAAAAAAAAAA",
+              "lte": "BBBBBBBBBBBB",
+              "format": "strict_date_optional_time"
+            }
+          }
         }
+      ]
     }
+  }
 }

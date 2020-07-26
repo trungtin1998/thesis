@@ -1,6 +1,13 @@
 {
   "size": 500,
-  "sort": [{"@timestamp": {"unmapped_type": "boolean", "order": "asc"}}], 
+  "sort": [
+    {
+      "@timestamp": {
+        "unmapped_type": "boolean",
+        "order": "asc"
+      }
+    }
+  ],
   "aggs": {
     "2": {
       "date_histogram": {
@@ -40,15 +47,6 @@
               }
             ],
             "minimum_should_match": 1
-          }
-        },
-        {
-          "range": {
-            "@timestamp": {
-              "gte": "AAAAAAAAAAAA",
-              "lte": "BBBBBBBBBBBB",
-              "format": "strict_date_optional_time"
-            }
           }
         }
       ]

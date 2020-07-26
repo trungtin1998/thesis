@@ -36,3 +36,4 @@ Log server sử dụng bộ công cụ ELK để đánh chỉ mục sau đó đ�
 quản lý lượng log từ các máy Windows Server gửi về. Máy monitor được dùng để
 truy vấn dữ liệu từ log server (Sử dụng Query DSL), nếu có phát hiện ra các nguy cơ thì sử dụng giao thức
 SMTP để gửi cảnh báo về email cho quản trị viên.
+![Mô tả thực nghiệm](./Images/mo-ta-thuc-nghiem.png)

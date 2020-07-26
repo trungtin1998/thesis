@@ -1,6 +1,13 @@
 {
   "size": 500,
-  "sort": [{"@timestamp": {"unmapped_type": "boolean", "order": "asc"}}], 
+  "sort": [
+    {
+      "@timestamp": {
+        "order": "asc",
+        "unmapped_type": "boolean"
+      }
+    }
+  ],
   "aggs": {
     "2": {
       "date_histogram": {
@@ -15,45 +22,13 @@
     "bool": {
       "filter": [
         {
-          "match_all": {}
+          "match_phrase": {
+            "event.code": "1"
+          }
         },
         {
-          "bool": {
-            "should": [
-              {
-                "bool": {
-                  "filter": [
-                    {
-                      "match_phrase": {
-                        "event.code": "8222"
-                      }
-                    }
-                  ]
-                }
-              },
-              {
-                "bool": {
-                  "filter": [
-                    {
-                      "match_phrase": {
-                        "event.code": "4663"
-                      }
-                    },
-                    {
-                      "match_phrase": {
-                        "winlog.event_data.ProcessName": "C:\\Windows\\System32\\cmd.exe"
-                      }
-                    },
-                    {
-                      "match_phrase": {
-                        "winlog.event_data.ObjectName": "\\Windows\\NTDS"
-                      }
-                    }
-                  ]
-                }
-              }
-            ],
-            "minimum_should_match": 1
+          "match_phrase": {
+            "process.executable": "C:\\Windows\\System32\\vssadmin.exe"
           }
         },
         {

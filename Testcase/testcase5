@@ -1,6 +1,13 @@
 {
   "size": 500,
-  "sort": [{"@timestamp": {"unmapped_type": "boolean", "order": "asc"}}], 
+  "sort": [
+    {
+      "@timestamp": {
+        "unmapped_type": "boolean",
+        "order": "asc"
+      }
+    }
+  ],
   "aggs": {
     "2": {
       "date_histogram": {
