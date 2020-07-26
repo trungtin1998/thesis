@@ -1,7 +1,6 @@
 <!--- The first time writes markdown kindly --->
----
-title: "Mimikatz"
----
+# Mimikatz
+Date: 25/06/2020
 
 ## LSASS
 * SSO - Single Sign-On: Truy cập vào các resources mà không cần reauthenticate
