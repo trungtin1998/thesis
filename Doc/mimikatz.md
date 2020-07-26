@@ -5,10 +5,14 @@ Tool: [The Mimikatz GitHub repository](https://github.com/gentilkiwi/mimikatz)
 
 ## Mimikatz Overview
 * Mimikatz là một công cụ dùng để thu thập credential từ hệ thống Windows.
-* Mimikatz là 1 chương trình x32/x64 được lập trình bằng ngôn ngữ C bởi Benjamin Delpy. Có 2 lựa chọn cấu thành mà cung cấp các tính năng bổ sung:
+* Mimikatz là 1 chương trình x32/x64 được lập trình bằng ngôn ngữ C bởi Benjamin Delpy. Có 2 lựa chọn cấu thành cung cấp các tính năng bổ sung:
   * mimidrv: driver được dùng để tương tác với kernel của Windows.
   * mimilib: "AppLocker bypass, Auth package/SSP, password filter, and sekurlsa for WinDBG". [3]
-* Mimikatz yêu cầu **quyền admin hoặc quyền hệ thống** và thông thường là **quyền debug** để thực hiện một số hành động nhất định và **tương tác với tiến trình LSASS** (ví dụ: Để sử dụng lệnh: `sekurlsa:logonpasswords`, cần chạy `privilege::debug`). 
+* Mimikatz yêu cầu **quyền admin** hoặc **quyền hệ thống** và thông thường là **quyền debug** để thực hiện một số hành động nhất định, đặc biệt là **tương tác với tiến trình LSASS** (ví dụ: Để sử dụng lệnh: `sekurlsa:logonpasswords`, cần chạy `privilege::debug`). 
+
+## How does mimikatz work?
+* Sau khi user đăng nhập vào hệ thống, các thông tin về credential (username, domain, SID, cleartext password, hash password, có thể có Kerberos ticket, ...) sẽ được lưu trữ bên trong LSASS (Local Security Authority Subsystem Service), tiến trình lưu trữ thông tin tại memory (RAM).
+* 
 
 ## LSASS
 * SSO - Single Sign-On: Truy cập vào các resources mà không cần reauthenticate
