@@ -1,6 +1,10 @@
 <!--- The first time writes markdown kindly --->
 # Mimikatz
-Date: 25/06/2020
+Date: 25/06/2020.</br>
+Tool: (https://github.com/gentilkiwi/mimikatz)
+
+## Mimikatz Overview
+
 
 ## LSASS
 * SSO - Single Sign-On: Truy cập vào các resources mà không cần reauthenticate
@@ -30,6 +34,7 @@ Date: 25/06/2020
 * Với các lần đăng nhập sai này sẽ để lại địa chỉ IP của attacker, ta có thể sử dụng địa chỉ IP này mà chặn chúng.
 
 ## Tài liệu tham khảo
-[[1]Jim Mulder, "Mimikatz Overview, Defenses and Detection", February 18, 2016](https://www.sans.org/reading-room/whitepapers/detection/mimikatz-overview-defenses-detection-36780)</br>
-[[2]Jake Liefer ,"Detecting In-Memory Mimikatz", Accessed July 25, 2020](https://securityriskadvisors.com/blog/detecting-in-memory-mimikatz/)
+[[1] Jim Mulder, "Mimikatz Overview, Defenses and Detection", February 18, 2016](https://www.sans.org/reading-room/whitepapers/detection/mimikatz-overview-defenses-detection-36780)</br>
+[[2] Jake Liefer ,"Detecting In-Memory Mimikatz", Accessed July 25, 2020](https://securityriskadvisors.com/blog/detecting-in-memory-mimikatz/)
+[[3] Sean Metcalf ,"Unofficial Guide to Mimikatz & Command Reference", Accessed July 26, 2020](https://adsecurity.org/?page_id=1821)
 
