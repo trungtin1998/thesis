@@ -1,8 +1,6 @@
 <!--- The first time writes markdown kindly --->
 ---
-title: Mimikatz
-author: TF1T
-date: 25/07/2020
+title: "Mimikatz"
 ---
 
 ## LSASS
