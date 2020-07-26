@@ -17,9 +17,19 @@ Date: 25/06/2020
 * Bởi vì Active Directory duy trì password trước đây và password hiện tại, do đó cần **thay đổi password cho Kerberos 2 lần**.
 
 3. LSASS.exe protected mode
-* Vì mimikatz lấy các thông tin từ LSASS nên ta có thể phòng chống mimikatz attack bằng cách không cho phép tiến trình mimikatz gọi đến và thông tin từ LSASS.
+* Vì mimikatz lấy các thông tin từ LSASS nên ta có thể phòng chống mimikatz attack bằng cách không cho phép tiến trình mimikatz gọi đến và truy vấn thông tin từ LSASS.
 * Từ Windows 8.1 và cao hơn, có thể chạy LSASS với protected mode, chỉ cho phép các tiến trình cũng ở chế độ protected mode khác gọi đến. Ta có thể set DWORD registry key `HKEY_LOCAL_MACHINE/SYSTEM/CurrentControlSet/Control/Lsa = 1`
 
+## Mimikatz Detection
+1.  Monitor for unusual accounts 
+* Lập ra Whitelist các tài khoản thuộc domain hoặc local group. Nếu có sự đăng nhập thành công từ các tài khoản không thuộc Whitelist này, chứng tỏ rằng có sự tấn công.
+* Điểm hạn chế của phương pháp này là, nếu tên tài khoản mà attacker đăng nhập vào hệ thống nằm trong Whitelist thì không thể phát hiện được.
+
+2. Monitor các lần đăng nhập thất bại
+* Các lần đăng nhập sai do các tấn công mimikatz pass-the-hash thì xuất hiện Event ID 4769 với Result Code 0x1F với mô tả rằng "failed integrity check on a decrypted field" (Có thể do krbtgt bị thay đổi hoặc sai 1 thông số nào đó của hệ thống nạn nhân).
+* Với các lần đăng nhập sai này sẽ để lại địa chỉ IP của attacker, ta có thể sử dụng địa chỉ IP này mà chặn chúng.
 
 ## Tài liệu tham khảo
-[Jim Mulder, "Mimikatz Overview, Defenses and Detection", February 18, 2016](https://www.sans.org/reading-room/whitepapers/detection/mimikatz-overview-defenses-detection-36780)
+[[1]Jim Mulder, "Mimikatz Overview, Defenses and Detection", February 18, 2016](https://www.sans.org/reading-room/whitepapers/detection/mimikatz-overview-defenses-detection-36780)</br>
+[[2]Jake Liefer ,"Detecting In-Memory Mimikatz", Accessed July 25, 2020](https://securityriskadvisors.com/blog/detecting-in-memory-mimikatz/)
+
