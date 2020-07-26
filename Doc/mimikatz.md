@@ -1,9 +1,13 @@
 <!--- The first time writes markdown kindly --->
 # Mimikatz
 Date: 25/06/2020.</br>
-Tool: (https://github.com/gentilkiwi/mimikatz)
+Tool: [The Mimikatz GitHub repository](https://github.com/gentilkiwi/mimikatz)
 
 ## Mimikatz Overview
+* Mimikatz là một công cụ dùng để thu thập credential từ hệ thống Windows.
+* Mimikatz là 1 chương trình x32/x64 được lập trình bằng ngôn ngữ C bởi Benjamin Delpy. Có 2 lựa chọn cấu thành mà cung cấp các tính năng bổ sung:
+  * mimidrv: driver được dùng để tương tác với kernel của Windows.
+  * mimilib: > AppLocker bypass, Auth package/SSP, password filter, and sekurlsa for WinDBG
 
 
 ## LSASS
