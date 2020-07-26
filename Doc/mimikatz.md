@@ -16,5 +16,10 @@ Date: 25/06/2020
 * Tài khoản krbtgt cũng có thể được thay đổi password như các loại tài khoản khác. Hash password của krbtgt có thể được sử dụng để làm Golden Ticket, loại ticket có thời hạn mặc định 10 năm khi được mimikatz tạo ra. Có nghĩa là nếu ta không thay đổi password của krbtgt thường xuyên, attacker có thể sử dụng Golden Ticket được tạo thành công ở lần tấn công trước để có thể tái truy cập vào hệ thống bạn.
 * Bởi vì Active Directory duy trì password trước đây và password hiện tại, do đó cần **thay đổi password cho Kerberos 2 lần**.
 
+3. LSASS.exe protected mode
+* Vì mimikatz lấy các thông tin từ LSASS nên ta có thể phòng chống mimikatz attack bằng cách không cho phép tiến trình mimikatz gọi đến và thông tin từ LSASS.
+* Từ Windows 8.1 và cao hơn, có thể chạy LSASS với protected mode, chỉ cho phép các tiến trình cũng ở chế độ protected mode khác gọi đến. Ta có thể set DWORD registry key `HKEY_LOCAL_MACHINE/SYSTEM/CurrentControlSet/Control/Lsa = 1`
+
+
 ## Tài liệu tham khảo
 [Jim Mulder, "Mimikatz Overview, Defenses and Detection", February 18, 2016](https://www.sans.org/reading-room/whitepapers/detection/mimikatz-overview-defenses-detection-36780)
