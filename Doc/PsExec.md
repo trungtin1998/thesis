@@ -1,6 +1,5 @@
 # PsExec
 Date: 27/07/2020</br>
-Author: Phạm Trung Tín
 
 ## PsExec Overview
 * PsExec nằm trong bộ công cụ quản trị hệ thống Sysinternals, được tạo bởi Mark Russinovich, cho phép ta có thể thực thi các tác vụ từ xa.
@@ -16,6 +15,7 @@ Author: Phạm Trung Tín
 * Đăng nhập thẳng vào tài khoản NT Authority.
 * Không thể thực hiện tấn công với đường mạng khác.
 * **Không thể phát hiện** có tấn công PsExec trên máy victim nếu bắt bằng **Event ID 7045** có tiến trình **PSEXESVC** thực thi.
+* Cách để phát hiện thủ công là tại máy victim 1 (máy client), dò tìm sự thực thi của **powershell** với tham số **-nop -w hidden -noni -c**
 
 ## Tài liệu tham khảo
-[[1] Daniel Muñoz, "Lateral movement: A deep look into PsExec", Accessed 27/07/2020](https://www.contextis.com/us/blog/lateral-movement-a-deep-look-into-psexec)
+[1] Daniel Muñoz, ["Lateral movement: A deep look into PsExec"](https://www.contextis.com/us/blog/lateral-movement-a-deep-look-into-psexec), Accessed 27/07/2020
