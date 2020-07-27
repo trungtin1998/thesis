@@ -18,4 +18,4 @@ Date: 27/07/2020</br>
 * Cách để phát hiện thủ công là tại máy victim 1 (máy client), dò tìm sự thực thi của **powershell** với tham số **-nop -w hidden -noni -c**
 
 ## Tài liệu tham khảo
-[1] Daniel Muñoz, ["Lateral movement: A deep look into PsExec"](https://www.contextis.com/us/blog/lateral-movement-a-deep-look-into-psexec), Accessed 27/07/2020
+[1] Daniel Muñoz, ["Lateral movement: A deep look into PsExec"](https://www.contextis.com/us/blog/lateral-movement-a-deep-look-into-psexec)</br>
