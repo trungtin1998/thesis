@@ -104,6 +104,7 @@ Test case 1 PsExec
 }
 ```
 ## Test case 2: Powershell Empire
+* Phần log được ghi lại ở maillog của máy monitor:
 ```
 Something went wrong... (552, '5.7.0 This message was blocked because its content presents a potential\n5.7.0 security issue. Please visit\n5.7.0  https://support.google.com/mail/?p=BlockedMessage to review our\n5.7.0 message content and attachment content guidelines. v3sm20015788pfb.207 - gsmtp')
 Phat hien su tan cong cua Test case 2 Powershell
@@ -194,4 +195,14 @@ Test case 2 Powershell
     ]
 }
 
+```
+* Do đó phần log của tấn công này sẽ không gửi kèm cho quản trị viên
+![Test case 2: Powershell Empire](/Images/testcase2_empire)
+```
+Phat hien su tan cong cua Test case 2 Powershell
+        Tong event: 1
+
+-----------------------------------------------------------------------------------
+Test case 2 Powershell
+-----------------------------------------------------------------------------------
 ```
