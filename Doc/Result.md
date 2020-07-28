@@ -197,7 +197,7 @@ Test case 2 Powershell
 
 ```
 * Do đó phần log của tấn công này sẽ không gửi kèm cho quản trị viên.
-![Test case 2: Powershell Empire](/Images/testcase2_empire)
+![Test case 2: Powershell Empire](/Images/testcase2_empire.png)
 ```
 Phat hien su tan cong cua Test case 2 Powershell
         Tong event: 1
