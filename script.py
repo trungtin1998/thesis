@@ -8,14 +8,14 @@ script = argv
 script = str(script)[2:-5]
 
 # Global Variables
-DIR = "Testcase/"
+DIR = "/home/trungtin/Documents/Thesis/thesis/Testcase/"
 BASEURL = "http://192.168.255.200:9200/_search"
 HEADER = {"Content-Type" : "application/json"}
 threats = ["Test case 1 PsExec", "Test case 2 Powershell", "Test case 3 Invoke-Command cmdlet", "Test case 4 WinRS", "Test case 5 WMIC", "Test case 6 vmiexec.vbs", "Test case 7 PWDump7", "Test case 8 Quarks PwDump", "Test case 9 WCE - Password and Hash Dump", "Test case 10 WCE Remote Login", "Test case 11 Golden Ticket", "Test case 12 AT Command", "Test case 13 RDP", "Test case 14 Mimikatz", "Test case 15 Bypass UAC", "Test case 16 ntdsutil", "Test case 17 vssadmin", "Test case 18 net user", "Test case 19 csvde", "Test case 20 ldifde", "Test case 21 Timestomp", "Test case 22 wevtutil", "Test case 19 csvde hoac Test case 20 ldifde tai dich"]
 header = ""
 body = ""
 _id = []
-LOG = "log/log.txt"
+LOG = "/home/trungtin/Documents/Thesis/thesis/log/log.txt"
 
 # Gmail Information
 gmail_user = 'sonthantuvea@gmail.com'
@@ -119,7 +119,7 @@ def quarksPwDump(response):
     for tmp in response["hits"]["hits"]:
         s = tmp["_source"]["file"]["path"]
         # Check position of file.path that is C:\Users\[User Account]\AppData\Local\Temp\SAM-[RandomNumber].dmp
-        if s.find("C:\\Users\\") < s.find("\\AppData\\Local\\Temp\\SAM") and s[:-3] == "dmp":
+        if s.find("C:\\Users\\") < s.find("\\AppData\\Local\\Temp\\SAM") and s[-3:] == "dmp":
             res.append(tmp)
     return res
 
@@ -266,6 +266,8 @@ def writeThreats(i, n, res):
     body += "\n-----------------------------------------------------------------------------------\n"
     body += threats[i - 1]
     body += "\n-----------------------------------------------------------------------------------\n"
+    if i == 2:
+        return
     for tmp in res:
         body += json.dumps(tmp, indent=4, sort_keys=True)
         _id.append(tmp["_id"])
@@ -305,8 +307,8 @@ def writeLog(ids, total_threats):
 if __name__ == "__main__":
     total_res = []
     for i in range(1,23):
-        if i != 10:
-            print(threats[i - 1])
+        #if i != 10:
+            #print(threats[i - 1])
         if i == 6 or i == 10:
             continue
 
@@ -323,7 +325,7 @@ if __name__ == "__main__":
                 total_res.append([i, res[0]])
             # Test case 6: wmiexec.vbs
             if len(res[1]) != 0:
-                print(threats[i])   # (i + 1) - 1 = i
+                #print(threats[i])   # (i + 1) - 1 = i
                 total_res.append([i + 1, res[1]])
         # Test case 8: Quarks PwDump
         elif i == 8:
@@ -336,7 +338,7 @@ if __name__ == "__main__":
                 total_res.append([i, res[0]])
             # Test case 10: WCE - Remote Login
             if len(res[1]) != 0:
-                print(threats[i])
+                #print(threats[i])
                 total_res.append([i + 1, res[1]])
         # Test case 11: Golden ticket
         elif i == 11:
@@ -351,7 +353,6 @@ if __name__ == "__main__":
         if len(res) != 0 and i != 5 and i != 9:
             total_res.append([i, res])
 
-    #print total_res
 
     # Read old log and Write new log
     ids = readLog()
