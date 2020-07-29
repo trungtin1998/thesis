@@ -1,10 +1,11 @@
 {
+  "version": true,
   "size": 500,
   "sort": [
     {
       "@timestamp": {
-        "unmapped_type": "boolean",
-        "order": "asc"
+        "order": "asc",
+        "unmapped_type": "boolean"
       }
     }
   ],
@@ -12,7 +13,7 @@
     "2": {
       "date_histogram": {
         "field": "@timestamp",
-        "fixed_interval": "30s",
+        "calendar_interval": "1w",
         "time_zone": "Asia/Ho_Chi_Minh",
         "min_doc_count": 1
       }
@@ -20,30 +21,45 @@
   },
   "query": {
     "bool": {
-      "should": [
-        {
-          "match_phrase": {
-            "event.code": "104"
-          }
-        },
+      "filter": [
         {
           "bool": {
-            "filter": [
+            "should": [
               {
                 "match_phrase": {
-                  "event.code": "1"
+                  "event.code": "104"
                 }
               },
               {
-                "match_phrase": {
-                  "process.executable": "C:\\Windows\\System32\\wevtutil.exe"
+                "bool": {
+                  "filter": [
+                    {
+                      "match_phrase": {
+                        "event.code": "1"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "process.executable": "C:\\Windows\\System32\\wevtutil.exe"
+                      }
+                    }
+                  ]
                 }
               }
-            ]
+            ],
+            "minimum_should_match": 1
+          }
+        },
+        {
+          "range": {
+            "@timestamp": {
+              "gte": "AAAAAAAAAAAA",
+              "lte": "BBBBBBBBBBBB",
+              "format": "strict_date_optional_time"
+            }
           }
         }
-      ],
-      "minimum_should_match": 1
+      ]
     }
   }
 }
