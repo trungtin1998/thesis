@@ -206,3 +206,73 @@ Phat hien su tan cong cua Test case 2 Powershell
 Test case 2 Powershell
 -----------------------------------------------------------------------------------
 ```
+
+## Test case 3: Invoke-Command cmdlet
+![Test case 3: Invoke Command Cmdlet](testcase3_invoke_command_cmdlet.png)
+```
+{
+  "version": true,
+  "size": 500,
+  "sort": [
+    {
+      "@timestamp": {
+        "order": "asc",
+        "unmapped_type": "boolean"
+      }
+    }
+  ],
+  "aggs": {
+    "2": {
+      "date_histogram": {
+        "field": "@timestamp",
+        "calendar_interval": "1w",
+        "time_zone": "Asia/Ho_Chi_Minh",
+        "min_doc_count": 1
+      }
+    }
+  },
+  "query": {
+    "bool": {
+      "filter": [
+        {
+          "bool": {
+            "should": [
+              {
+                "match_phrase": {
+                  "event.code": "104"
+                }
+              },
+              {
+                "bool": {
+                  "filter": [
+                    {
+                      "match_phrase": {
+                        "event.code": "1"
+                      }
+                    },
+                    {
+                      "match_phrase": {
+                        "process.executable": "C:\\Windows\\System32\\wevtutil.exe"
+                      }
+                    }
+                  ]
+                }
+              }
+            ],
+            "minimum_should_match": 1
+          }
+        },
+        {
+          "range": {
+            "@timestamp": {
+              "gte": "AAAAAAAAAAAA",
+              "lte": "BBBBBBBBBBBB",
+              "format": "strict_date_optional_time"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+```
