@@ -753,3 +753,110 @@ Test case 6 vmiexec.vbs
     ]
 }
 ```
+
+## Test case 7: PwDump 7
+![Test case 7: PwDump 7](/Images/testcase7_pwdump7.png)
+```
+Phat hien su tan cong cua Test case 7 PWDump7
+        Tong event: 1
+
+-----------------------------------------------------------------------------------
+Test case 7 PWDump7
+-----------------------------------------------------------------------------------
+{
+    "_id": "tCgEmnMB71qd4Oo4rmd9",
+    "_index": "winlogbeat-7.7.0-2020.07.29",
+    "_score": null,
+    "_source": {
+        "@timestamp": "2020-07-29T10:01:03.647Z",
+        "@version": "1",
+        "agent": {
+            "ephemeral_id": "361d7753-a939-49a9-9687-6c1427f5917f",
+            "hostname": "WINSRV",
+            "id": "b002425b-af48-4008-8d0a-9e3014604a59",
+            "type": "winlogbeat",
+            "version": "7.7.0"
+        },
+        "ecs": {
+            "version": "1.5.0"
+        },
+        "event": {
+            "action": "File System",
+            "code": 4663,
+            "created": "2020-07-29T10:01:04.724Z",
+            "kind": "event",
+            "provider": "Microsoft-Windows-Security-Auditing"
+        },
+        "host": {
+            "architecture": "x86_64",
+            "hostname": "WINSRV",
+            "id": "f4be2742-f414-4caa-bb87-f4003a376c01",
+            "ip": [
+                "fe80::f072:ce34:86ef:7229",
+                "192.168.255.100",
+                "fe80::5efe:c0a8:ff64",
+                "fe80::100:7f:fffe"
+            ],
+            "mac": [
+                "00:0c:29:fc:f0:a9",
+                "00:00:00:00:00:00:00:e0",
+                "00:00:00:00:00:00:00:e0"
+            ],
+            "name": "WINSRV.winsrv2008.local",
+            "os": {
+                "build": "7601.24546",
+                "family": "windows",
+                "kernel": "6.1.7601.24545 (win7sp1_ldr_escrow.200102-1707)",
+                "name": "Windows Server 2008 R2 Datacenter",
+                "platform": "windows",
+                "version": "6.1"
+            }
+        },
+        "log": {
+            "level": "information"
+        },
+        "message": "An attempt was made to access an object.\n\nSubject:\n\tSecurity ID:\t\tS-1-5-21-4220747943-3152432350-320651364-1000\n\tAccount Name:\t\tsv\n\tAccount Domain:\t\tWINSRV2008\n\tLogon ID:\t\t0x75c4f\n\nObject:\n\tObject Server:\tSecurity\n\tObject Type:\tFile\n\tObject Name:\tF:\\HackingFolder\\PwDump7\\libeay32.dll\n\tHandle ID:\t0x2c\n\nProcess Information:\n\tProcess ID:\t0x164\n\tProcess Name:\tF:\\HackingFolder\\PwDump7\\PwDump7.exe\n\nAccess Request Information:\n\tAccesses:\tExecute/Traverse\n\t\t\t\t\n\tAccess Mask:\t0x20",
+        "tags": [
+            "beats_input_codec_plain_applied"
+        ],
+        "winlog": {
+            "api": "wineventlog",
+            "channel": "Security",
+            "computer_name": "WINSRV.winsrv2008.local",
+            "event_data": {
+                "AccessList": "%%4421\n\t\t\t\t",
+                "AccessMask": "0x20",
+                "HandleId": "0x2c",
+                "ObjectName": "F:\\HackingFolder\\PwDump7\\libeay32.dll",
+                "ObjectServer": "Security",
+                "ObjectType": "File",
+                "ProcessId": "0x164",
+                "ProcessName": "F:\\HackingFolder\\PwDump7\\PwDump7.exe",
+                "SubjectDomainName": "WINSRV2008",
+                "SubjectLogonId": "0x75c4f",
+                "SubjectUserName": "sv",
+                "SubjectUserSid": "S-1-5-21-4220747943-3152432350-320651364-1000"
+            },
+            "event_id": 4663,
+            "keywords": [
+                "Audit Success"
+            ],
+            "opcode": "Info",
+            "process": {
+                "pid": 4,
+                "thread": {
+                    "id": 68
+                }
+            },
+            "provider_guid": "{54849625-5478-4994-A5BA-3E3B0328C30D}",
+            "provider_name": "Microsoft-Windows-Security-Auditing",
+            "record_id": 2090038,
+            "task": "File System"
+        }
+    },
+    "_type": "_doc",
+    "sort": [
+        1596016863647
+    ]
+}
+```
