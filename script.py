@@ -99,11 +99,9 @@ def wmi(res):
             score = 0
             # Check process.args must have "del" and "C:\\windows\\temp\\wmi.dll"
             for _arg in args:
-                if _arg == "del":
-                    score += 1
                 if _arg == "C:\\windows\\temp\\wmi.dll":
-                    score += 1
-            if score == 2:
+                    score = 1
+            if score == 1:
                 tc6.append(tmp)
             else:
                 tc5.append(tmp)
