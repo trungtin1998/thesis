@@ -20,36 +20,30 @@
   },
   "query": {
     "bool": {
-      "filter": [
+      "should": [
+        {
+          "match_phrase": {
+            "event.code": "104"
+          }
+        },
         {
           "bool": {
-            "should": [
+            "filter": [
               {
                 "match_phrase": {
-                  "event.code": "104"
+                  "event.code": "1"
                 }
               },
               {
-                "bool": {
-                  "filter": [
-                    {
-                      "match_phrase": {
-                        "event.code": "1"
-                      }
-                    },
-                    {
-                      "match_phrase": {
-                        "process.executable": "C:\\Windows\\System32\\wevtutil.exe"
-                      }
-                    }
-                  ]
+                "match_phrase": {
+                  "process.executable": "C:\\Windows\\System32\\wevtutil.exe"
                 }
               }
-            ],
-            "minimum_should_match": 1
+            ]
           }
         }
-      ]
+      ],
+      "minimum_should_match": 1
     }
   }
 }
