@@ -20,7 +20,6 @@
   },
   "query": {
     "bool": {
-      "must": [],
       "filter": [
         {
           "match_phrase": {
@@ -39,6 +38,13 @@
               "lte": "BBBBBBBBBBBB",
               "format": "strict_date_optional_time"
             }
+          }
+        }
+      ],
+      "must_not": [
+        {
+          "match_phrase": {
+            "message": "CommandLine: powershell -noP -sta -w 1 -enc"
           }
         }
       ]
