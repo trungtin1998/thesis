@@ -208,7 +208,7 @@ Test case 2 Powershell
 ```
 
 ## Test case 3: Invoke-Command cmdlet
-![Test case 3: Invoke Command Cmdlet](testcase3_invoke_command_cmdlet.png)
+![Test case 3: Invoke Command Cmdlet](/Images/testcase3_invoke_command_cmdlet.png)
 ```
 Phat hien su tan cong cua Test case 3 Invoke-Command cmdlet
         Tong event: 1
