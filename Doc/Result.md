@@ -318,6 +318,8 @@ Test case 3 Invoke-Command cmdlet
     ]
 }
 ```
+
+
 ## Test case 4: WinRS
 ![Test case 4: WinRS](/Images/testcase4_winrs.png)
 ```
