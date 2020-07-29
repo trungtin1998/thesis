@@ -8,16 +8,16 @@
   * Client: Nơi người dùng yêu cầu xác thực
   * Domain Controller: Nơi lưu trữ password của người dùng
 * Các bước xác thực khi người dùng đăng nhập vào domain sử dụng NTLM Authentication
-  1. Người dùng đăng nhập vào máy tính client, điền vào các thông tin domain name, username và password. Client sẽ mã hóa password và discard cleartext password.
-  2. Client gửi username cho Server. (plaintext)
-  3. Server phát sinh ra một số ngẫu nhiên 16-byte, được gọi là challenge hoặc là nonce, và gửi chúng cho client.
-  4. Client mã hóa số nonce này bằng NTLM hash password của user rồi gửi lại cho server. Kết quả được tính toán gọi là response.
-  5. Server gửi 3 items cho Domain Controller:
+  * Bước 1. Người dùng đăng nhập vào máy tính client, điền vào các thông tin domain name, username và password. Client sẽ mã hóa password và discard cleartext password.
+  * Bước 2. Client gửi username cho Server. (plaintext)
+  * Bước 3. Server phát sinh ra một số ngẫu nhiên 16-byte, được gọi là challenge hoặc là nonce, và gửi chúng cho client.
+  * Bước 4. Client mã hóa số nonce này bằng NTLM hash password của user rồi gửi lại cho server. Kết quả được tính toán gọi là response.
+  * Bước 5. Server gửi 3 items cho Domain Controller:
     * username
     * Challenge gửi tới cho Client
     * Response - kết quả hash Challenge của Client
-   6. Domain Controller sử dụng username mà Server gửi tới để tìm ra hash password tương ứng tại Security Account Manager database. 
-   7. Sử dụng hash password này để mã hóa Challenge của Server và đối chiếu với Response. Nếu giống nhau thì xác thực thành công. [1]
+   * Bước 6. Domain Controller sử dụng username mà Server gửi tới để tìm ra hash password tương ứng tại Security Account Manager database. 
+   * Bước 7. Sử dụng hash password này để mã hóa Challenge của Server và đối chiếu với Response. Nếu giống nhau thì xác thực thành công. [1]
    
 
 ## Tài liệu tham khảo
