@@ -460,3 +460,148 @@ Test case 4 WinRS
     ]
 }
 ```
+
+
+## Test case 5: WMIC
+![Test case 5: WMIC](/Images/testcase5_wmic.png)
+
+```
+Phat hien su tan cong cua Test case 5 WMIC
+        Tong event: 1
+
+-----------------------------------------------------------------------------------
+Test case 5 WMIC
+-----------------------------------------------------------------------------------
+{
+    "_id": "WdE6mXMB69Q60KPYjbh2",
+    "_index": "winlogbeat-7.7.0-2020.07.29",
+    "_score": null,
+    "_source": {
+        "@timestamp": "2020-07-29T06:20:15.675Z",
+        "@version": "1",
+        "agent": {
+            "ephemeral_id": "adb5a8b9-dc53-4a4c-bc29-7b868adc6a32",
+            "hostname": "WINSRV",
+            "id": "b002425b-af48-4008-8d0a-9e3014604a59",
+            "type": "winlogbeat",
+            "version": "7.7.0"
+        },
+        "ecs": {
+            "version": "1.5.0"
+        },
+        "event": {
+            "action": "Process Create (rule: ProcessCreate)",
+            "category": "process",
+            "code": 1,
+            "created": "2020-07-29T06:20:16.921Z",
+            "kind": "event",
+            "module": "sysmon",
+            "provider": "Microsoft-Windows-Sysmon",
+            "type": "process_start"
+        },
+        "hash": {
+            "imphash": "d0058544e4588b1b2290b7f4d830eb0a",
+            "md5": "5746bd7e255dd6a8afa06f7c42c1ba41",
+            "sha256": "db06c3534964e3fc79d2763144ba53742d7fa250ca336f4a0fe724b75aaff386"
+        },
+        "host": {
+            "architecture": "x86_64",
+            "hostname": "WINSRV",
+            "id": "f4be2742-f414-4caa-bb87-f4003a376c01",
+            "ip": [
+                "fe80::f072:ce34:86ef:7229",
+                "192.168.255.100",
+                "fe80::5efe:c0a8:ff64",
+                "fe80::100:7f:fffe"
+            ],
+            "mac": [
+                "00:0c:29:fc:f0:a9",
+                "00:00:00:00:00:00:00:e0",
+                "00:00:00:00:00:00:00:e0"
+            ],
+            "name": "WINSRV.winsrv2008.local",
+            "os": {
+                "build": "7601.24546",
+                "family": "windows",
+                "kernel": "6.1.7601.24545 (win7sp1_ldr_escrow.200102-1707)",
+                "name": "Windows Server 2008 R2 Datacenter",
+                "platform": "windows",
+                "version": "6.1"
+            }
+        },
+        "log": {
+            "level": "information"
+        },
+        "message": "Process Create:\nRuleName: \nUtcTime: 2020-07-29 06:20:15.675\nProcessGuid: {F4BE2742-151F-5F21-0000-0010A7DD1100}\nProcessId: 1884\nImage: C:\\Windows\\System32\\cmd.exe\nFileVersion: 6.1.7601.17514 (win7sp1_rtm.101119-1850)\nDescription: Windows Command Processor\nProduct: Microsoft\u00ae Windows\u00ae Operating System\nCompany: Microsoft Corporation\nOriginalFileName: Cmd.Exe\nCommandLine: cmd.exe /c calc\nCurrentDirectory: C:\\Windows\\system32\\\nUser: WINSRV2008\\Administrator\nLogonGuid: {F4BE2742-151F-5F21-0000-0020BDDC1100}\nLogonId: 0x11dcbd\nTerminalSessionId: 0\nIntegrityLevel: High\nHashes: MD5=5746BD7E255DD6A8AFA06F7C42C1BA41,SHA256=DB06C3534964E3FC79D2763144BA53742D7FA250CA336F4A0FE724B75AAFF386,IMPHASH=D0058544E4588B1B2290B7F4D830EB0A\nParentProcessGuid: {F4BE2742-F266-5F20-0000-001054EA0200}\nParentProcessId: 3108\nParentImage: C:\\Windows\\System32\\wbem\\WmiPrvSE.exe\nParentCommandLine: C:\\Windows\\system32\\wbem\\wmiprvse.exe -secured -Embedding",
+        "process": {
+            "args": [
+                "cmd.exe",
+                "/c",
+                "calc"
+            ],
+            "entity_id": "{F4BE2742-151F-5F21-0000-0010A7DD1100}",
+            "executable": "C:\\Windows\\System32\\cmd.exe",
+            "name": "cmd.exe",
+            "parent": {
+                "args": [
+                    "C:\\Windows\\system32\\wbem\\wmiprvse.exe",
+                    "-secured",
+                    "-Embedding"
+                ],
+                "entity_id": "{F4BE2742-F266-5F20-0000-001054EA0200}",
+                "executable": "C:\\Windows\\System32\\wbem\\WmiPrvSE.exe",
+                "name": "WmiPrvSE.exe",
+                "pid": 3108
+            },
+            "pid": 1884,
+            "working_directory": "C:\\Windows\\system32\\"
+        },
+        "tags": [
+            "beats_input_codec_plain_applied"
+        ],
+        "user": {
+            "domain": "WINSRV2008",
+            "name": "Administrator"
+        },
+        "winlog": {
+            "api": "wineventlog",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "computer_name": "WINSRV.winsrv2008.local",
+            "event_data": {
+                "Company": "Microsoft Corporation",
+                "Description": "Windows Command Processor",
+                "FileVersion": "6.1.7601.17514 (win7sp1_rtm.101119-1850)",
+                "IntegrityLevel": "High",
+                "LogonGuid": "{F4BE2742-151F-5F21-0000-0020BDDC1100}",
+                "LogonId": "0x11dcbd",
+                "OriginalFileName": "Cmd.Exe",
+                "Product": "Microsoft\u00ae Windows\u00ae Operating System",
+                "TerminalSessionId": "0"
+            },
+            "event_id": 1,
+            "opcode": "Info",
+            "process": {
+                "pid": 2232,
+                "thread": {
+                    "id": 3036
+                }
+            },
+            "provider_guid": "{5770385F-C22A-43E0-BF4C-06F5698FFBD9}",
+            "provider_name": "Microsoft-Windows-Sysmon",
+            "record_id": 50792,
+            "task": "Process Create (rule: ProcessCreate)",
+            "user": {
+                "domain": "NT AUTHORITY",
+                "identifier": "S-1-5-18",
+                "name": "SYSTEM",
+                "type": "User"
+            },
+            "version": 5
+        }
+    },
+    "_type": "_doc",
+    "sort": [
+        1596003615675
+    ]
+}
+```
