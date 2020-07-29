@@ -318,3 +318,144 @@ Test case 3 Invoke-Command cmdlet
     ]
 }
 ```
+## Test case 4: WinRS
+![Test case 4: WinRS](/Images/testcase4_winrs.png)
+```
+Phat hien su tan cong cua Test case 4 WinRS
+        Tong event: 1
+
+-----------------------------------------------------------------------------------
+Test case 4 WinRS
+-----------------------------------------------------------------------------------
+{
+    "_id": "pXYHknMBQGGqkhfeWNmn",
+    "_index": "winlogbeat-7.7.0-2020.07.28",
+    "_score": null,
+    "_source": {
+        "@timestamp": "2020-07-28T05:20:13.946Z",
+        "@version": "1",
+        "agent": {
+            "ephemeral_id": "d4fb884b-fb62-4938-9918-463239b8cc5d",
+            "hostname": "WINSRV",
+            "id": "b002425b-af48-4008-8d0a-9e3014604a59",
+            "type": "winlogbeat",
+            "version": "7.7.0"
+        },
+        "ecs": {
+            "version": "1.5.0"
+        },
+        "event": {
+            "action": "Process Create (rule: ProcessCreate)",
+            "category": "process",
+            "code": 1,
+            "created": "2020-07-28T05:20:15.497Z",
+            "kind": "event",
+            "module": "sysmon",
+            "provider": "Microsoft-Windows-Sysmon",
+            "type": "process_start"
+        },
+        "hash": {
+            "imphash": "6101500e8ba15704009132321204bea0",
+            "md5": "2a95058431853af672d1e8ef518bf69c",
+            "sha256": "6d8b34a3fd8e9ee61279fdfcde0c3f13071f84eddaa7b385e3c859343bf4703a"
+        },
+        "host": {
+            "architecture": "x86_64",
+            "hostname": "WINSRV",
+            "id": "f4be2742-f414-4caa-bb87-f4003a376c01",
+            "ip": [
+                "fe80::f072:ce34:86ef:7229",
+                "192.168.255.100",
+                "fe80::5efe:c0a8:ff64",
+                "fe80::100:7f:fffe"
+            ],
+            "mac": [
+                "00:0c:29:fc:f0:a9",
+                "00:00:00:00:00:00:00:e0",
+                "00:00:00:00:00:00:00:e0"
+            ],
+            "name": "WINSRV.winsrv2008.local",
+            "os": {
+                "build": "7601.24546",
+                "family": "windows",
+                "kernel": "6.1.7601.24545 (win7sp1_ldr_escrow.200102-1707)",
+                "name": "Windows Server 2008 R2 Datacenter",
+                "platform": "windows",
+                "version": "6.1"
+            }
+        },
+        "log": {
+            "level": "information"
+        },
+        "message": "Process Create:\nRuleName: \nUtcTime: 2020-07-28 05:20:13.946\nProcessGuid: {F4BE2742-B58D-5F1F-0000-00109EC71900}\nProcessId: 3164\nImage: C:\\Windows\\System32\\winrshost.exe\nFileVersion: 10.0.14409.1005 (rs1_srvoob.161208-1155)\nDescription: Host Process for WinRM's Remote Shell plugin\nProduct: Microsoft\u00ae Windows\u00ae Operating System\nCompany: Microsoft Corporation\nOriginalFileName: winrshost.exe\nCommandLine: C:\\Windows\\system32\\WinrsHost.exe -Embedding\nCurrentDirectory: C:\\Windows\\system32\\\nUser: WINSRV2008\\Administrator\nLogonGuid: {F4BE2742-B58D-5F1F-0000-0020EEC41900}\nLogonId: 0x19c4ee\nTerminalSessionId: 0\nIntegrityLevel: High\nHashes: MD5=2A95058431853AF672D1E8EF518BF69C,SHA256=6D8B34A3FD8E9EE61279FDFCDE0C3F13071F84EDDAA7B385E3C859343BF4703A,IMPHASH=6101500E8BA15704009132321204BEA0\nParentProcessGuid: {F4BE2742-8E73-5F1F-0000-00108BEB0000}\nParentProcessId: 724\nParentImage: C:\\Windows\\System32\\svchost.exe\nParentCommandLine: C:\\Windows\\system32\\svchost.exe -k DcomLaunch",
+        "process": {
+            "args": [
+                "C:\\Windows\\system32\\WinrsHost.exe",
+                "-Embedding"
+            ],
+            "entity_id": "{F4BE2742-B58D-5F1F-0000-00109EC71900}",
+            "executable": "C:\\Windows\\System32\\winrshost.exe",
+            "name": "winrshost.exe",
+            "parent": {
+                "args": [
+                    "C:\\Windows\\system32\\svchost.exe",
+                    "-k",
+                    "DcomLaunch"
+                ],
+                "entity_id": "{F4BE2742-8E73-5F1F-0000-00108BEB0000}",
+                "executable": "C:\\Windows\\System32\\svchost.exe",
+                "name": "svchost.exe",
+                "pid": 724
+            },
+            "pid": 3164,
+            "working_directory": "C:\\Windows\\system32\\"
+        },
+        "tags": [
+            "beats_input_codec_plain_applied"
+        ],
+        "user": {
+            "domain": "WINSRV2008",
+            "name": "Administrator"
+        },
+        "winlog": {
+            "api": "wineventlog",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "computer_name": "WINSRV.winsrv2008.local",
+            "event_data": {
+                "Company": "Microsoft Corporation",
+                "Description": "Host Process for WinRM's Remote Shell plugin",
+                "FileVersion": "10.0.14409.1005 (rs1_srvoob.161208-1155)",
+                "IntegrityLevel": "High",
+                "LogonGuid": "{F4BE2742-B58D-5F1F-0000-0020EEC41900}",
+                "LogonId": "0x19c4ee",
+                "OriginalFileName": "winrshost.exe",
+                "Product": "Microsoft\u00ae Windows\u00ae Operating System",
+                "TerminalSessionId": "0"
+            },
+            "event_id": 1,
+            "opcode": "Info",
+            "process": {
+                "pid": 2100,
+                "thread": {
+                    "id": 2752
+                }
+            },
+            "provider_guid": "{5770385F-C22A-43E0-BF4C-06F5698FFBD9}",
+            "provider_name": "Microsoft-Windows-Sysmon",
+            "record_id": 49538,
+            "task": "Process Create (rule: ProcessCreate)",
+            "user": {
+                "domain": "NT AUTHORITY",
+                "identifier": "S-1-5-18",
+                "name": "SYSTEM",
+                "type": "User"
+            },
+            "version": 5
+        }
+    },
+    "_type": "_doc",
+    "sort": [
+        1595913613946
+    ]
+}
+```
