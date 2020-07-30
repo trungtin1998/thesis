@@ -2693,9 +2693,346 @@ Test case 20 ldifde
 ## Test case 21: Timestomp
 ![Test case 21: Timestomp](/Images/testcase21_timestomp.png)
 ```
+Phat hien su tan cong cua Test case 21 Timestomp
+        Tong event: 1
+
+-----------------------------------------------------------------------------------
+Test case 21 Timestomp
+-----------------------------------------------------------------------------------
+{
+    "_id": "59qooHMBsZ6fp0tUbe0d",
+    "_index": "winlogbeat-7.7.0-2020.07.30",
+    "_score": null,
+    "_source": {
+        "@timestamp": "2020-07-30T16:57:36.457Z",
+        "@version": "1",
+        "agent": {
+            "ephemeral_id": "5d2a63eb-3b0a-49c9-8d41-86af65c2fe40",
+            "hostname": "WINSRV",
+            "id": "b002425b-af48-4008-8d0a-9e3014604a59",
+            "type": "winlogbeat",
+            "version": "7.7.0"
+        },
+        "ecs": {
+            "version": "1.5.0"
+        },
+        "event": {
+            "action": "File System",
+            "code": 4663,
+            "created": "2020-07-30T16:57:38.186Z",
+            "kind": "event",
+            "provider": "Microsoft-Windows-Security-Auditing"
+        },
+        "host": {
+            "architecture": "x86_64",
+            "hostname": "WINSRV",
+            "id": "f4be2742-f414-4caa-bb87-f4003a376c01",
+            "ip": [
+                "fe80::f072:ce34:86ef:7229",
+                "192.168.255.100",
+                "fe80::5efe:c0a8:ff64",
+                "fe80::100:7f:fffe"
+            ],
+            "mac": [
+                "00:0c:29:fc:f0:a9",
+                "00:00:00:00:00:00:00:e0",
+                "00:00:00:00:00:00:00:e0"
+            ],
+            "name": "WINSRV.winsrv2008.local",
+            "os": {
+                "build": "7601.24546",
+                "family": "windows",
+                "kernel": "6.1.7601.24545 (win7sp1_ldr_escrow.200102-1707)",
+                "name": "Windows Server 2008 R2 Datacenter",
+                "platform": "windows",
+                "version": "6.1"
+            }
+        },
+        "log": {
+            "level": "information"
+        },
+        "message": "An attempt was made to access an object.\n\nSubject:\n\tSecurity ID:\t\tS-1-5-21-4220747943-3152432350-320651364-1000\n\tAccount Name:\t\tsv\n\tAccount Domain:\t\tWINSRV2008\n\tLogon ID:\t\t0x1e86e8\n\nObject:\n\tObject Server:\tSecurity\n\tObject Type:\tFile\n\tObject Name:\tF:\\credentials.txt\n\tHandle ID:\t0x1a0\n\nProcess Information:\n\tProcess ID:\t0x760\n\tProcess Name:\tF:\\HackingFolder\\virus.exe\n\nAccess Request Information:\n\tAccesses:\tWriteAttributes\n\t\t\t\t\n\tAccess Mask:\t0x100",
+        "tags": [
+            "beats_input_codec_plain_applied"
+        ],
+        "winlog": {
+            "api": "wineventlog",
+            "channel": "Security",
+            "computer_name": "WINSRV.winsrv2008.local",
+            "event_data": {
+                "AccessList": "%%4424\n\t\t\t\t",
+                "AccessMask": "0x100",
+                "HandleId": "0x1a0",
+                "ObjectName": "F:\\credentials.txt",
+                "ObjectServer": "Security",
+                "ObjectType": "File",
+                "ProcessId": "0x760",
+                "ProcessName": "F:\\HackingFolder\\virus.exe",
+                "SubjectDomainName": "WINSRV2008",
+                "SubjectLogonId": "0x1e86e8",
+                "SubjectUserName": "sv",
+                "SubjectUserSid": "S-1-5-21-4220747943-3152432350-320651364-1000"
+            },
+            "event_id": 4663,
+            "keywords": [
+                "Audit Success"
+            ],
+            "opcode": "Info",
+            "process": {
+                "pid": 4,
+                "thread": {
+                    "id": 76
+                }
+            },
+            "provider_guid": "{54849625-5478-4994-A5BA-3E3B0328C30D}",
+            "provider_name": "Microsoft-Windows-Security-Auditing",
+            "record_id": 2190209,
+            "task": "File System"
+        }
+    },
+    "_type": "_doc",
+    "sort": [
+        1596128256457
+    ]
+}
+-----------------------------------------------------------------------------------
 ```
 
 ## Test case 22: wevtutil
+* Do ta dựa vào 2 sự kiện là 
+	* **Event ID 104**: Sự kiện clear log được ghi nhận tại System Log
+	* **Event ID 1**: Có sự thực thi của tiến trình wevtutil
 ![Test case 22: wevtutil](/Images/testcase22_wevtutil.png)
 ```
+Phat hien su tan cong cua Test case 22 wevtutil
+        Tong event: 2
+
+-----------------------------------------------------------------------------------
+Test case 22 wevtutil
+-----------------------------------------------------------------------------------
+{
+    "_id": "1NqqoHMBsZ6fp0tUjPVZ",
+    "_index": "winlogbeat-7.7.0-2020.07.30",
+    "_score": null,
+    "_source": {
+        "@timestamp": "2020-07-30T16:59:56.980Z",
+        "@version": "1",
+        "agent": {
+            "ephemeral_id": "5d2a63eb-3b0a-49c9-8d41-86af65c2fe40",
+            "hostname": "WINSRV",
+            "id": "b002425b-af48-4008-8d0a-9e3014604a59",
+            "type": "winlogbeat",
+            "version": "7.7.0"
+        },
+        "ecs": {
+            "version": "1.5.0"
+        },
+        "event": {
+            "action": "Process Create (rule: ProcessCreate)",
+            "category": "process",
+            "code": 1,
+            "created": "2020-07-30T16:59:58.049Z",
+            "kind": "event",
+            "module": "sysmon",
+            "provider": "Microsoft-Windows-Sysmon",
+            "type": "process_start"
+        },
+        "hash": {
+            "imphash": "5ceebce34342598e6a5dc5278d7d430d",
+            "md5": "dab04a7a5f67d2da07fc968eec76a5d2",
+            "sha256": "0dd7d2a9e56ae356591c1792efb68a90fd76a7787e0b597fcbc4ef1fa514b601"
+        },
+        "host": {
+            "architecture": "x86_64",
+            "hostname": "WINSRV",
+            "id": "f4be2742-f414-4caa-bb87-f4003a376c01",
+            "ip": [
+                "fe80::f072:ce34:86ef:7229",
+                "192.168.255.100",
+                "fe80::5efe:c0a8:ff64",
+                "fe80::100:7f:fffe"
+            ],
+            "mac": [
+                "00:0c:29:fc:f0:a9",
+                "00:00:00:00:00:00:00:e0",
+                "00:00:00:00:00:00:00:e0"
+            ],
+            "name": "WINSRV.winsrv2008.local",
+            "os": {
+                "build": "7601.24546",
+                "family": "windows",
+                "kernel": "6.1.7601.24545 (win7sp1_ldr_escrow.200102-1707)",
+                "name": "Windows Server 2008 R2 Datacenter",
+                "platform": "windows",
+                "version": "6.1"
+            }
+        },
+        "log": {
+            "level": "information"
+        },
+        "message": "Process Create:\nRuleName: \nUtcTime: 2020-07-30 16:59:56.980\nProcessGuid: {F4BE2742-FC8C-5F22-0000-0010A4904100}\nProcessId: 1512\nImage: C:\\Windows\\System32\\wevtutil.exe\nFileVersion: 6.1.7600.16385 (win7_rtm.090713-1255)\nDescription: Eventing Command Line Utility\nProduct: Microsoft\u00ae Windows\u00ae Operating System\nCompany: Microsoft Corporation\nOriginalFileName: wevtutil.exe\nCommandLine: wevtutil  cl application\nCurrentDirectory: C:\\Windows\\system32\\\nUser: WINSRV2008\\sv\nLogonGuid: {F4BE2742-CA6A-5F22-0000-0020C7861E00}\nLogonId: 0x1e86c7\nTerminalSessionId: 1\nIntegrityLevel: High\nHashes: MD5=DAB04A7A5F67D2DA07FC968EEC76A5D2,SHA256=0DD7D2A9E56AE356591C1792EFB68A90FD76A7787E0B597FCBC4EF1FA514B601,IMPHASH=5CEEBCE34342598E6A5DC5278D7D430D\nParentProcessGuid: {F4BE2742-F1BD-5F22-0000-0010ED8D3A00}\nParentProcessId: 4036\nParentImage: C:\\Windows\\System32\\cmd.exe\nParentCommandLine: \"C:\\Windows\\system32\\cmd.exe\" ",
+        "process": {
+            "args": [
+                "wevtutil",
+                "cl",
+                "application"
+            ],
+            "entity_id": "{F4BE2742-FC8C-5F22-0000-0010A4904100}",
+            "executable": "C:\\Windows\\System32\\wevtutil.exe",
+            "name": "wevtutil.exe",
+            "parent": {
+                "args": [
+                    "C:\\Windows\\system32\\cmd.exe"
+                ],
+                "entity_id": "{F4BE2742-F1BD-5F22-0000-0010ED8D3A00}",
+                "executable": "C:\\Windows\\System32\\cmd.exe",
+                "name": "cmd.exe",
+                "pid": 4036
+            },
+            "pid": 1512,
+            "working_directory": "C:\\Windows\\system32\\"
+        },
+        "tags": [
+            "beats_input_codec_plain_applied"
+        ],
+        "user": {
+            "domain": "WINSRV2008",
+            "name": "sv"
+        },
+        "winlog": {
+            "api": "wineventlog",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "computer_name": "WINSRV.winsrv2008.local",
+            "event_data": {
+                "Company": "Microsoft Corporation",
+                "Description": "Eventing Command Line Utility",
+                "FileVersion": "6.1.7600.16385 (win7_rtm.090713-1255)",
+                "IntegrityLevel": "High",
+                "LogonGuid": "{F4BE2742-CA6A-5F22-0000-0020C7861E00}",
+                "LogonId": "0x1e86c7",
+                "OriginalFileName": "wevtutil.exe",
+                "Product": "Microsoft\u00ae Windows\u00ae Operating System",
+                "TerminalSessionId": "1"
+            },
+            "event_id": 1,
+            "opcode": "Info",
+            "process": {
+                "pid": 2264,
+                "thread": {
+                    "id": 2832
+                }
+            },
+            "provider_guid": "{5770385F-C22A-43E0-BF4C-06F5698FFBD9}",
+            "provider_name": "Microsoft-Windows-Sysmon",
+            "record_id": 68549,
+            "task": "Process Create (rule: ProcessCreate)",
+            "user": {
+                "domain": "NT AUTHORITY",
+                "identifier": "S-1-5-18",
+                "name": "SYSTEM",
+                "type": "User"
+            },
+            "version": 5
+        }
+    },
+    "_type": "_doc",
+    "_version": 1,
+    "sort": [
+        1596128396980
+    ]
+}
+-----------------------------------------------------------------------------------
+{
+    "_id": "09qqoHMBsZ6fp0tUjPVZ",
+    "_index": "winlogbeat-7.7.0-2020.07.30",
+    "_score": null,
+    "_source": {
+        "@timestamp": "2020-07-30T16:59:57.011Z",
+        "@version": "1",
+        "agent": {
+            "ephemeral_id": "5d2a63eb-3b0a-49c9-8d41-86af65c2fe40",
+            "hostname": "WINSRV",
+            "id": "b002425b-af48-4008-8d0a-9e3014604a59",
+            "type": "winlogbeat",
+            "version": "7.7.0"
+        },
+        "ecs": {
+            "version": "1.5.0"
+        },
+        "event": {
+            "action": "Log clear",
+            "code": 104,
+            "created": "2020-07-30T16:59:57.299Z",
+            "kind": "event",
+            "provider": "Microsoft-Windows-Eventlog"
+        },
+        "host": {
+            "architecture": "x86_64",
+            "hostname": "WINSRV",
+            "id": "f4be2742-f414-4caa-bb87-f4003a376c01",
+            "ip": [
+                "fe80::f072:ce34:86ef:7229",
+                "192.168.255.100",
+                "fe80::5efe:c0a8:ff64",
+                "fe80::100:7f:fffe"
+            ],
+            "mac": [
+                "00:0c:29:fc:f0:a9",
+                "00:00:00:00:00:00:00:e0",
+                "00:00:00:00:00:00:00:e0"
+            ],
+            "name": "WINSRV.winsrv2008.local",
+            "os": {
+                "build": "7601.24546",
+                "family": "windows",
+                "kernel": "6.1.7601.24545 (win7sp1_ldr_escrow.200102-1707)",
+                "name": "Windows Server 2008 R2 Datacenter",
+                "platform": "windows",
+                "version": "6.1"
+            }
+        },
+        "log": {
+            "level": "information"
+        },
+        "message": "The Application log file was cleared.",
+        "tags": [
+            "beats_input_codec_plain_applied"
+        ],
+        "winlog": {
+            "api": "wineventlog",
+            "channel": "System",
+            "computer_name": "WINSRV.winsrv2008.local",
+            "event_id": 104,
+            "opcode": "Info",
+            "process": {
+                "pid": 880,
+                "thread": {
+                    "id": 4844
+                }
+            },
+            "provider_guid": "{fc65ddd8-d6ef-4962-83d5-6e5cfe9ce148}",
+            "provider_name": "Microsoft-Windows-Eventlog",
+            "record_id": 15675,
+            "task": "Log clear",
+            "user": {
+                "domain": "WINSRV2008",
+                "identifier": "S-1-5-21-4220747943-3152432350-320651364-1000",
+                "name": "sv",
+                "type": "User"
+            },
+            "user_data": {
+                "Channel": "Application",
+                "SubjectDomainName": "WINSRV2008",
+                "SubjectUserName": "sv",
+                "xml_name": "LogFileCleared"
+            }
+        }
+    },
+    "_type": "_doc",
+    "_version": 1,
+    "sort": [
+        1596128397011
+    ]
+}
+-----------------------------------------------------------------------------------
 ```
