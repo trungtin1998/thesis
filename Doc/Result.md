@@ -1429,11 +1429,202 @@ Test case 11 Golden Ticket
 ## Test case 12: AT Command
 ![Test case 12: AT Command](/Images/testcase12_at_command.png)
 ```
+Phat hien su tan cong cua Test case 12 AT Command
+        Tong event: 1
+
+-----------------------------------------------------------------------------------
+Test case 12 AT Command
+-----------------------------------------------------------------------------------
+{
+    "_id": "C67nXXMBqCgffGtQL4i7",
+    "_index": "winlogbeat-7.7.0-2020.07.17",
+    "_score": null,
+    "_source": {
+        "@timestamp": "2020-07-17T17:51:36.363Z",
+        "@version": "1",
+        "agent": {
+            "ephemeral_id": "bd555251-2073-432b-8e4f-cfb74a040746",
+            "hostname": "WINSRV",
+            "id": "b002425b-af48-4008-8d0a-9e3014604a59",
+            "type": "winlogbeat",
+            "version": "7.7.0"
+        },
+        "ecs": {
+            "version": "1.5.0"
+        },
+        "event": {
+            "action": "Task registered",
+            "code": 106,
+            "created": "2020-07-17T17:51:38.145Z",
+            "kind": "event",
+            "provider": "Microsoft-Windows-TaskScheduler"
+        },
+        "host": {
+            "architecture": "x86_64",
+            "hostname": "WINSRV",
+            "id": "f4be2742-f414-4caa-bb87-f4003a376c01",
+            "ip": [
+                "fe80::f072:ce34:86ef:7229",
+                "192.168.255.100",
+                "fe80::5efe:c0a8:ff64",
+                "fe80::100:7f:fffe"
+            ],
+            "mac": [
+                "00:0c:29:fc:f0:a9",
+                "00:00:00:00:00:00:00:e0",
+                "00:00:00:00:00:00:00:e0"
+            ],
+            "name": "WINSRV.winsrv2008.local",
+            "os": {
+                "build": "7601.24546",
+                "family": "windows",
+                "kernel": "6.1.7601.24545 (win7sp1_ldr_escrow.200102-1707)",
+                "name": "Windows Server 2008 R2 Datacenter",
+                "platform": "windows",
+                "version": "6.1"
+            }
+        },
+        "log": {
+            "level": "information"
+        },
+        "message": "User \"WINSRV2008\\sv\"  registered Task Scheduler task \"\\At5\"",
+        "tags": [
+            "beats_input_codec_plain_applied"
+        ],
+        "winlog": {
+            "api": "wineventlog",
+            "channel": "Microsoft-Windows-TaskScheduler/Operational",
+            "computer_name": "WINSRV.winsrv2008.local",
+            "event_data": {
+                "TaskName": "\\At5",
+                "UserContext": "WINSRV2008\\sv"
+            },
+            "event_id": 106,
+            "opcode": "Info",
+            "process": {
+                "pid": 932,
+                "thread": {
+                    "id": 3348
+                }
+            },
+            "provider_guid": "{DE7B24EA-73C8-4A09-985D-5BDADCFA9017}",
+            "provider_name": "Microsoft-Windows-TaskScheduler",
+            "record_id": 9720,
+            "task": "Task registered",
+            "user": {
+                "domain": "NT AUTHORITY",
+                "identifier": "S-1-5-18",
+                "name": "SYSTEM",
+                "type": "User"
+            }
+        }
+    },
+    "_type": "_doc",
+    "sort": [
+        1595008296363
+    ]
+}
 ```
 
 ## Test case 13: RDP
 ![Test case 13: RDP](/Images/testcase13_rdp.png)
 ```
+Phat hien su tan cong cua Test case 13 RDP
+        Tong event: 1
+
+-----------------------------------------------------------------------------------
+Test case 13 RDP
+-----------------------------------------------------------------------------------
+{
+    "_id": "dtlPoHMBsZ6fp0tUY4T7",
+    "_index": "winlogbeat-7.7.0-2020.07.30",
+    "_score": null,
+    "_source": {
+        "@timestamp": "2020-07-30T15:20:22.961Z",
+        "@version": "1",
+        "agent": {
+            "ephemeral_id": "5d2a63eb-3b0a-49c9-8d41-86af65c2fe40",
+            "hostname": "WINSRV",
+            "id": "b002425b-af48-4008-8d0a-9e3014604a59",
+            "type": "winlogbeat",
+            "version": "7.7.0"
+        },
+        "ecs": {
+            "version": "1.5.0"
+        },
+        "event": {
+            "code": 25,
+            "created": "2020-07-30T15:20:23.199Z",
+            "kind": "event",
+            "provider": "Microsoft-Windows-TerminalServices-LocalSessionManager"
+        },
+        "host": {
+            "architecture": "x86_64",
+            "hostname": "WINSRV",
+            "id": "f4be2742-f414-4caa-bb87-f4003a376c01",
+            "ip": [
+                "fe80::f072:ce34:86ef:7229",
+                "192.168.255.100",
+                "fe80::5efe:c0a8:ff64",
+                "fe80::100:7f:fffe"
+            ],
+            "mac": [
+                "00:0c:29:fc:f0:a9",
+                "00:00:00:00:00:00:00:e0",
+                "00:00:00:00:00:00:00:e0"
+            ],
+            "name": "WINSRV.winsrv2008.local",
+            "os": {
+                "build": "7601.24546",
+                "family": "windows",
+                "kernel": "6.1.7601.24545 (win7sp1_ldr_escrow.200102-1707)",
+                "name": "Windows Server 2008 R2 Datacenter",
+                "platform": "windows",
+                "version": "6.1"
+            }
+        },
+        "log": {
+            "level": "information"
+        },
+        "message": "Remote Desktop Services: Session reconnection succeeded:\n\nUser: WINSRV2008\\sv\nSession ID: 1\nSource Network Address: 192.168.255.129",
+        "tags": [
+            "beats_input_codec_plain_applied"
+        ],
+        "winlog": {
+            "api": "wineventlog",
+            "channel": "Microsoft-Windows-TerminalServices-LocalSessionManager/Operational",
+            "computer_name": "WINSRV.winsrv2008.local",
+            "event_id": 25,
+            "opcode": "Info",
+            "process": {
+                "pid": 552,
+                "thread": {
+                    "id": 2200
+                }
+            },
+            "provider_guid": "{5D896912-022D-40AA-A3A8-4FA5515C76D7}",
+            "provider_name": "Microsoft-Windows-TerminalServices-LocalSessionManager",
+            "record_id": 240,
+            "task": "",
+            "user": {
+                "domain": "NT AUTHORITY",
+                "identifier": "S-1-5-18",
+                "name": "SYSTEM",
+                "type": "User"
+            },
+            "user_data": {
+                "Address": "192.168.255.129",
+                "SessionID": "1",
+                "User": "WINSRV2008\\sv",
+                "xml_name": "EventXML"
+            }
+        }
+    },
+    "_type": "_doc",
+    "sort": [
+        1596122422961
+    ]
+}
 ```
 
 ## Test case 14: Mimikatz
@@ -1444,6 +1635,112 @@ Test case 11 Golden Ticket
 ## Test case 15: Bypass UAC
 ![Test case 15: Bypass UAC](/Images/testcase15_bypassuac.png)
 ```
+Phat hien su tan cong cua Test case 15 Bypass UAC
+        Tong event: 1
+
+-----------------------------------------------------------------------------------
+Test case 15 Bypass UAC
+-----------------------------------------------------------------------------------
+{
+    "_id": "P9lToHMBsZ6fp0tUt5n5",
+    "_index": "winlogbeat-7.7.0-2020.07.30",
+    "_score": null,
+    "_source": {
+        "@timestamp": "2020-07-30T15:25:06.673Z",
+        "@version": "1",
+        "agent": {
+            "ephemeral_id": "5d2a63eb-3b0a-49c9-8d41-86af65c2fe40",
+            "hostname": "WINSRV",
+            "id": "b002425b-af48-4008-8d0a-9e3014604a59",
+            "type": "winlogbeat",
+            "version": "7.7.0"
+        },
+        "ecs": {
+            "version": "1.5.0"
+        },
+        "event": {
+            "action": "File created (rule: FileCreate)",
+            "code": 11,
+            "created": "2020-07-30T15:25:07.393Z",
+            "kind": "event",
+            "module": "sysmon",
+            "provider": "Microsoft-Windows-Sysmon"
+        },
+        "file": {
+            "path": "C:\\Windows\\System32\\sysprep\\CRYPTBASE.dll"
+        },
+        "host": {
+            "architecture": "x86_64",
+            "hostname": "WINSRV",
+            "id": "f4be2742-f414-4caa-bb87-f4003a376c01",
+            "ip": [
+                "fe80::f072:ce34:86ef:7229",
+                "192.168.255.100",
+                "fe80::5efe:c0a8:ff64",
+                "fe80::100:7f:fffe"
+            ],
+            "mac": [
+                "00:0c:29:fc:f0:a9",
+                "00:00:00:00:00:00:00:e0",
+                "00:00:00:00:00:00:00:e0"
+            ],
+            "name": "WINSRV.winsrv2008.local",
+            "os": {
+                "build": "7601.24546",
+                "family": "windows",
+                "kernel": "6.1.7601.24545 (win7sp1_ldr_escrow.200102-1707)",
+                "name": "Windows Server 2008 R2 Datacenter",
+                "platform": "windows",
+                "version": "6.1"
+            }
+        },
+        "log": {
+            "level": "information"
+        },
+        "message": "File created:\nRuleName: DLL\nUtcTime: 2020-07-30 15:25:06.673\nProcessGuid: {F4BE2742-E652-5F22-0000-001092E43100}\nProcessId: 4492\nImage: C:\\Windows\\system32\\DllHost.exe\nTargetFilename: C:\\Windows\\System32\\sysprep\\CRYPTBASE.dll\nCreationUtcTime: 2020-07-30 15:24:53.389",
+        "process": {
+            "entity_id": "{F4BE2742-E652-5F22-0000-001092E43100}",
+            "executable": "C:\\Windows\\system32\\DllHost.exe",
+            "name": "DllHost.exe",
+            "pid": 4492
+        },
+        "tags": [
+            "beats_input_codec_plain_applied"
+        ],
+        "winlog": {
+            "api": "wineventlog",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "computer_name": "WINSRV.winsrv2008.local",
+            "event_data": {
+                "CreationUtcTime": "2020-07-30 15:24:53.389",
+                "RuleName": "DLL"
+            },
+            "event_id": 11,
+            "opcode": "Info",
+            "process": {
+                "pid": 2264,
+                "thread": {
+                    "id": 2832
+                }
+            },
+            "provider_guid": "{5770385F-C22A-43E0-BF4C-06F5698FFBD9}",
+            "provider_name": "Microsoft-Windows-Sysmon",
+            "record_id": 68492,
+            "task": "File created (rule: FileCreate)",
+            "user": {
+                "domain": "NT AUTHORITY",
+                "identifier": "S-1-5-18",
+                "name": "SYSTEM",
+                "type": "User"
+            },
+            "version": 2
+        }
+    },
+    "_type": "_doc",
+    "sort": [
+        1596122706673
+    ]
+}
 ```
 
 ## Test case 16: ntdsutil
