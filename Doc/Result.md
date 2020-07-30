@@ -1085,7 +1085,7 @@ Test case 9 WCE - Password and Hash Dump
 ```
 
 ## Test case 10: WCE Remote Login
-![Test case 10: WCE Remote Login](/Images/testcase10_remote_login.png)
+![Test case 10: WCE Remote Login](/Images/testcase10_wce_remote_login.png)
 ```
 Phat hien su tan cong cua Test case 10 WCE Remote Login
         Tong event: 1
