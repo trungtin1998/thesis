@@ -5,7 +5,7 @@ Description: Capturing the Windows's threats using ELK Stack and Python Script.
 
 ## Luận văn sẽ khảo sát 22 threats sau:
 * Test case 1 PsExec
-* Test case 2 Powershell
+* Test case 2 Powershell Empire
 * Test case 3 Invoke-Command cmdlet
 * Test case 4 WinRS
 * Test case 5 WMIC
