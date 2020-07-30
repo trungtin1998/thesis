@@ -123,15 +123,15 @@ def quarksPwDump(response):
 
 # Detect test case 10: WCE Remote Login
 def recognizeWCERemoteLogin(listArgs):
-    # Kiem tra co phai dang: wce.exe -s [username]:WINSRV2008:NTLM (NTLM có thêm một ":")
+    # Kiem tra co phai dang: wce.exe -s [username]:WINSRV2008:NTLM (NTLM co them mot ":")
     ok = 0
     if listArgs.count("-s") == 1 and len(listArgs) == 3:
         for s in listArgs:
-            # Kiem tra xem co phai dang sv:WINSRV2008:NT:LM => Có ba dấu ":"
+            # Kiem tra xem co phai dang sv:WINSRV2008:NT:LM => Co ba dau ":"
             if s.count(":") == 3:
                 ok += 1
-            # Kiem tra xem co phai la file exe va duoc thuc thi tai C:\Windows\System32
-            if s.find("C:\\Windows\\system32") != -1 and s[-4:] == ".exe":
+            # Kiem tra xem co phai la file exe 
+            elif s[-4:] == ".exe":
                 ok += 1
         if ok == 2:
             return True
@@ -139,7 +139,7 @@ def recognizeWCERemoteLogin(listArgs):
 
 # Distinguish Test case 9: WCE - Password and Hash Dump and Test case 10: WCE - Remote Login
 def wce(a):
-    with open(DIR + "testcase10_auxiliary") as json_file:
+    with open(DIR + "testcase10") as json_file:
         data = json.load(json_file)
         data = json.dumps(data)
     response = postRequest(data)
