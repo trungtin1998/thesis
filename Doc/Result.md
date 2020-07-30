@@ -1087,6 +1087,142 @@ Test case 9 WCE - Password and Hash Dump
 ## Test case 10: WCE Remote Login
 ![Test case 10: WCE Remote Login](/Images/testcase10_remote_login.png)
 ```
+Phat hien su tan cong cua Test case 10 WCE Remote Login
+        Tong event: 1
+
+-----------------------------------------------------------------------------------
+Test case 10 WCE Remote Login
+-----------------------------------------------------------------------------------
+{
+    "_id": "K9gYoHMBsZ6fp0tU8bq3",
+    "_index": "winlogbeat-7.7.0-2020.07.30",
+    "_score": null,
+    "_source": {
+        "@timestamp": "2020-07-30T14:20:52.603Z",
+        "@version": "1",
+        "agent": {
+            "ephemeral_id": "5d2a63eb-3b0a-49c9-8d41-86af65c2fe40",
+            "hostname": "WINSRV",
+            "id": "b002425b-af48-4008-8d0a-9e3014604a59",
+            "type": "winlogbeat",
+            "version": "7.7.0"
+        },
+        "ecs": {
+            "version": "1.5.0"
+        },
+        "event": {
+            "action": "Process Create (rule: ProcessCreate)",
+            "category": "process",
+            "code": 1,
+            "created": "2020-07-30T14:20:53.798Z",
+            "kind": "event",
+            "module": "sysmon",
+            "provider": "Microsoft-Windows-Sysmon",
+            "type": "process_start"
+        },
+        "hash": {
+            "imphash": "e96a73c7bf33a464c510ede582318bf2",
+            "md5": "ccf1d1573f175299ade01c07791a6541",
+            "sha256": "68a15a34c2e28b9b521a240b948634617d72ad619e3950bc6dc769e60a0c3cf2"
+        },
+        "host": {
+            "architecture": "x86_64",
+            "hostname": "WINSRV",
+            "id": "f4be2742-f414-4caa-bb87-f4003a376c01",
+            "ip": [
+                "fe80::f072:ce34:86ef:7229",
+                "192.168.255.100",
+                "fe80::5efe:c0a8:ff64",
+                "fe80::100:7f:fffe"
+            ],
+            "mac": [
+                "00:0c:29:fc:f0:a9",
+                "00:00:00:00:00:00:00:e0",
+                "00:00:00:00:00:00:00:e0"
+            ],
+            "name": "WINSRV.winsrv2008.local",
+            "os": {
+                "build": "7601.24546",
+                "family": "windows",
+                "kernel": "6.1.7601.24545 (win7sp1_ldr_escrow.200102-1707)",
+                "name": "Windows Server 2008 R2 Datacenter",
+                "platform": "windows",
+                "version": "6.1"
+            }
+        },
+        "log": {
+            "level": "information"
+        },
+        "message": "Process Create:\nRuleName: \nUtcTime: 2020-07-30 14:20:52.603\nProcessGuid: {F4BE2742-D744-5F22-0000-00103B5E2A00}\nProcessId: 4256\nImage: F:\\HackingFolder\\wce64.exe\nFileVersion: ?\nDescription: ?\nProduct: ?\nCompany: ?\nOriginalFileName: ?\nCommandLine: wce64.exe  -s Administrator:WINSRV2008:00000000000000000000000000000000:FCF2D6F9C8A83291396A6555F182B8A7\nCurrentDirectory: F:\\HackingFolder\\\nUser: WINSRV2008\\sv\nLogonGuid: {F4BE2742-CA6A-5F22-0000-0020C7861E00}\nLogonId: 0x1e86c7\nTerminalSessionId: 1\nIntegrityLevel: High\nHashes: MD5=CCF1D1573F175299ADE01C07791A6541,SHA256=68A15A34C2E28B9B521A240B948634617D72AD619E3950BC6DC769E60A0C3CF2,IMPHASH=E96A73C7BF33A464C510EDE582318BF2\nParentProcessGuid: {F4BE2742-CA88-5F22-0000-00107F9C2000}\nParentProcessId: 3640\nParentImage: C:\\Windows\\System32\\cmd.exe\nParentCommandLine: \"C:\\Windows\\system32\\cmd.exe\" ",
+        "process": {
+            "args": [
+                "wce64.exe",
+                "-s",
+                "Administrator:WINSRV2008:00000000000000000000000000000000:FCF2D6F9C8A83291396A6555F182B8A7"
+            ],
+            "entity_id": "{F4BE2742-D744-5F22-0000-00103B5E2A00}",
+            "executable": "F:\\HackingFolder\\wce64.exe",
+            "name": "wce64.exe",
+            "parent": {
+                "args": [
+                    "C:\\Windows\\system32\\cmd.exe"
+                ],
+                "entity_id": "{F4BE2742-CA88-5F22-0000-00107F9C2000}",
+                "executable": "C:\\Windows\\System32\\cmd.exe",
+                "name": "cmd.exe",
+                "pid": 3640
+            },
+            "pid": 4256,
+            "working_directory": "F:\\HackingFolder\\"
+        },
+        "tags": [
+            "beats_input_codec_plain_applied"
+        ],
+        "user": {
+            "domain": "WINSRV2008",
+            "name": "sv"
+        },
+        "winlog": {
+            "api": "wineventlog",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "computer_name": "WINSRV.winsrv2008.local",
+            "event_data": {
+                "Company": "?",
+                "Description": "?",
+                "FileVersion": "?",
+                "IntegrityLevel": "High",
+                "LogonGuid": "{F4BE2742-CA6A-5F22-0000-0020C7861E00}",
+                "LogonId": "0x1e86c7",
+                "OriginalFileName": "?",
+                "Product": "?",
+                "TerminalSessionId": "1"
+            },
+            "event_id": 1,
+            "opcode": "Info",
+            "process": {
+                "pid": 2264,
+                "thread": {
+                    "id": 2832
+                }
+            },
+            "provider_guid": "{5770385F-C22A-43E0-BF4C-06F5698FFBD9}",
+            "provider_name": "Microsoft-Windows-Sysmon",
+            "record_id": 68419,
+            "task": "Process Create (rule: ProcessCreate)",
+            "user": {
+                "domain": "NT AUTHORITY",
+                "identifier": "S-1-5-18",
+                "name": "SYSTEM",
+                "type": "User"
+            },
+            "version": 5
+        }
+    },
+    "_type": "_doc",
+    "sort": [
+        1596118852603
+    ]
+}
 ```
 
 ## Test case 11: Golden Ticket
