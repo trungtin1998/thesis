@@ -123,15 +123,15 @@ def quarksPwDump(response):
 
 # Detect test case 10: WCE Remote Login
 def recognizeWCERemoteLogin(listArgs):
-    # Kiem tra co phai dang: wce.exe -s sv:WINSRV2008:NT:LM
+    # Kiem tra co phai dang: wce.exe -s [username]:WINSRV2008:NTLM (NTLM có thêm một ":")
     ok = 0
     if listArgs.count("-s") == 1 and len(listArgs) == 3:
         for s in listArgs:
-            # Kiem tra xem co phai dang sv:WINSRV2008:NT:LM
+            # Kiem tra xem co phai dang sv:WINSRV2008:NT:LM => Có ba dấu ":"
             if s.count(":") == 3:
                 ok += 1
             # Kiem tra xem co phai la file exe va duoc thuc thi tai C:\Windows\System32
-            elif s.find("C:\\Windows\\system32") != -1 and s[-4:] == ".exe":
+            if s.find("C:\\Windows\\system32") != -1 and s[-4:] == ".exe":
                 ok += 1
         if ok == 2:
             return True
