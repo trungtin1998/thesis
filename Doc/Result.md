@@ -1744,12 +1744,152 @@ Test case 15 Bypass UAC
 ```
 
 ## Test case 16: ntdsutil
-![Test case 16: ntdsutil](/Images/testcase)
+![Test case 16: ntdsutil](/Images/testcase16_ntdsutil.png)
 ```
+Phat hien su tan cong cua Test case 16 ntdsutil
+        Tong event: 1
+
+-----------------------------------------------------------------------------------
+Test case 16 ntdsutil
+-----------------------------------------------------------------------------------
+{
+    "_id": "rtlroHMBsZ6fp0tU7vli",
+    "_index": "winlogbeat-7.7.0-2020.07.30",
+    "_score": null,
+    "_source": {
+        "@timestamp": "2020-07-30T15:51:31.212Z",
+        "@version": "1",
+        "agent": {
+            "ephemeral_id": "5d2a63eb-3b0a-49c9-8d41-86af65c2fe40",
+            "hostname": "WINSRV",
+            "id": "b002425b-af48-4008-8d0a-9e3014604a59",
+            "type": "winlogbeat",
+            "version": "7.7.0"
+        },
+        "ecs": {
+            "version": "1.5.0"
+        },
+        "event": {
+            "action": "Process Create (rule: ProcessCreate)",
+            "category": "process",
+            "code": 1,
+            "created": "2020-07-30T15:51:33.911Z",
+            "kind": "event",
+            "module": "sysmon",
+            "provider": "Microsoft-Windows-Sysmon",
+            "type": "process_start"
+        },
+        "hash": {
+            "imphash": "04efef947345b95be833a17f4e54010f",
+            "md5": "f92e9daed2168b300396a298f565d396",
+            "sha256": "5bb06b0c87eb2942506a3d92c3c766282b109b9efab8e8e7f563b76b583f0b40"
+        },
+        "host": {
+            "architecture": "x86_64",
+            "hostname": "WINSRV",
+            "id": "f4be2742-f414-4caa-bb87-f4003a376c01",
+            "ip": [
+                "fe80::f072:ce34:86ef:7229",
+                "192.168.255.100",
+                "fe80::5efe:c0a8:ff64",
+                "fe80::100:7f:fffe"
+            ],
+            "mac": [
+                "00:0c:29:fc:f0:a9",
+                "00:00:00:00:00:00:00:e0",
+                "00:00:00:00:00:00:00:e0"
+            ],
+            "name": "WINSRV.winsrv2008.local",
+            "os": {
+                "build": "7601.24546",
+                "family": "windows",
+                "kernel": "6.1.7601.24545 (win7sp1_ldr_escrow.200102-1707)",
+                "name": "Windows Server 2008 R2 Datacenter",
+                "platform": "windows",
+                "version": "6.1"
+            }
+        },
+        "log": {
+            "level": "information"
+        },
+        "message": "Process Create:\nRuleName: \nUtcTime: 2020-07-30 15:51:31.212\nProcessGuid: {F4BE2742-EC83-5F22-0000-0010DDCA3500}\nProcessId: 4148\nImage: C:\\Windows\\System32\\ntdsutil.exe\nFileVersion: 6.1.7601.17514 (win7sp1_rtm.101119-1850)\nDescription: NT5DS\nProduct: Microsoft\u00ae Windows\u00ae Operating System\nCompany: Microsoft Corporation\nOriginalFileName: ntdsutil.exe\nCommandLine: \"C:\\Windows\\system32\\ntdsutil.exe\" \"ac i ntds\" ifm \"create full c:\\temp\" q q\nCurrentDirectory: C:\\Windows\\system32\\\nUser: WINSRV2008\\sv\nLogonGuid: {F4BE2742-CA6A-5F22-0000-0020C7861E00}\nLogonId: 0x1e86c7\nTerminalSessionId: 1\nIntegrityLevel: High\nHashes: MD5=F92E9DAED2168B300396A298F565D396,SHA256=5BB06B0C87EB2942506A3D92C3C766282B109B9EFAB8E8E7F563B76B583F0B40,IMPHASH=04EFEF947345B95BE833A17F4E54010F\nParentProcessGuid: {F4BE2742-EC36-5F22-0000-0010E24A3500}\nParentProcessId: 3196\nParentImage: C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\nParentCommandLine: \"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" ",
+        "process": {
+            "args": [
+                "C:\\Windows\\system32\\ntdsutil.exe",
+                "ac i ntds",
+                "ifm",
+                "create full c:\\temp",
+                "q",
+                "q"
+            ],
+            "entity_id": "{F4BE2742-EC83-5F22-0000-0010DDCA3500}",
+            "executable": "C:\\Windows\\System32\\ntdsutil.exe",
+            "name": "ntdsutil.exe",
+            "parent": {
+                "args": [
+                    "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
+                ],
+                "entity_id": "{F4BE2742-EC36-5F22-0000-0010E24A3500}",
+                "executable": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+                "name": "powershell.exe",
+                "pid": 3196
+            },
+            "pid": 4148,
+            "working_directory": "C:\\Windows\\system32\\"
+        },
+        "tags": [
+            "beats_input_codec_plain_applied"
+        ],
+        "user": {
+            "domain": "WINSRV2008",
+            "name": "sv"
+        },
+        "winlog": {
+            "api": "wineventlog",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "computer_name": "WINSRV.winsrv2008.local",
+            "event_data": {
+                "Company": "Microsoft Corporation",
+                "Description": "NT5DS",
+                "FileVersion": "6.1.7601.17514 (win7sp1_rtm.101119-1850)",
+                "IntegrityLevel": "High",
+                "LogonGuid": "{F4BE2742-CA6A-5F22-0000-0020C7861E00}",
+                "LogonId": "0x1e86c7",
+                "OriginalFileName": "ntdsutil.exe",
+                "Product": "Microsoft\u00ae Windows\u00ae Operating System",
+                "TerminalSessionId": "1"
+            },
+            "event_id": 1,
+            "opcode": "Info",
+            "process": {
+                "pid": 2264,
+                "thread": {
+                    "id": 2832
+                }
+            },
+            "provider_guid": "{5770385F-C22A-43E0-BF4C-06F5698FFBD9}",
+            "provider_name": "Microsoft-Windows-Sysmon",
+            "record_id": 68516,
+            "task": "Process Create (rule: ProcessCreate)",
+            "user": {
+                "domain": "NT AUTHORITY",
+                "identifier": "S-1-5-18",
+                "name": "SYSTEM",
+                "type": "User"
+            },
+            "version": 5
+        }
+    },
+    "_type": "_doc",
+    "sort": [
+        1596124291212
+    ]
+}
+-----------------------------------------------------------------------------------
 ```
 
-## Test case 16: ntdsutil
-![Test case 16: ntdsutil](/Images/testcase)
+## Test case 17: vssadmin
+![Test case 17: vssadmin](/Images/testcase17_vssadmin.png)
 ```
 ```
 
