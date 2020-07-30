@@ -1891,29 +1891,523 @@ Test case 16 ntdsutil
 ## Test case 17: vssadmin
 ![Test case 17: vssadmin](/Images/testcase17_vssadmin.png)
 ```
+Phat hien su tan cong cua Test case 17 vssadmin
+        Tong event: 1
+
+-----------------------------------------------------------------------------------
+Test case 17 vssadmin
+-----------------------------------------------------------------------------------
+{
+    "_id": "KNp1oHMBsZ6fp0tUbS3t",
+    "_index": "winlogbeat-7.7.0-2020.07.30",
+    "_score": null,
+    "_source": {
+        "@timestamp": "2020-07-30T16:01:54.347Z",
+        "@version": "1",
+        "agent": {
+            "ephemeral_id": "5d2a63eb-3b0a-49c9-8d41-86af65c2fe40",
+            "hostname": "WINSRV",
+            "id": "b002425b-af48-4008-8d0a-9e3014604a59",
+            "type": "winlogbeat",
+            "version": "7.7.0"
+        },
+        "ecs": {
+            "version": "1.5.0"
+        },
+        "event": {
+            "action": "Process Create (rule: ProcessCreate)",
+            "category": "process",
+            "code": 1,
+            "created": "2020-07-30T16:01:56.024Z",
+            "kind": "event",
+            "module": "sysmon",
+            "provider": "Microsoft-Windows-Sysmon",
+            "type": "process_start"
+        },
+        "hash": {
+            "imphash": "73c7e7bea64a545cfca4bec56eaaae92",
+            "md5": "e23dd973e1444684eb36365deff1fc74",
+            "sha256": "4de7fa20e3224382d8c4a81017e5bdd4673afbef9c0f017e203d7b78977fbf8c"
+        },
+        "host": {
+            "architecture": "x86_64",
+            "hostname": "WINSRV",
+            "id": "f4be2742-f414-4caa-bb87-f4003a376c01",
+            "ip": [
+                "fe80::f072:ce34:86ef:7229",
+                "192.168.255.100",
+                "fe80::5efe:c0a8:ff64",
+                "fe80::100:7f:fffe"
+            ],
+            "mac": [
+                "00:0c:29:fc:f0:a9",
+                "00:00:00:00:00:00:00:e0",
+                "00:00:00:00:00:00:00:e0"
+            ],
+            "name": "WINSRV.winsrv2008.local",
+            "os": {
+                "build": "7601.24546",
+                "family": "windows",
+                "kernel": "6.1.7601.24545 (win7sp1_ldr_escrow.200102-1707)",
+                "name": "Windows Server 2008 R2 Datacenter",
+                "platform": "windows",
+                "version": "6.1"
+            }
+        },
+        "log": {
+            "level": "information"
+        },
+        "message": "Process Create:\nRuleName: \nUtcTime: 2020-07-30 16:01:54.347\nProcessGuid: {F4BE2742-EEF2-5F22-0000-00104EDF3800}\nProcessId: 3308\nImage: C:\\Windows\\System32\\vssadmin.exe\nFileVersion: 6.1.7600.16385 (win7_rtm.090713-1255)\nDescription: Command Line Interface for Microsoft\u00ae Volume Shadow Copy Service \nProduct: Microsoft\u00ae Windows\u00ae Operating System\nCompany: Microsoft Corporation\nOriginalFileName: VSSADMIN.EXE\nCommandLine: \"C:\\Windows\\system32\\vssadmin.exe\" create shadow /for=C:\nCurrentDirectory: C:\\Windows\\system32\\\nUser: WINSRV2008\\sv\nLogonGuid: {F4BE2742-CA6A-5F22-0000-0020C7861E00}\nLogonId: 0x1e86c7\nTerminalSessionId: 1\nIntegrityLevel: High\nHashes: MD5=E23DD973E1444684EB36365DEFF1FC74,SHA256=4DE7FA20E3224382D8C4A81017E5BDD4673AFBEF9C0F017E203D7B78977FBF8C,IMPHASH=73C7E7BEA64A545CFCA4BEC56EAAAE92\nParentProcessGuid: {F4BE2742-EC36-5F22-0000-0010E24A3500}\nParentProcessId: 3196\nParentImage: C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\nParentCommandLine: \"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" ",
+        "process": {
+            "args": [
+                "C:\\Windows\\system32\\vssadmin.exe",
+                "create",
+                "shadow",
+                "/for=C:"
+            ],
+            "entity_id": "{F4BE2742-EEF2-5F22-0000-00104EDF3800}",
+            "executable": "C:\\Windows\\System32\\vssadmin.exe",
+            "name": "vssadmin.exe",
+            "parent": {
+                "args": [
+                    "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
+                ],
+                "entity_id": "{F4BE2742-EC36-5F22-0000-0010E24A3500}",
+                "executable": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+                "name": "powershell.exe",
+                "pid": 3196
+            },
+            "pid": 3308,
+            "working_directory": "C:\\Windows\\system32\\"
+        },
+        "tags": [
+            "beats_input_codec_plain_applied"
+        ],
+        "user": {
+            "domain": "WINSRV2008",
+            "name": "sv"
+        },
+        "winlog": {
+            "api": "wineventlog",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "computer_name": "WINSRV.winsrv2008.local",
+            "event_data": {
+                "Company": "Microsoft Corporation",
+                "Description": "Command Line Interface for Microsoft\u00ae Volume Shadow Copy Service ",
+                "FileVersion": "6.1.7600.16385 (win7_rtm.090713-1255)",
+                "IntegrityLevel": "High",
+                "LogonGuid": "{F4BE2742-CA6A-5F22-0000-0020C7861E00}",
+                "LogonId": "0x1e86c7",
+                "OriginalFileName": "VSSADMIN.EXE",
+                "Product": "Microsoft\u00ae Windows\u00ae Operating System",
+                "TerminalSessionId": "1"
+            },
+            "event_id": 1,
+            "opcode": "Info",
+            "process": {
+                "pid": 2264,
+                "thread": {
+                    "id": 2832
+                }
+            },
+            "provider_guid": "{5770385F-C22A-43E0-BF4C-06F5698FFBD9}",
+            "provider_name": "Microsoft-Windows-Sysmon",
+            "record_id": 68523,
+            "task": "Process Create (rule: ProcessCreate)",
+            "user": {
+                "domain": "NT AUTHORITY",
+                "identifier": "S-1-5-18",
+                "name": "SYSTEM",
+                "type": "User"
+            },
+            "version": 5
+        }
+    },
+    "_type": "_doc",
+    "sort": [
+        1596124914347
+    ]
+}
+-----------------------------------------------------------------------------------
 ```
 
 ## Test case 18: net user
-![Test case 18: net user](/Images/testcase)
+* Add, change password and delete account
+![Test case 18: net user](/Images/testcase18_netuser.png)
 ```
+Phat hien su tan cong cua Test case 18 net user
+        Tong event: 3
+
+-----------------------------------------------------------------------------------
+Test case 18 net user
+-----------------------------------------------------------------------------------
+{
+    "_id": "K9qAoHMBsZ6fp0tUpViR",
+    "_index": "winlogbeat-7.7.0-2020.07.30",
+    "_score": null,
+    "_source": {
+        "@timestamp": "2020-07-30T16:14:09.063Z",
+        "@version": "1",
+        "agent": {
+            "ephemeral_id": "5d2a63eb-3b0a-49c9-8d41-86af65c2fe40",
+            "hostname": "WINSRV",
+            "id": "b002425b-af48-4008-8d0a-9e3014604a59",
+            "type": "winlogbeat",
+            "version": "7.7.0"
+        },
+        "ecs": {
+            "version": "1.5.0"
+        },
+        "event": {
+            "action": "deleted-user-account",
+            "code": 4726,
+            "created": "2020-07-30T16:14:11.968Z",
+            "kind": "event",
+            "module": "security",
+            "provider": "Microsoft-Windows-Security-Auditing"
+        },
+        "host": {
+            "architecture": "x86_64",
+            "hostname": "WINSRV",
+            "id": "f4be2742-f414-4caa-bb87-f4003a376c01",
+            "ip": [
+                "fe80::f072:ce34:86ef:7229",
+                "192.168.255.100",
+                "fe80::5efe:c0a8:ff64",
+                "fe80::100:7f:fffe"
+            ],
+            "mac": [
+                "00:0c:29:fc:f0:a9",
+                "00:00:00:00:00:00:00:e0",
+                "00:00:00:00:00:00:00:e0"
+            ],
+            "name": "WINSRV.winsrv2008.local",
+            "os": {
+                "build": "7601.24546",
+                "family": "windows",
+                "kernel": "6.1.7601.24545 (win7sp1_ldr_escrow.200102-1707)",
+                "name": "Windows Server 2008 R2 Datacenter",
+                "platform": "windows",
+                "version": "6.1"
+            }
+        },
+        "log": {
+            "level": "information"
+        },
+        "message": "A user account was deleted.\n\nSubject:\n\tSecurity ID:\t\tS-1-5-21-4220747943-3152432350-320651364-1000\n\tAccount Name:\t\tsv\n\tAccount Domain:\t\tWINSRV2008\n\tLogon ID:\t\t0x1e86c7\n\nTarget Account:\n\tSecurity ID:\t\tS-1-5-21-4220747943-3152432350-320651364-1125\n\tAccount Name:\t\ttest\n\tAccount Domain:\t\tWINSRV2008\n\nAdditional Information:\n\tPrivileges\t-",
+        "related": {
+            "user": [
+                "sv",
+                "test"
+            ]
+        },
+        "tags": [
+            "beats_input_codec_plain_applied"
+        ],
+        "user": {
+            "domain": "WINSRV2008",
+            "id": "S-1-5-21-4220747943-3152432350-320651364-1000",
+            "name": "sv"
+        },
+        "winlog": {
+            "api": "wineventlog",
+            "channel": "Security",
+            "computer_name": "WINSRV.winsrv2008.local",
+            "event_data": {
+                "PrivilegeList": "-",
+                "SubjectDomainName": "WINSRV2008",
+                "SubjectLogonId": "0x1e86c7",
+                "SubjectUserName": "sv",
+                "SubjectUserSid": "S-1-5-21-4220747943-3152432350-320651364-1000",
+                "TargetDomainName": "WINSRV2008",
+                "TargetSid": "S-1-5-21-4220747943-3152432350-320651364-1125",
+                "TargetUserName": "test"
+            },
+            "event_id": 4726,
+            "keywords": [
+                "Audit Success"
+            ],
+            "logon": {
+                "id": "0x1e86c7"
+            },
+            "opcode": "Info",
+            "process": {
+                "pid": 544,
+                "thread": {
+                    "id": 1680
+                }
+            },
+            "provider_guid": "{54849625-5478-4994-A5BA-3E3B0328C30D}",
+            "provider_name": "Microsoft-Windows-Security-Auditing",
+            "record_id": 2185833,
+            "task": "User Account Management"
+        }
+    },
+    "_type": "_doc",
+    "sort": [
+        1596125649063
+    ]
+}
+-----------------------------------------------------------------------------------
+{
+    "_id": "AdqBoHMBsZ6fp0tUKlqR",
+    "_index": "winlogbeat-7.7.0-2020.07.30",
+    "_score": null,
+    "_source": {
+        "@timestamp": "2020-07-30T16:14:44.226Z",
+        "@version": "1",
+        "agent": {
+            "ephemeral_id": "5d2a63eb-3b0a-49c9-8d41-86af65c2fe40",
+            "hostname": "WINSRV",
+            "id": "b002425b-af48-4008-8d0a-9e3014604a59",
+            "type": "winlogbeat",
+            "version": "7.7.0"
+        },
+        "ecs": {
+            "version": "1.5.0"
+        },
+        "event": {
+            "action": "added-user-account",
+            "code": 4720,
+            "created": "2020-07-30T16:14:45.243Z",
+            "kind": "event",
+            "module": "security",
+            "provider": "Microsoft-Windows-Security-Auditing"
+        },
+        "host": {
+            "architecture": "x86_64",
+            "hostname": "WINSRV",
+            "id": "f4be2742-f414-4caa-bb87-f4003a376c01",
+            "ip": [
+                "fe80::f072:ce34:86ef:7229",
+                "192.168.255.100",
+                "fe80::5efe:c0a8:ff64",
+                "fe80::100:7f:fffe"
+            ],
+            "mac": [
+                "00:0c:29:fc:f0:a9",
+                "00:00:00:00:00:00:00:e0",
+                "00:00:00:00:00:00:00:e0"
+            ],
+            "name": "WINSRV.winsrv2008.local",
+            "os": {
+                "build": "7601.24546",
+                "family": "windows",
+                "kernel": "6.1.7601.24545 (win7sp1_ldr_escrow.200102-1707)",
+                "name": "Windows Server 2008 R2 Datacenter",
+                "platform": "windows",
+                "version": "6.1"
+            }
+        },
+        "log": {
+            "level": "information"
+        },
+        "message": "A user account was created.\n\nSubject:\n\tSecurity ID:\t\tS-1-5-21-4220747943-3152432350-320651364-1000\n\tAccount Name:\t\tsv\n\tAccount Domain:\t\tWINSRV2008\n\tLogon ID:\t\t0x1e86c7\n\nNew Account:\n\tSecurity ID:\t\tS-1-5-21-4220747943-3152432350-320651364-1129\n\tAccount Name:\t\ttest\n\tAccount Domain:\t\tWINSRV2008\n\nAttributes:\n\tSAM Account Name:\ttest\n\tDisplay Name:\t\t<value not set>\n\tUser Principal Name:\t-\n\tHome Directory:\t\t<value not set>\n\tHome Drive:\t\t<value not set>\n\tScript Path:\t\t<value not set>\n\tProfile Path:\t\t<value not set>\n\tUser Workstations:\t<value not set>\n\tPassword Last Set:\t<never>\n\tAccount Expires:\t\t<never>\n\tPrimary Group ID:\t513\n\tAllowed To Delegate To:\t-\n\tOld UAC Value:\t\t0x0\n\tNew UAC Value:\t\t0x15\n\tUser Account Control:\t\n\t\tAccount Disabled\n\t\t'Password Not Required' - Enabled\n\t\t'Normal Account' - Enabled\n\tUser Parameters:\t<value changed, but not displayed>\n\tSID History:\t\t-\n\tLogon Hours:\t\t<value not set>\n\nAdditional Information:\n\tPrivileges\t\t-",
+        "related": {
+            "user": [
+                "sv",
+                "test"
+            ]
+        },
+        "tags": [
+            "beats_input_codec_plain_applied"
+        ],
+        "user": {
+            "domain": "WINSRV2008",
+            "id": "S-1-5-21-4220747943-3152432350-320651364-1000",
+            "name": "sv"
+        },
+        "winlog": {
+            "api": "wineventlog",
+            "channel": "Security",
+            "computer_name": "WINSRV.winsrv2008.local",
+            "event_data": {
+                "AccountExpires": "%%1794",
+                "AllowedToDelegateTo": "-",
+                "DisplayName": "%%1793",
+                "HomeDirectory": "%%1793",
+                "HomePath": "%%1793",
+                "LogonHours": "%%1793",
+                "NewUacList": [
+                    "SCRIPT",
+                    "LOCKOUT"
+                ],
+                "NewUacValue": "0x15",
+                "OldUacValue": "0x0",
+                "PasswordLastSet": "%%1794",
+                "PrimaryGroupId": "513",
+                "PrivilegeList": "-",
+                "ProfilePath": "%%1793",
+                "SamAccountName": "test",
+                "ScriptPath": "%%1793",
+                "SidHistory": "-",
+                "SubjectDomainName": "WINSRV2008",
+                "SubjectLogonId": "0x1e86c7",
+                "SubjectUserName": "sv",
+                "SubjectUserSid": "S-1-5-21-4220747943-3152432350-320651364-1000",
+                "TargetDomainName": "WINSRV2008",
+                "TargetSid": "S-1-5-21-4220747943-3152432350-320651364-1129",
+                "TargetUserName": "test",
+                "UserAccountControl": [
+                    "2080",
+                    "2082",
+                    "2084"
+                ],
+                "UserParameters": "%%1792",
+                "UserPrincipalName": "-",
+                "UserWorkstations": "%%1793"
+            },
+            "event_id": 4720,
+            "keywords": [
+                "Audit Success"
+            ],
+            "logon": {
+                "id": "0x1e86c7"
+            },
+            "opcode": "Info",
+            "process": {
+                "pid": 544,
+                "thread": {
+                    "id": 592
+                }
+            },
+            "provider_guid": "{54849625-5478-4994-A5BA-3E3B0328C30D}",
+            "provider_name": "Microsoft-Windows-Security-Auditing",
+            "record_id": 2185934,
+            "task": "User Account Management"
+        }
+    },
+    "_type": "_doc",
+    "sort": [
+        1596125684226
+    ]
+}
+-----------------------------------------------------------------------------------
+{
+    "_id": "BtqBoHMBsZ6fp0tUKlqR",
+    "_index": "winlogbeat-7.7.0-2020.07.30",
+    "_score": null,
+    "_source": {
+        "@timestamp": "2020-07-30T16:14:44.226Z",
+        "@version": "1",
+        "agent": {
+            "ephemeral_id": "5d2a63eb-3b0a-49c9-8d41-86af65c2fe40",
+            "hostname": "WINSRV",
+            "id": "b002425b-af48-4008-8d0a-9e3014604a59",
+            "type": "winlogbeat",
+            "version": "7.7.0"
+        },
+        "ecs": {
+            "version": "1.5.0"
+        },
+        "event": {
+            "action": "reset-password",
+            "code": 4724,
+            "created": "2020-07-30T16:14:45.243Z",
+            "kind": "event",
+            "module": "security",
+            "provider": "Microsoft-Windows-Security-Auditing"
+        },
+        "host": {
+            "architecture": "x86_64",
+            "hostname": "WINSRV",
+            "id": "f4be2742-f414-4caa-bb87-f4003a376c01",
+            "ip": [
+                "fe80::f072:ce34:86ef:7229",
+                "192.168.255.100",
+                "fe80::5efe:c0a8:ff64",
+                "fe80::100:7f:fffe"
+            ],
+            "mac": [
+                "00:0c:29:fc:f0:a9",
+                "00:00:00:00:00:00:00:e0",
+                "00:00:00:00:00:00:00:e0"
+            ],
+            "name": "WINSRV.winsrv2008.local",
+            "os": {
+                "build": "7601.24546",
+                "family": "windows",
+                "kernel": "6.1.7601.24545 (win7sp1_ldr_escrow.200102-1707)",
+                "name": "Windows Server 2008 R2 Datacenter",
+                "platform": "windows",
+                "version": "6.1"
+            }
+        },
+        "log": {
+            "level": "information"
+        },
+        "message": "An attempt was made to reset an account's password.\n\nSubject:\n\tSecurity ID:\t\tS-1-5-21-4220747943-3152432350-320651364-1000\n\tAccount Name:\t\tsv\n\tAccount Domain:\t\tWINSRV2008\n\tLogon ID:\t\t0x1e86c7\n\nTarget Account:\n\tSecurity ID:\t\tS-1-5-21-4220747943-3152432350-320651364-1129\n\tAccount Name:\t\ttest\n\tAccount Domain:\t\tWINSRV2008",
+        "related": {
+            "user": [
+                "sv",
+                "test"
+            ]
+        },
+        "tags": [
+            "beats_input_codec_plain_applied"
+        ],
+        "user": {
+            "domain": "WINSRV2008",
+            "id": "S-1-5-21-4220747943-3152432350-320651364-1000",
+            "name": "sv"
+        },
+        "winlog": {
+            "api": "wineventlog",
+            "channel": "Security",
+            "computer_name": "WINSRV.winsrv2008.local",
+            "event_data": {
+                "SubjectDomainName": "WINSRV2008",
+                "SubjectLogonId": "0x1e86c7",
+                "SubjectUserName": "sv",
+                "SubjectUserSid": "S-1-5-21-4220747943-3152432350-320651364-1000",
+                "TargetDomainName": "WINSRV2008",
+                "TargetSid": "S-1-5-21-4220747943-3152432350-320651364-1129",
+                "TargetUserName": "test"
+            },
+            "event_id": 4724,
+            "keywords": [
+                "Audit Success"
+            ],
+            "logon": {
+                "id": "0x1e86c7"
+            },
+            "opcode": "Info",
+            "process": {
+                "pid": 544,
+                "thread": {
+                    "id": 592
+                }
+            },
+            "provider_guid": "{54849625-5478-4994-A5BA-3E3B0328C30D}",
+            "provider_name": "Microsoft-Windows-Security-Auditing",
+            "record_id": 2185939,
+            "task": "User Account Management"
+        }
+    },
+    "_type": "_doc",
+    "sort": [
+        1596125684226
+    ]
+}
+-----------------------------------------------------------------------------------
 ```
 
 ## Test case 19: csvde
-![Test case 19: csvde](/Images/testcase)
+![Test case 19: csvde](/Images/testcase19_csvde.png)
 ```
 ```
 
 ## Test case 20: ldifde
-![Test case 20: ldifde](/Images/testcase)
+![Test case 20: ldifde](/Images/testcase20_ldifde.png)
 ```
 ```
 
 ## Test case 21: Timestomp
-![Test case 21: Timestomp](/Images/testcase)
+![Test case 21: Timestomp](/Images/testcase21_timestomp.png)
 ```
 ```
 
 ## Test case 22: wevtutil
-![Test case 22: wevtutil](/Images/testcase)
+![Test case 22: wevtutil](/Images/testcase22_wevtutil.png)
 ```
 ```
