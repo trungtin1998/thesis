@@ -860,3 +860,291 @@ Test case 7 PWDump7
     ]
 }
 ```
+
+
+## Test case 8: Quarks Pwdump
+![Test case 8: Quarks Pwdump](/Images/testcase8_quarkspwdump.png)
+```
+Phat hien su tan cong cua Test case 8 Quarks PwDump
+        Tong event: 1
+
+-----------------------------------------------------------------------------------
+Test case 8 Quarks PwDump
+-----------------------------------------------------------------------------------
+{
+    "_id": "w3mlknMBQGGqkhfepkRK",
+    "_index": "winlogbeat-7.7.0-2020.07.28",
+    "_score": null,
+    "_source": {
+        "@timestamp": "2020-07-28T08:37:29.693Z",
+        "@version": "1",
+        "agent": {
+            "ephemeral_id": "d4fb884b-fb62-4938-9918-463239b8cc5d",
+            "hostname": "WINSRV",
+            "id": "b002425b-af48-4008-8d0a-9e3014604a59",
+            "type": "winlogbeat",
+            "version": "7.7.0"
+        },
+        "ecs": {
+            "version": "1.5.0"
+        },
+        "event": {
+            "action": "File created (rule: FileCreate)",
+            "code": 11,
+            "created": "2020-07-28T08:37:30.619Z",
+            "kind": "event",
+            "module": "sysmon",
+            "provider": "Microsoft-Windows-Sysmon"
+        },
+        "file": {
+            "path": "C:\\Users\\sv\\AppData\\Local\\Temp\\SAM-19593444.dmp"
+        },
+        "host": {
+            "architecture": "x86_64",
+            "hostname": "WINSRV",
+            "id": "f4be2742-f414-4caa-bb87-f4003a376c01",
+            "ip": [
+                "fe80::f072:ce34:86ef:7229",
+                "192.168.255.100",
+                "fe80::5efe:c0a8:ff64",
+                "fe80::100:7f:fffe"
+            ],
+            "mac": [
+                "00:0c:29:fc:f0:a9",
+                "00:00:00:00:00:00:00:e0",
+                "00:00:00:00:00:00:00:e0"
+            ],
+            "name": "WINSRV.winsrv2008.local",
+            "os": {
+                "build": "7601.24546",
+                "family": "windows",
+                "kernel": "6.1.7601.24545 (win7sp1_ldr_escrow.200102-1707)",
+                "name": "Windows Server 2008 R2 Datacenter",
+                "platform": "windows",
+                "version": "6.1"
+            }
+        },
+        "log": {
+            "level": "information"
+        },
+        "message": "File created:\nRuleName: \nUtcTime: 2020-07-28 08:37:29.693\nProcessGuid: {F4BE2742-E3C9-5F1F-0000-0010B6913800}\nProcessId: 5216\nImage: F:\\HackingFolder\\QuarksPwDump.exe\nTargetFilename: C:\\Users\\sv\\AppData\\Local\\Temp\\SAM-19593444.dmp\nCreationUtcTime: 2020-07-28 08:37:29.693",
+        "process": {
+            "entity_id": "{F4BE2742-E3C9-5F1F-0000-0010B6913800}",
+            "executable": "F:\\HackingFolder\\QuarksPwDump.exe",
+            "name": "QuarksPwDump.exe",
+            "pid": 5216
+        },
+        "tags": [
+            "beats_input_codec_plain_applied"
+        ],
+        "winlog": {
+            "api": "wineventlog",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "computer_name": "WINSRV.winsrv2008.local",
+            "event_data": {
+                "CreationUtcTime": "2020-07-28 08:37:29.693"
+            },
+            "event_id": 11,
+            "opcode": "Info",
+            "process": {
+                "pid": 2100,
+                "thread": {
+                    "id": 2752
+                }
+            },
+            "provider_guid": "{5770385F-C22A-43E0-BF4C-06F5698FFBD9}",
+            "provider_name": "Microsoft-Windows-Sysmon",
+            "record_id": 49681,
+            "task": "File created (rule: FileCreate)",
+            "user": {
+                "domain": "NT AUTHORITY",
+                "identifier": "S-1-5-18",
+                "name": "SYSTEM",
+                "type": "User"
+            },
+            "version": 2
+        }
+    },
+    "_type": "_doc",
+    "sort": [
+        1595925449693
+    ]
+}
+```
+
+
+## Test case 9: WCE Password and hash dump
+![Test case 8: WCE Password and hash dump](/Images/testcase9_password_and_hash_dump.png)
+```
+Phat hien su tan cong cua Test case 9 WCE - Password and Hash Dump
+        Tong event: 1
+
+-----------------------------------------------------------------------------------
+Test case 9 WCE - Password and Hash Dump
+-----------------------------------------------------------------------------------
+{
+    "_id": "VHc2knMBQGGqkhfeoZze",
+    "_index": "winlogbeat-7.7.0-2020.07.28",
+    "_score": null,
+    "_source": {
+        "@timestamp": "2020-07-28T06:07:53.167Z",
+        "@version": "1",
+        "agent": {
+            "ephemeral_id": "d4fb884b-fb62-4938-9918-463239b8cc5d",
+            "hostname": "WINSRV",
+            "id": "b002425b-af48-4008-8d0a-9e3014604a59",
+            "type": "winlogbeat",
+            "version": "7.7.0"
+        },
+        "ecs": {
+            "version": "1.5.0"
+        },
+        "event": {
+            "action": "File created (rule: FileCreate)",
+            "code": 11,
+            "created": "2020-07-28T06:07:55.907Z",
+            "kind": "event",
+            "module": "sysmon",
+            "provider": "Microsoft-Windows-Sysmon"
+        },
+        "file": {
+            "path": "C:\\Windows\\Temp\\wceaux.dll"
+        },
+        "host": {
+            "architecture": "x86_64",
+            "hostname": "WINSRV",
+            "id": "f4be2742-f414-4caa-bb87-f4003a376c01",
+            "ip": [
+                "fe80::f072:ce34:86ef:7229",
+                "192.168.255.100",
+                "fe80::5efe:c0a8:ff64",
+                "fe80::100:7f:fffe"
+            ],
+            "mac": [
+                "00:0c:29:fc:f0:a9",
+                "00:00:00:00:00:00:00:e0",
+                "00:00:00:00:00:00:00:e0"
+            ],
+            "name": "WINSRV.winsrv2008.local",
+            "os": {
+                "build": "7601.24546",
+                "family": "windows",
+                "kernel": "6.1.7601.24545 (win7sp1_ldr_escrow.200102-1707)",
+                "name": "Windows Server 2008 R2 Datacenter",
+                "platform": "windows",
+                "version": "6.1"
+            }
+        },
+        "log": {
+            "level": "information"
+        },
+        "message": "File created:\nRuleName: DLL\nUtcTime: 2020-07-28 06:07:53.167\nProcessGuid: {F4BE2742-C0B9-5F1F-0000-00106A402200}\nProcessId: 5000\nImage: F:\\HackingFolder\\wce64.exe\nTargetFilename: C:\\Windows\\Temp\\wceaux.dll\nCreationUtcTime: 2020-07-28 06:07:53.167",
+        "process": {
+            "entity_id": "{F4BE2742-C0B9-5F1F-0000-00106A402200}",
+            "executable": "F:\\HackingFolder\\wce64.exe",
+            "name": "wce64.exe",
+            "pid": 5000
+        },
+        "tags": [
+            "beats_input_codec_plain_applied"
+        ],
+        "winlog": {
+            "api": "wineventlog",
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "computer_name": "WINSRV.winsrv2008.local",
+            "event_data": {
+                "CreationUtcTime": "2020-07-28 06:07:53.167",
+                "RuleName": "DLL"
+            },
+            "event_id": 11,
+            "opcode": "Info",
+            "process": {
+                "pid": 2100,
+                "thread": {
+                    "id": 2752
+                }
+            },
+            "provider_guid": "{5770385F-C22A-43E0-BF4C-06F5698FFBD9}",
+            "provider_name": "Microsoft-Windows-Sysmon",
+            "record_id": 49595,
+            "task": "File created (rule: FileCreate)",
+            "user": {
+                "domain": "NT AUTHORITY",
+                "identifier": "S-1-5-18",
+                "name": "SYSTEM",
+                "type": "User"
+            },
+            "version": 2
+        }
+    },
+    "_type": "_doc",
+    "sort": [
+        1595916473167
+    ]
+}
+```
+
+## Test case 10: WCE Remote Login
+![Test case 10: WCE Remote Login](/Images/testcase10_remote_login.png)
+```
+```
+
+## Test case 11: Golden Ticket
+![Test case 11: Golden Ticket](/Images/testcase11_golden_ticket.png)
+```
+```
+
+## Test case 12: AT Command
+![Test case 12: AT Command](/Images/testcase12_at_command.png)
+```
+```
+
+## Test case 13: RDP
+![Test case 13: RDP](/Images/testcase13_rdp.png)
+```
+```
+
+## Test case 14: Mimikatz
+![Test case 14: Mimikatz](/Images/testcase14_mimikatz.png)
+```
+```
+
+## Test case 15: Bypass UAC
+![Test case 15: Bypass UAC](/Images/testcase15_bypassuac.png)
+```
+```
+
+## Test case 16: ntdsutil
+![Test case 16: ntdsutil](/Images/testcase)
+```
+```
+
+## Test case 16: ntdsutil
+![Test case 16: ntdsutil](/Images/testcase)
+```
+```
+
+## Test case 18: net user
+![Test case 18: net user](/Images/testcase)
+```
+```
+
+## Test case 19: csvde
+![Test case 19: csvde](/Images/testcase)
+```
+```
+
+## Test case 20: ldifde
+![Test case 20: ldifde](/Images/testcase)
+```
+```
+
+## Test case 21: Timestomp
+![Test case 21: Timestomp](/Images/testcase)
+```
+```
+
+## Test case 22: wevtutil
+![Test case 22: wevtutil](/Images/testcase)
+```
+```
