@@ -11,3 +11,4 @@
 | administrator | 192.168.255.100 | Windows Server 2008 | Administrator | Sử dụng -s để nâng cao đặc quyền | 3 | 3 |
 | administrator | 192.168.255.129 | Windows 7 | Administrator |  | 3 | 3 |
 | administrator | 192.168.255.129 | Windows 7 | Administrator | Sử dụng -s để nâng cao đặc quyền | 3 | 3 |
+* Tỉ lệ thành công: 100%
