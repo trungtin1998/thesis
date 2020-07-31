@@ -6,9 +6,10 @@
 | sv | 192.168.255.129 | Windows 7 | Thành viên của Administrator group |  | 3 | 3 |
 | sv | 192.168.255.129 | Windows 7 | Thành viên của Administrator group | Sử dụng -s để nâng cao đặc quyền | 3 | 3 |
 | sv | 192.168.255.123 | Windows 7 | Thành viên của Administrator group | Sử dụng -s để nâng cao đặc quyền | 3 | 3 |
-| administrator | 192.168.255.100 | Windows Server 2008 | Administrator | Sử dụng -s để nâng cao đặc quyền | 3 | 3 |
-| administrator | 192.168.255.129 | Windows 7 | Administrator |  | 3 | 3 |
-| administrator | 192.168.255.129 | Windows 7 | Administrator | Sử dụng -s để nâng cao đặc quyền | 3 | 3 |
+| Administrator | 192.168.255.100 | Windows Server 2008 | Domain Administrator | Sử dụng -s để nâng cao đặc quyền | 1 | 1 |
+| Administrator | 192.168.255.129 | Windows 7 | Local Administrator |  | 1 | 1 |
+| Administrator | 192.168.255.129 | Windows 7 | Domain Administrator |  | 1 | 1 |
+| Administrator | 192.168.255.129 | Windows 7 | Domain Administrator | Sử dụng -s để nâng cao đặc quyền | 3 | 3 |
 * Ghi chú: Máy có địa chỉ IP 192.168.255.100 là máy Server. Máy có địa chỉ IP 192.168.255.129 là thành viên của domain. Máy Windows 7 có địa chỉ IP 192.168.255.123 không gia vào domain.
-* Số lần thực hiện: 21
+* Số lần thực hiện: 16
 * Tỉ lệ thành công: 100%
