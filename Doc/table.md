@@ -106,8 +106,8 @@
 | FakeAdmin | 192.168.255.129 | Windows 7 | 500 | 5 | 5 |
 | hacker | 192.168.255.129 | Windows 7 | 500 | 3 | 3 |
 | sv | 192.168.255.129 | Windows 7 | 500 | 3 | 3 |
-| Administrator | 192.168.255.129 | 500 | 500 | 2 | 2 |
-| FakeAdmin | 192.168.255.123 | 500 | 500 | 2 | 2 |
+| Administrator | 192.168.255.129 | Windows 7 | 500 | 2 | 2 |
+| FakeAdmin | 192.168.255.123 | Windows 7 | 500 | 2 | 2 |
 * Số lần thực hiện: 20
 * Tỉ lệ thành công: 100%
 
