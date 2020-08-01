@@ -19,18 +19,18 @@
 | Username | Địa chỉ IP | Hệ điều hành | Vai trò của tài khoản | Số lần thực hiện | Số lần thành công |
 |:-------:|:------:|:------:|:------:|:------:|:------:|
 | test | 192.168.255.100 | Windows Server 2008 | Standard User | 3 | 3 |
-| sv | 192.168.255.100 | Windows Server 2008 | Thành viên của Administrator group | 4 | 4 |
+| sv | 192.168.255.100 | Windows Server 2008 | Thành viên của Administrator group | 6 | 6 |
 | Administrator | 192.168.255.100 | Windows Server 2008 | Administrator | 3 | 3 |
 * Ở phần kiểm tra này, với các tài khoản đăng nhập trên máy Windows 7 có địa chỉ IP 192.168.255.129, các tấn công **chỉ được phát hiện** nếu log của máy client cũng được gửi về log server.
-* Số lần thực hiện: 10
+* Số lần thực hiện: 12
 * Tỉ lệ thành công: 100%
 
 ## Test case 3: Invoke-Command
 | Username | Địa chỉ IP | Hệ điều hành | Vai trò của tài khoản | Số lần thực hiện | Số lần thành công |
 |:-------:|:------:|:------:|:------:|:------:|:------:|
-| sv | 192.168.255.129 | Windows 7 | Thành viên của Administrator group | 5 | 5 |
+| sv | 192.168.255.129 | Windows 7 | Thành viên của Administrator group | 7 | 7 |
 | Administrator | 192.168.255.129 | Windows 7 | Administrator | 5 | 5 |
-* Số lần thực hiện: 10
+* Số lần thực hiện: 12
 * Tỉ lệ thành coong: 100
 
 ## Test case 4: WinRS
@@ -53,9 +53,9 @@
 ## Test case 6: wmiexec.vbs
 | Username | Địa chỉ IP | Hệ điều hành | Vai trò của tài khoản | Số lần thực hiện | Số lần thành công |
 |:-------:|:------:|:------:|:------:|:------:|:------:|
-| sv | 192.168.255.129 | Windows 7 | Thành viên của Administrator group | 5 | 5 |
+| sv | 192.168.255.129 | Windows 7 | Thành viên của Administrator group | 10 | 10 |
 | Administrator | 192.168.255.129 | Windows 7 | Administrator | 5 | 5 |
-* Số lần thực hiện: 10
+* Số lần thực hiện: 15
 * Tỉ lệ thành công: 100%
 
 ## Test case 7: PwDump7
@@ -97,4 +97,16 @@
 | sv | 192.168.255.129 | Windows 7 | Thành viên của Administrator group | 6 | 6 |
 | Administrator | 192.168.255.129 | Windows 7 | Administrator | 2 | 2 |
 * Số lần thực hiện: 16
+* Tỉ lệ thành công: 100%
+
+## Test case 11: Golden Ticket
+| Username | Địa chỉ IP | Hệ điều hành | Sid | Số lần thực hiện | Số lần thành công |
+|:-------:|:------:|:------:|:------:|:------:|:------:|
+| sv | 192.168.255.100 | Windows Server 2008 | 500 | 3 | 3 |
+| FakeAdmin | 192.168.255.129 | Windows 7 | 500 | 5 | 5 |
+| hacker | 192.168.255.129 | Windows 7 | 500 | 3 | 3 |
+| sv | 192.168.255.129 | Windows 7 | 500 | 3 | 3 |
+| Administrator | 192.168.255.129 | 500 | 500 | 2 | 2 |
+| FakeAdmin | 192.168.255.123 | 500 | 500 | 2 | 2 |
+* Số lần thực hiện: 20
 * Tỉ lệ thành công: 100%
