@@ -32,3 +32,20 @@
 | Administrator | 192.168.255.129 | Windows 7 | Administrator | 5 | 5 |
 * Số lần thực hiện: 10
 * Tỉ lệ thành coong: 100
+
+## Test case 4: WinRS
+| Username | Địa chỉ IP | Hệ điều hành | Vai trò của tài khoản | Số lần thực hiện | Số lần thành công |
+|:-------:|:------:|:------:|:------:|:------:|:------:|
+| sv | 192.168.255.129 | Windows 7 | Thành viên của Administrator group | 5 | 5 |
+| Administrator | 192.168.255.129 | Windows 7 | Administrator | 10 | 10 |
+* Số lần thực hiện: 15
+* Tỉ lệ thành công: 100%
+
+## Test case 5: WMIC
+| Username | Địa chỉ IP | Hệ điều hành | Vai trò của tài khoản | Số lần thực hiện | Số lần thành công |
+|:-------:|:------:|:------:|:------:|:------:|:------:|
+| sv | 192.168.255.129 | Windows 7 | Thành viên của Administrator group | 10 | 9 |
+| Administrator | 192.168.255.129 | Windows 7 | Administrator | 10 | 9 |
+* Số lần thực hiện: 20
+* Tỉ lệ thành công: 90%
+* Với các lần thực hiện thu thập thông tin thông qua lệnh: `wmic bios get serial` hoặc `wmic process get name,processid` thì không bắt được. Tuy nhiên nếu sử dụng wmic để thực thi lệnh nào đó trên command line, tức thực hiện các tấn công Remote Command Execution
