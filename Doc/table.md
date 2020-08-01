@@ -88,3 +88,13 @@
 | Administrator | 192.168.255.129 | Windows 7 | Administrator | 5 | 5 |
 * Số lần thực hiện: 20
 * Tỉ lệ thành công: 100%
+
+## Test case 10: WCE Remote Login
+| Username | Địa chỉ IP | Hệ điều hành | Vai trò của tài khoản | Số lần thực hiện | Số lần thành công |
+|:-------:|:------:|:------:|:------:|:------:|:------:|
+| sv | 192.168.255.100 | Windows Server 2008 | Thành viên của Administrator group | 6 | 6 |
+| Administrator | 192.168.255.100 | Windows Server 2008 | Administrator | 2 | 2 |
+| sv | 192.168.255.129 | Windows 7 | Thành viên của Administrator group | 6 | 6 |
+| Administrator | 192.168.255.129 | Windows 7 | Administrator | 2 | 2 |
+* Số lần thực hiện: 16
+* Tỉ lệ thành công: 100%
