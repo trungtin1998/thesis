@@ -62,7 +62,8 @@
 | Username | Địa chỉ IP | Hệ điều hành | Vai trò của tài khoản | Số lần thực hiện | Số lần thành công |
 |:-------:|:------:|:------:|:------:|:------:|:------:|
 | sv | 192.168.255.100 | Windows Server 2008 | Thành viên của Administrator group | 5 | 5 |
-| Administrator | 192.168.255.100 | Windows Server 2008 | Administrator | 5 | 5 |
+| Administrator | 192.168.255.100 | Windows Server 2008 | Administrator | 3 | 3 |
+| NT Authority | 192.168.255.100 | Windows Server 2008 | System Account | 3 | 3 |
 | sv | 192.168.255.129 | Windows 7 | Thành viên của Administrator group | 3 | 3 |
 | Administrator | 192.168.255.129 | Windows 7 | Administrator | 3 | 3 |
 * Số lần thực hiện: 16
