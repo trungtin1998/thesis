@@ -110,3 +110,13 @@
 | FakeAdmin | 192.168.255.123 | 500 | 500 | 2 | 2 |
 * Số lần thực hiện: 20
 * Tỉ lệ thành công: 100%
+
+## Test case 12: AT Command
+| Username | Địa chỉ IP | Hệ điều hành | Vai trò của tài khoản | Số lần thực hiện | Số lần thành công |
+|:-------:|:------:|:------:|:------:|:------:|:------:|
+| sv | 192.168.255.100 | Windows Server 2008 | Thành viên của Administrator group | 4 | 4 |
+| Administrator | 192.168.255.100 | Windows Server 2008 | Administrator | 2 | 2 |
+| sv | 192.168.255.129 | Windows 7 | Thành viên của Administrator group | 4 | 4 |
+| Administrator | 192.168.255.129 | Windows 7 | Administrator | 2 | 2 |
+* Số lần thực hiện: 12
+* Tỉ lệ thành công: 100%
