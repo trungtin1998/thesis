@@ -44,8 +44,26 @@
 ## Test case 5: WMIC
 | Username | Địa chỉ IP | Hệ điều hành | Vai trò của tài khoản | Số lần thực hiện | Số lần thành công |
 |:-------:|:------:|:------:|:------:|:------:|:------:|
-| sv | 192.168.255.129 | Windows 7 | Thành viên của Administrator group | 10 | 9 |
-| Administrator | 192.168.255.129 | Windows 7 | Administrator | 10 | 9 |
+| sv | 192.168.255.129 | Windows 7 | Thành viên của Administrator group | 10 | 8 |
+| Administrator | 192.168.255.129 | Windows 7 | Administrator | 10 | 8 |
 * Số lần thực hiện: 20
-* Tỉ lệ thành công: 90%
+* Tỉ lệ thành công: 80%
 * Với các lần thực hiện thu thập thông tin thông qua lệnh: `wmic bios get serial` hoặc `wmic process get name,processid` thì không bắt được. Tuy nhiên nếu sử dụng wmic để thực thi lệnh nào đó trên command line, tức thực hiện các tấn công Remote Command Execution
+
+## Test case 6: wmiexec.vbs
+| Username | Địa chỉ IP | Hệ điều hành | Vai trò của tài khoản | Số lần thực hiện | Số lần thành công |
+|:-------:|:------:|:------:|:------:|:------:|:------:|
+| sv | 192.168.255.129 | Windows 7 | Thành viên của Administrator group | 5 | 5 |
+| Administrator | 192.168.255.129 | Windows 7 | Administrator | 5 | 5 |
+* Số lần thực hiện: 10
+* Tỉ lệ thành công: 100%
+
+## Test case 7: PwDump7
+| Username | Địa chỉ IP | Hệ điều hành | Vai trò của tài khoản | Số lần thực hiện | Số lần thành công |
+|:-------:|:------:|:------:|:------:|:------:|:------:|
+| sv | 192.168.255.100 | Windows Server 2008 | Thành viên của Administrator group | 5 | 5 |
+| Administrator | 192.168.255.100 | Windows Server 2008 | Administrator | 5 | 5 |
+| sv | 192.168.255.129 | Windows 7 | Thành viên của Administrator group | 3 | 3 |
+| Administrator | 192.168.255.129 | Windows 7 | Administrator | 3 | 3 |
+* Số lần thực hiện: 16
+* Tỉ lệ thành công: 100%
