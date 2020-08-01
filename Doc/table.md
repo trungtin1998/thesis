@@ -28,3 +28,5 @@
 ## Test case 3: Invoke-Command
 | Username | Địa chỉ IP | Hệ điều hành | Vai trò của tài khoản | Số lần thực hiện | Số lần thành công |
 |:-------:|:------:|:------:|:------:|:------:|:------:|
+| sv | 192.168.255.129 | Windows 7 | Thành viên của Administrator group | 5 | 5 |
+| Administrator | 192.168.255.129 | Windows 7 | Administrator | 5 | 5 |
