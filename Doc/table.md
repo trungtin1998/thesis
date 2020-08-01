@@ -30,3 +30,5 @@
 |:-------:|:------:|:------:|:------:|:------:|:------:|
 | sv | 192.168.255.129 | Windows 7 | Thành viên của Administrator group | 5 | 5 |
 | Administrator | 192.168.255.129 | Windows 7 | Administrator | 5 | 5 |
+* Số lần thực hiện: 10
+* Tỉ lệ thành coong: 100
