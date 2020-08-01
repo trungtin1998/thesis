@@ -6,6 +6,7 @@
 * Invoke-Command cmdlet là một Powershell cmdlet sử dụng các tính năng của Powershell Remoting, có thể chạy các lệnh trên máy local hoặc từ xa và trả về toàn bộ đầu ra trên giao diện dòng lệnh, bao gồm cả các thông báo lỗi.
 * Để Invoke-Command có thể hoạt động, Powershell Remoting phải được kích hoạt và khả dụng trên máy server. Trên máy Windows Server 2008 có thể kích hoạt Powershell Remoting thông qua lệnh `winrm quickconfig` hoặc `Enable-PSRemoting`.
 * Nếu máy server có kích hoạt Powershell Remoting, attacker có thể sử dụng Invoke-Command để tiến hành các tấn công Remote Command Execution với tham số **-ComputerName** là hostname của máy Windows Server 2008 và các dòng lệnh được đặt trong tham số **-ScriptBlock**.
+* Chỉ có thể thực hiện Invoke-Command từ xa tới các tài khoản thuộc administrator group.
 
 ## How does Invoke-Command work?
 * Khi nhập vào một câu lệnh, câu lệnh đó sẽ được chuyển qua mạng tới và khởi chạy bên trong powershell client của remote computer. Kết quả sẽ được gửi tới và xuất hiện tại phiên Powershell trên local computer.
