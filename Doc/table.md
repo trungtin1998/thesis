@@ -18,9 +18,8 @@
 ## Test case 2: Powershell Empire
 | Username | Địa chỉ IP | Hệ điều hành | Vai trò của tài khoản | Số lần thực hiện | Số lần thành công |
 |:-------:|:------:|:------:|:------:|:------:|:------:|
-| test | 192.168.255.100 | Windows Server 2008 | Standard User | 3 | 3 |
-| sv | 192.168.255.100 | Windows Server 2008 | Thành viên của Administrator group | 6 | 6 |
-| Administrator | 192.168.255.100 | Windows Server 2008 | Administrator | 3 | 3 |
+| sv | 192.168.255.100 | Windows Server 2008 | Thành viên của Administrator group | 8 | 8 |
+| Administrator | 192.168.255.100 | Windows Server 2008 | Administrator | 4 | 4 |
 * Ở phần kiểm tra này, với các tài khoản đăng nhập trên máy Windows 7 có địa chỉ IP 192.168.255.129, các tấn công **chỉ được phát hiện** nếu log của máy client cũng được gửi về log server.
 * Số lần thực hiện: 12
 * Tỉ lệ thành công: 100%
@@ -120,3 +119,14 @@
 | Administrator | 192.168.255.129 | Windows 7 | Administrator | 2 | 2 |
 * Số lần thực hiện: 12
 * Tỉ lệ thành công: 100%
+
+## Test case 13: RDP
+| Username | Địa chỉ IP | Hệ điều hành | Vai trò của tài khoản | Số lần thực hiện | Số lần thành công |
+|:-------:|:------:|:------:|:------:|:------:|:------:|
+| test | 192.168.255.129 | Windows 7 | standard user | 2 | 2 |
+| sv | 192.168.255.129 | Windows 7 | Thành viên của Administrator group | 10 | 10 |
+| Administrator | 192.168.255.129 | Windows 7 | Administrator | 2 | 2 |
+* Số lần thực hiện: 12
+* Tỉ lệ thành công: 100%
+* Ở phần cảnh báo cho tấn công này, khi hệ điều hành yêu cầu restart để tiến hành cập nhật cũng sẽ sinh ra Event ID 21 với `winlog.task` là `Automatic Updates`. Do đó cần thêm điều kiện này để tránh xảy ra tình trạng cảnh báo giả.
+* Nếu muốn cho standard user được phép RDP thì thêm vào user này vào **Remote Desktop Services** và  **Allow log on through Remote Desktop Services**
