@@ -126,7 +126,10 @@
 | test | 192.168.255.129 | Windows 7 | standard user | 2 | 2 |
 | sv | 192.168.255.129 | Windows 7 | Thành viên của Administrator group | 10 | 10 |
 | Administrator | 192.168.255.129 | Windows 7 | Administrator | 2 | 2 |
-* Số lần thực hiện: 12
+* Số lần thực hiện: 14
 * Tỉ lệ thành công: 100%
 * Ở phần cảnh báo cho tấn công này, khi hệ điều hành yêu cầu restart để tiến hành cập nhật cũng sẽ sinh ra Event ID 21 với `winlog.task` là `Automatic Updates`. Do đó cần thêm điều kiện này để tránh xảy ra tình trạng cảnh báo giả.
 * Nếu muốn cho standard user được phép RDP thì thêm vào user này vào **Remote Desktop Services** và  **Allow log on through Remote Desktop Services**
+
+## Test case 14: Mimikatz
+
