@@ -2691,7 +2691,7 @@ Test case 20 ldifde
 ```
 
 ## Test case 21: Timestomp
-![Test case 21: Timestomp](/Images/testcase21_timestomp.png)
+![Test case 21: Timestomp](/Images/testcase21_timestomp)
 ```
 Phat hien su tan cong cua Test case 21 Timestomp
         Tong event: 1
