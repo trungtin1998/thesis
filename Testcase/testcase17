@@ -28,7 +28,7 @@
         },
         {
           "match_phrase": {
-            "process.executable": "C:\\Windows\\System32\\vssadmin.exe"
+            "winlog.event_data.OriginalFileName": "VSSADMIN.EXE"
           }
         },
         {
