@@ -8,7 +8,7 @@
 
 ## Bypass UAC là gì?
 * Bypass UAC là các kỹ thuật nhằm mục đích thực thi hoặc thực hiện các thay đổi với đặc quyền hệ thống mà không có bất kỳ cảnh báo nào
-* Chỉ có thể tiến hành bypass UAC đối với các tài khoản thuộc administrator group và cho phép UAC (enable UAC)
+* Chỉ có thể tiến hành bypass UAC đối với các tài khoản thuộc administrator group và k UAC (enable UAC)
 * Có nhiều cách để có thể tiến hành bypass UAC như Thông qua GUI, DLL hijacking, registry manipulation, ...
 
 ## How does Bypass UAC work?
