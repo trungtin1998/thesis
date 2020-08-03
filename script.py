@@ -195,8 +195,7 @@ def checkName(name):
     # Allow Computer
     if name.find("$") != -1:
         return True
-    # Allow 2 user account sv and administrator to remote login
-    if name == "sv" or name == "administrator" or name == "Administrator":
+    if name == "sv" or name == "test" or name == "Administrator":
         return True
     return False
 
@@ -268,8 +267,9 @@ def writeThreats(i, n, res):
         return
     for tmp in res:
         body += json.dumps(tmp, indent=4, sort_keys=True)
+        body += "\n-----------------------------------------------------------------------------------\n"
         _id.append(tmp["_id"])
-    #body += "\n-----------------------------------------------------------------------------------\n"
+        
 
 def readLog():
     res = []
@@ -363,4 +363,3 @@ if __name__ == "__main__":
         print body
     else:
         print("Khong phat hien bat ki nguy co nao")
-
