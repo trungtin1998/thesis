@@ -49,9 +49,9 @@
 * Tỉ lệ thành công: 80%
 * Với các lần thực hiện thu thập thông tin thông qua lệnh: `wmic bios get serialnumber` hoặc `wmic process get name, processid` thì không bắt được. Tuy nhiên nếu sử dụng wmic để thực thi lệnh nào đó trên command line, tức thực hiện các tấn công Remote Command Execution
 
-* Với các tấn công WMIC có thực hiện các thử nghiệm sau:
+### Với các tấn công WMIC có thực hiện các thử nghiệm sau:
 | Username | Địa chỉ IP | Hệ điều hành | Vai trò của tài khoản | Câu lệnh thực thi | Loại tấn công | Số lần thực hiện | Số lần thành công |
-|:-------:|:------:|:------:|:------:|:------:|:------:|:------:|
+|:-------:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|
 | sv | 192.168.255.129 | Windows 7 | Thành viên của Administrator group | `wmic bios list /format:list` | Thu thập thông tin bios name, serialnumber | 1 | 0 |
 | sv | 192.168.255.129 | Windows 7 | Thành viên của Administrator group | `wmic computersystem list /format:list` | Thu thập thông tin về hostname, domain, username | 1 | 0 |
 | sv | 192.168.255.129 | Windows 7 | Thành viên của Administrator group | `wmic process get name,processid` | Thông tin về các tiến trình trong hệ thống | 1 | 0 |
