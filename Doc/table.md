@@ -138,15 +138,23 @@
 |:-------:|:------:|:------:|:------:|:------:|:------:|
 | sv | 192.168.255.100 | Windows Server 2008 | Thành viên của Administrator group | 14 | 14 |
 | trungtin | 192.168.255.129 | Windows 7 | Thành viên của Administrator group | 4 | 4 |
+* Số lần thực hiện: 18
+* Tỉ lệ thành công: 100%
 
 ## Test case 16: ntdsutil
 | Username | Địa chỉ IP | Hệ điều hành | Vai trò của tài khoản | Số lần thực hiện | Số lần thành công |
 |:-------:|:------:|:------:|:------:|:------:|:------:|
-| sv | 192.168.255.100 | Windows Server 2008 | Thành viên của Administrator group | 10 | 10 |
-| Administrator | 192.168.255.100 | Windows Server 2008 | Administrator | 5 | 5 |
+| sv | 192.168.255.100 | Windows Server 2008 | Thành viên của Administrator group | 8 | 8 |
+| Administrator | 192.168.255.100 | Windows Server 2008 | Administrator | 3 | 3 |
 | SYSTEM | 192.168.255.100 | Windows Server 2008 | System Account | 5 | 5 |
+| sv | 192.168.255.129 | Windows 7 | Thành viên của Administrator group | 2 | 2 |
+* Kết hợp PsExec và ntdsutil từ máy windows 7 để tạo shadow copy.
+* Khi start ntdsutil tại nhiều vị trí khác nhau thì luôn gọi đến C:\Windows\System32. Copy file đó sang 1 vị trí khác thực thi thì không được
+* Số lần thực hiện: 18
+* Tỉ lệ thành công: 100%
 
 ## Test case 17: vssadmin
+
 
 ## Test case 18: net user
 ## Test case 19: csvde
