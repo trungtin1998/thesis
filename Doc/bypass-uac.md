@@ -11,10 +11,10 @@
 * Chỉ có thể tiến hành bypass UAC đối với các tài khoản thuộc administrator group và k UAC (enable UAC)
 * Có nhiều cách để có thể tiến hành bypass UAC như Thông qua GUI, DLL hijacking, registry manipulation, ...
 
-## How does Bypass UAC work?
+## How does Bypass UAC work? 
 * Khi 1 máy tính bị mắc phải 1 phần mềm độc hại do metasploit tạo ra, ta có thể sử dụng module exploit/windows/local/bypassuac được cài đặt sẵn trong metasploit để tiến hành bypass UAC
 * Cách thức bypass UAC hoạt động (Giả sử phần mềm độc hại có tên là PlugX):
-![Dridex Infection Flow](/)
+![Dridex Infection Flow](/Images/bypassuac.png)
   * Bước 1: PlugX tạo 1 DLL (giả sử trỏ đến UAC.TMP)
   * Bước 2: PlugX chèn code vào chương trình đang chạy explorer.exe, để chương trình explorer.exe di chuyển UAC.TMP vào C:\Windows\System32\sysprep\cryptbase.dll
   * Bước 3: C:\Windows\System32\sysprep\sysprep.exe được thực thi và sysprep.exe tải C:\Windows\System32\sysprep\cryptbase.dll với quyền admin
