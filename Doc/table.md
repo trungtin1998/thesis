@@ -62,7 +62,7 @@
 |:-------:|:------:|:------:|:------:|:------:|:------:|
 | sv | 192.168.255.100 | Windows Server 2008 | Thành viên của Administrator group | 5 | 5 |
 | Administrator | 192.168.255.100 | Windows Server 2008 | Administrator | 2 | 2 |
-| NT Authority | 192.168.255.100 | Windows Server 2008 | System Account | 3 | 3 |
+| SYSTEM | 192.168.255.100 | Windows Server 2008 | System Account | 3 | 3 |
 | sv | 192.168.255.129 | Windows 7 | Thành viên của Administrator group | 3 | 3 |
 | Administrator | 192.168.255.129 | Windows 7 | Administrator | 2 | 2 |
 * Số lần thực hiện: 15
@@ -133,3 +133,24 @@
 
 ## Test case 14: Mimikatz
 
+## Test case 15: Bypass UAC
+| Username | Địa chỉ IP | Hệ điều hành | Vai trò của tài khoản | Số lần thực hiện | Số lần thành công |
+|:-------:|:------:|:------:|:------:|:------:|:------:|
+| sv | 192.168.255.100 | Windows Server 2008 | Thành viên của Administrator group | 14 | 14 |
+| trungtin | 192.168.255.129 | Windows 7 | Thành viên của Administrator group | 4 | 4 |
+
+## Test case 16: ntdsutil
+| Username | Địa chỉ IP | Hệ điều hành | Vai trò của tài khoản | Số lần thực hiện | Số lần thành công |
+|:-------:|:------:|:------:|:------:|:------:|:------:|
+| sv | 192.168.255.100 | Windows Server 2008 | Thành viên của Administrator group | 10 | 10 |
+| Administrator | 192.168.255.100 | Windows Server 2008 | Administrator | 5 | 5 |
+| SYSTEM | 192.168.255.100 | Windows Server 2008 | System Account | 5 | 5 |
+
+## Test case 17: vssadmin
+
+## Test case 18: net user
+## Test case 19: csvde
+## Test case 20: ldifde
+## Test case 21: timestomp
+* Sự tạo ra file mới (cụ thể là mở file word trong test case 2 Powershell Empire hoặc test case 16 kkhi tạo shadow copy, mục đích file ntds.dit sang C:\temp) cũng sẽ bị cảnh báo bởi test case 21.
+## Test case 22: wevtutil
