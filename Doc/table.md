@@ -175,11 +175,39 @@
 * Tỉ lệ thành công: 100%
 
 ## Test case 17: vssadmin
-
+| Username | Địa chỉ IP | Hệ điều hành | Vai trò của tài khoản | Số lần thực hiện | Số lần thành công |
+|:-------:|:------:|:------:|:------:|:------:|:------:|
+| sv | 192.168.255.100 | Windows Server 2008 | Thành viên của Administrator group | 8 | 8 |
+| Administrator | 192.168.255.100 | Windows Server 2008 | Administrator | 4 | 4 |
+| SYSTEM | 192.168.255.100 | Windows Server 2008 | System Account | 4 | 4 |
+| sv | 192.168.255.129 | Windows 7 | Thành viên của Administrator group | 2 | 2 |
+| Administrator | 192.168.255.129 | Windows 7 | Administrator | 2 | 2 |
+* Số lần thực hiện: 20
+* Tỉ lệ thành công: 100%
 
 ## Test case 18: net user
+| sv | 192.168.255.100 | Windows Server 2008 | Thành viên của Administrator group | 5 | 5 |
+| Administrator | 192.168.255.100 | Windows Server 2008 | Administrator | 5 | 5 |
+| sv | 192.168.255.129 | Windows 7 | Thành viên của Administrator group | 5 | 5 |
+| Administrator | 192.168.255.129 | Windows 7 | Administrator | 5 | 5 |
+
 ## Test case 19: csvde
+
 ## Test case 20: ldifde
+
 ## Test case 21: timestomp
+| sv | 192.168.255.100 | Windows Server 2008 | Thành viên của Administrator group | 8 | 8 |
+| Administrator | 192.168.255.100 | Windows Server 2008 | Administrator | 3 | 3 |
+| sv | 192.168.255.129 | Windows 7 | Thành viên của Administrator group | 6 | 6 |
+| Administrator | 192.168.255.129 | Windows 7 | Administrator | 3 | 3 |
+* Số lần thực hiện: 20
+* Tỉ lệ thành công: 100%
 * Sự tạo ra file mới (cụ thể là mở file word trong test case 2 Powershell Empire hoặc test case 16 kkhi tạo shadow copy, mục đích file ntds.dit sang C:\temp) cũng sẽ bị cảnh báo bởi test case 21.
+
 ## Test case 22: wevtutil
+| sv | 192.168.255.100 | Windows Server 2008 | Thành viên của Administrator group | 6 | 6 |
+| Administrator | 192.168.255.100 | Windows Server 2008 | Administrator | 2 | 2 |
+| sv | 192.168.255.129 | Windows 7 | Thành viên của Administrator group | 2 | 2 |
+| Administrator | 192.168.255.129 | Windows 7 | Administrator | 2 | 2 |
+* Số lần thực hiện: 12
+* Tỉ lệ thành công: 100%
