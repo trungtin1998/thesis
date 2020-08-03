@@ -192,6 +192,8 @@
 | Administrator | 192.168.255.100 | Windows Server 2008 | Administrator | 5 | 5 |
 | sv | 192.168.255.129 | Windows 7 | Thành viên của Administrator group | 5 | 5 |
 | Administrator | 192.168.255.129 | Windows 7 | Administrator | 5 | 5 |
+* Số lần thực hiện: 20
+* Tỉ lệ thành công: 100%
 
 ## Test case 19: csvde
 
