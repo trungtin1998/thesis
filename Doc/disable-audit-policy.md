@@ -1,5 +1,5 @@
 # Làm sao để phát hiện hệ thống đã bị disable Audit Policy
-# Ngày: 05/08/2020
+Ngày: 05/08/2020
 
 ## Tổng quan về Audit Policy
 * Audit Policy là một tính năng của Microsoft, cho phép ta có thể giám sát hoạt động của hệ thống, theo dõi sự tạo các tiến trình, các kết nối đến máy tính với port cụ thể,... 
