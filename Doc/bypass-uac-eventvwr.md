@@ -55,9 +55,16 @@ execute
 ![open eventvwr.png](../Images/open-eventvwr.png)
 * Event ID 1 tại Sysmon Log: (Process Create): eventvwr.exe thực thi một đoạn powershell script với quyền hệ thống
 ![Mở một powershellscript](../Images/open-powershell-script.png)
+### 4. Bằng chứng sự thực thi
+* Event ID 13: (Registry value set): Với giá trị của trường **Target Object** thỏa điều kieenj:
+  * Target Object: HKU\*\mscfile\shell\open\command\(Default)
+
+## III. Chuyển sang Query DSL
 
 
-## III. Tài liệu tham khảo
+## IV. Kết quả thực nghiệm
+
+## V. Tài liệu tham khảo
 * [[1] "Empire"](https://attack.mitre.org/software/S0363/)
 * [[2] Matt Nelson, Matt Graeber, "UAC bypass"](https://lolbas-project.github.io/lolbas/Binaries/Eventvwr/)
 * [[3] enigma0x3, "FILELESS UAC BYPASS USING EVENTVWR.EXE AND REGISTRY HIJACKING"](https://enigma0x3.net/2016/08/15/fileless-uac-bypass-using-eventvwr-exe-and-registry-hijacking/)
