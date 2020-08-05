@@ -3,7 +3,7 @@
 
 ## Tổng quan về Audit Policy
 * Audit Policy là một tính năng của Microsoft, cho phép ta có thể giám sát hoạt động của hệ thống, theo dõi sự tạo các tiến trình, các kết nối đến máy tính với port cụ thể,... 
-* Tất cả các sự kiện này sẽ do Audit Policy giám sát sẽ được ghi nhận tại Security Log.
+* Tất cả các sự kiện này do Audit Policy giám sát và được ghi nhận tại Security Log.
 * Việc kích hoạt Audit Policy là điều cần thiết bởi vì với thiết lập mặc định, rất nhiều hoạt động của hệ thống sẽ không được ghi nhận lại. Do đó sẽ rất khó để quản trị viên có thể biết được chính xác những gì xảy ra trong hệ thống khi có sự cố xảy ra.
 
 ## Thực hiện disable Audit Policy
