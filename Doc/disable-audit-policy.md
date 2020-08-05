@@ -65,8 +65,9 @@ Ngày: 05/08/2020
 | Username | Địa chỉ IP | Hệ điều hành | Vai trò của tài khoản | Hành động thực hiện | Số lần thực hiện | Số lần thành công |
 |:-------:|:------:|:------:|:------:|:------:|:------:|:-------:|
 | Administrator | 192.168.255.100 | Windows Server 2008 | Administrator | Disable policy "Audit privilege use" | 2 | 2 |
-| Administrator | 192.168.255.100 | Windows Server 2008 | Administrator | Thêm policy "Audit privilege use" | 2 | 2 |
+| Administrator | 192.168.255.100 | Windows Server 2008 | Administrator | Thêm policy "Audit privilege use" | 1 | 1 |
 | Administrator | 192.168.255.100 | Windows Server 2008 | Administrator | Disable policy "Audit logon events" | 1 | 1 |
+| Administrator | 192.168.255.100 | Windows Server 2008 | Administrator | Thêm policy "Audit l" | 1 | 1 |
 | Administrator | 192.168.255.100 | Windows Server 2008 | Administrator | `auditpol /set /Category:"Account Logon" /success:disable /failure:disable` | 1 | 1 |
 | sv | 192.168.255.100 | Windows Server 2008 | Thành viên của Administrator group | `auditpol /set /Category:"System" /failure:disable` | 1 | 1 |
 | sv | 192.168.255.100 | Windows Server 2008 | Thành viên của Administrator group | `auditpol /set /Category:"DS Access" /success:disable /failure:disable` | 1 | 1 |
