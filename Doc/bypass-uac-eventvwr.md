@@ -4,13 +4,13 @@ Ngày: 05/08/2020
 ## Tổng quan
 ### Hive, key, value trong Registry
 * Registry hive trong Windows Registry là tên được đặt cho một phần chính của registry có chứa registry key, registry subkey (khoá con registry) và registry value (giá trị registry).
-* Tất cả các key được coi là hive bắt đầu bằng "HKEY" và nằm ở thư mục root hoặc trên cùng của hệ thống phân cấp trong registry, đó là lý do tại sao đôi khi chúng còn được gọi là key gốc hoặc các hive hệ thống cốt lõi.
+* Tất cả các key được coi là hive bắt đầu bằng "HKEY" và nằm ở thư mục root hoặc trên cùng của hệ thống phân cấp trong registry, đó là lý do tại sao đôi khi chúng còn được gọi là key gốc hoặc các hive hệ thống cốt lõi. [4]
 * Dưới đây là danh sách các registry hive phổ biến trong Windows:
   * HKEY_CLASSES_ROOT (HKCR)
   * HKEY_CURRENT_USER (HKCU)
   * HKEY_LOCAL_MACHINE
   * HKEY_USERS
-  * HKEY_CURRENT_CONFIG [4]
+  * HKEY_CURRENT_CONFIG
 ### Bypass UAC
 * User Account Control (UAC) là 1 tính năng của Windows giúp ngăn chặn các sự thay đổi đến hệ thống mà không được cho phép.
 * Bypass UAC là các kỹ thuật nhằm mục đích thực thi hoặc thực hiện các thay đổi với đặc quyền hệ thống mà không có bất kỳ cảnh báo nào.
@@ -28,10 +28,15 @@ Nếu đường dẫn tới mmc.exe bị thay bởi một chương trình hoặc
 ### Cách hoạt động của Bypass UAC bằng cách khai thác lỗ hỏng của eventvwr.exe
 * HKCR hive bao gồm sự kết hợp của HKLM:\Software\Classes and HKCU:\Software\Classes. Bởi vì sự sáp nhập bởi những hive này nên ta có thể hijack giá trị cho HKCR:\ bằng cách tạo chúng tại HKCU:\Software\Classes.
 * Một user thường có quyền ghi vào key tại HKCU. Nếu một tiến trình với đặc quyền hệ thống tương tác với key mà ta thao tác, ta có khả năng can thiệp vào các hành động của các tiến trình hệ thống đang thực hiện.
-* eventvwr.exe là một chương trình tự động nâng cao đặc quyền (auto-elevates) bởi vì file manifest của chương trình này thể hiện: [3]
+* eventvwr.exe là một chương trình tự động nâng cao đặc quyền (auto-elevates) bởi vì file manifest của chương trình này thể hiện:
 ![eventvwr.exe auto-elevates](../Images/eventvwr-auto-elevates.png)
-
-
+* Sử dụng Procmon, ta thấy tiến trình **eventvwr.exe** tương tác với `HKCU\Software\Classes\mscfile\shell\open\command` với kết quả trả về `NAME NOT FOUND`.
+Sau đó **eventvwr.exe** tương tác với `HKCR\mscfile\shell\open\command`. Quan sát `HKCR\mscfile\shell\open\command`, ta có thể thấy giá trị mặc định gọi đến là mmc.exe (Microsoft Management Console), tiến trình chịu trách nhiệm cho việc load Management Snap-Ins:
+![hkcr_mscfile_query](../Images/hkcr_mscfile_query.png)
+* Quan sát thấy **eventvwr.exe** gửi truy vấn tới `HKCU\Software\Classes\mscfile\shell\open\command` trước `HKCR\mscfile\shell\open\command` và kết quả trả về của `HKCU\Software\Classes\mscfile\shell\open\command` là `NAME NOT FOUND` nên mới gọi đến giá trị tại đường dẫn của HKCR (mmc.exe).
+![registry_queries](../Images/registry_queries.png)
+* Từ kết quả trên, ta có thể thấy được **eventvwr.exe** - tiến trình với đặc quyền hệ thống, đã tiến hành truy vấn cả HKCU và HKCR để có thể khởi động mmc.exe. Sau khi mmc.exe được khởi động, nó sẽ mở **eventvwr.msc** (Microsoft Saved Console file) - một file cần thiết để Event Viewer có thể hiển thị được.
+* Bởi vì đường dẫn của HKCU được truy vấn trước HKCR (mặc định sẽ có giá trị là mmc.exe) và người dùng có quyền ghi vào HKCU, nên nếu thêm giá trị HKCU bởi một đường dẫn tới file thực thi mà ta mong muốn (chẳng hạn cmd hoặc powershell),thì cmd hoặc powershell này sẽ được eventvwr.exe mở và có thể thực thi lệnh với quyền hệ thống.
 
 
 ## Tài liệu tham khảo
