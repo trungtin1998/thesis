@@ -47,7 +47,7 @@ execute
 ```
 ![Thực thi bypassuac eventvwr](../Images/bypassuac_eventvwr.png)
 * Kết quả: Tài khoản đã được nâng cao đặc quyền
-![Kbypassuac eventvwr](../agents_bypassuac_vwr.png)
+![Kết quả bypassuac eventvwr](../agents_bypassuac_vwr.png)
 
 ## III. Tài liệu tham khảo
 * [[1] "Empire"](https://attack.mitre.org/software/S0363/)
