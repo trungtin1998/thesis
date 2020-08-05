@@ -125,6 +125,7 @@ execute
 | sv | 192.168.255.100 | Windows Server 2008 | Thành viên của Administrator group | 4 | 4 |
 * Số lần thực hiện: 4
 * Tỉ lệ thành công: 100%
+* Video demo: [Bypass UAC using eventvwr.exe](https://youtu.be/k2lO-1VQHKc)
 
 ## V. Tài liệu tham khảo
 * [[1] "Empire"](https://attack.mitre.org/software/S0363/)
