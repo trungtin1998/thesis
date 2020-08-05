@@ -61,7 +61,7 @@ Ngày: 05/08/2020
   * Tại mail của quản trị viên sẽ có cảnh báo:
 ![Mail Alert](/Images/alert_audit_policy.png)
 
-## K
+## Kết quả thực nghiệm
 | Username | Địa chỉ IP | Hệ điều hành | Vai trò của tài khoản | Hành động thực hiện | Số lần thực hiện | Số lần thành công |
 |:-------:|:------:|:------:|:------:|:------:|:------:|:-------:|
 | Administrator | 192.168.255.100 | Windows Server 2008 | Administrator | Disable policy "Audit privilege use" | 2 | 2 |
@@ -76,6 +76,9 @@ Ngày: 05/08/2020
 * Số lần thực hiện: 10
 * Tỉ lệ thành công: 100%
 * Khóa luận đã thực hiện kiểm tra disable Audit Policy thủ công (Trong Local Security Policy) và thực hiện qua command line với sự hỗ trợ của công cụ `auditpol` 
+
+## Video demo
+https://youtu.be/HEbAnxocaJQ
 
 ## Tài liệu tham khảo
 [[1] Windows Security Log Event ID 4719](https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4719)
