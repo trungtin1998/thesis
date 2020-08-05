@@ -3,6 +3,7 @@
 * Loại tấn công: Escalation to System Privileges
 
 ## I. Tổng quan
+* Sau khi tham khảo tài liệu [1], chúng em quyết định chọn sử dụng công cụ Powershell Empire, tiến hành nghiên cứu về tấn công Bypass UAC bằng cách khai thác eventvwr.exe.
 ### 1. Hive, key, value trong Registry
 * Registry hive trong Windows Registry là tên được đặt cho một phần chính của registry có chứa registry key, registry subkey (khoá con registry) và registry value (giá trị registry).
 * Tất cả các key được coi là hive bắt đầu bằng "HKEY" và nằm ở thư mục root hoặc trên cùng của hệ thống phân cấp trong registry, đó là lý do tại sao đôi khi chúng còn được gọi là key gốc hoặc các hive hệ thống cốt lõi. [4]
@@ -121,10 +122,11 @@ execute
 ![alert-bypassuac-eventvwr](../Images/alert-bypassuac-eventvwr.png)
 
 ## IV. Kết quả thực nghiệm
-| Username | Địa chỉ IP | Hệ điều hành | Vai trò của tài khoản | Số lần thực hiện | Số lần thành công |
+| Username | Địa chỉ IP | Hệ điều hành | Vai trò của tài khoản | Công cụ sử dụng | Số lần thực hiện | Số lần thành công |
 |:-------:|:------:|:------:|:------:|:------:|:------:|
-| sv | 192.168.255.100 | Windows Server 2008 | Thành viên của Administrator group | 4 | 4 |
-* Số lần thực hiện: 4
+| sv | 192.168.255.100 | Windows Server 2008 | Thành viên của Administrator group | Powershell Empire module bypassuac_eventvwr | 4 | 4 |
+| sv | 192.168.255.100 | Windows Server 2008 | Thành viên của Administrator group | Metasloit mmodule bypassuac_eventvwr | 2 | 2 |
+* Số lần thực hiện: 6
 * Tỉ lệ thành công: 100%
 * Video demo: [Bypass UAC using eventvwr.exe](https://youtu.be/k2lO-1VQHKc)
 
