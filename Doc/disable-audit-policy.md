@@ -18,7 +18,7 @@
 
 ## Chuyển sang Query DSL
 * Đoạn Query DSL gửi về Log server để phát hiện sự kiện disable Audit Policy là:
- * `event.code: 4719`
+  * `event.code: 4719`
 ```
 {
   "version": true,
@@ -56,9 +56,9 @@
 
 ## Cảnh báo cho quản trị viên
 * Khi có tấn công disable Audit Policy
- * Tại kibana sẽ hiển thị:
+  * Tại kibana sẽ hiển thị:
 ![Kibana](/Images/kibana_audit_policy.png)
- * Tại mail của quản trị viên sẽ có cảnh báo:
+  * Tại mail của quản trị viên sẽ có cảnh báo:
 ![Mail Alert](/Images/alert_audit_policy.png)
 
 ## Bảng thống kê
