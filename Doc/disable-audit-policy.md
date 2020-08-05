@@ -1,4 +1,4 @@
-# Làm sao để phát hiện hệ thống đã bị disable Audit Policy
+# Phát hiện hệ thống đã bị disable Audit Policy
 Ngày: 05/08/2020
 
 ## Tổng quan về Audit Policy
