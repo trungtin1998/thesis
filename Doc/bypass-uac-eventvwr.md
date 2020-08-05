@@ -47,7 +47,15 @@ execute
 ```
 ![Thực thi bypassuac eventvwr](../Images/bypassuac_eventvwr.png)
 * Kết quả: Tài khoản đã được nâng cao đặc quyền
-![Kết quả bypassuac eventvwr](../agents_bypassuac_vwr.png)
+![Kết quả bypassuac eventvwr](../Images/agents_bypassuac_vwr.png)
+### 3. Phát hiện thủ công
+* Event ID 13 tại Sysmon Log: (Registry value set): Thay đổi giá trị của registry key `HKCU\Software\Classes\mscfile\shell\open\command`
+![Set value HKCU hive](../Images/change_HKCU.png)
+* Event ID 1 tại Sysmon Log: (Process Create): Sự mở eventvwr với đặc quyền hệ thống
+![open eventvwr.png](../Images/open-eventvwr.png)
+* Event ID 1 tại Sysmon Log: (Process Create): eventvwr.exe thực thi một đoạn powershell script với quyền hệ thống
+![Mở một powershellscript](../Images/open-powershell-script.png)
+
 
 ## III. Tài liệu tham khảo
 * [[1] "Empire"](https://attack.mitre.org/software/S0363/)
