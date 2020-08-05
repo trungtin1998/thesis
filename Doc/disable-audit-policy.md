@@ -78,7 +78,7 @@ Ngày: 05/08/2020
 * Khóa luận đã thực hiện kiểm tra disable Audit Policy thủ công (Trong Local Security Policy) và thực hiện qua command line với sự hỗ trợ của công cụ `auditpol` 
 
 ## Video demo
-https://youtu.be/HEbAnxocaJQ
+![Video demo: disable audit policy](https://youtu.be/HEbAnxocaJQ)
 
 ## Tài liệu tham khảo
 [[1] Windows Security Log Event ID 4719](https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4719)
