@@ -56,13 +56,75 @@ execute
 * Event ID 1 tại Sysmon Log: (Process Create): eventvwr.exe thực thi một đoạn powershell script với quyền hệ thống
 ![Mở một powershellscript](../Images/open-powershell-script.png)
 ### 4. Bằng chứng sự thực thi
-* Event ID 13: (Registry value set): Với giá trị của trường **Target Object** thỏa điều kieenj:
+* Event ID 13: (Registry value set): Với giá trị của trường **Target Object** thỏa điều kiện sau:
   * Target Object: HKU\*\mscfile\shell\open\command\(Default)
 
-## III. Chuyển sang Query DSL
-
+## III. Chuyển sang query DSL
+* Từ bằng chứng thực thi của Bypass UAC khai thác vào **eventvwr.exe**, ta có câu lệnh query DSL tương ứng như sau:
+  * `event.code: 13`
+  * `winlog.event_data.EventType: SetValue`
+  * `winlog.event_data.TargetObject: HKU\*\mscfile\shell\open\command\(Default)`
+```
+{
+  "version": true,
+  "size": 500,
+  "sort": [
+    {
+      "@timestamp": {
+        "order": "asc",
+        "unmapped_type": "boolean"
+      }
+    }
+  ],
+  "aggs": {
+    "2": {
+      "date_histogram": {
+        "field": "@timestamp",
+        "fixed_interval": "30s",
+        "time_zone": "Asia/Ho_Chi_Minh",
+        "min_doc_count": 1
+      }
+    }
+  },
+  "query": {
+    "bool": {
+      "filter": [
+        {
+          "match_phrase": {
+            "event.code": "13"
+          }
+        },
+        {
+          "match_phrase": {
+            "winlog.event_data.EventType": "SetValue"
+          }
+        },
+        {
+          "match_phrase": {
+            "winlog.event_data.TargetObject": "HKU"
+          }
+        },
+        {
+          "match_phrase": {
+            "winlog.event_data.TargetObject": "\\mscfile\\shell\\open\\command\\(Default)"
+          }
+        }
+      ]
+    }
+  }
+}
+```
+* Cảnh báo tại kibana:
+![kibana-bypassuac-eventvwr](../Images/kibana-bypassuac-eventvwr.png)
+* Cảnh báo tại mail của quản trị viên:
+![alert-bypassuac-eventvwr](../Images/alert-bypassuac-eventvwr.png)
 
 ## IV. Kết quả thực nghiệm
+| Username | Địa chỉ IP | Hệ điều hành | Vai trò của tài khoản | Số lần thực hiện | Số lần thành công |
+|:-------:|:------:|:------:|:------:|:------:|:------:|
+| sv | 192.168.255.100 | Windows Server 2008 | Thành viên của Administrator group | 4 | 4 |
+* Số lần thực hiện: 4
+* Tỉ lệ thành công: 100%
 
 ## V. Tài liệu tham khảo
 * [[1] "Empire"](https://attack.mitre.org/software/S0363/)
