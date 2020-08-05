@@ -1,6 +1,6 @@
 # Bypass UAC bằng cách sử dụng eventvwr.exe
 * Ngày: 05/08/2020
-* Loại tấn công: 
+* Loại tấn công: Escalation to System Privileges
 
 ## I. Tổng quan
 ### 1. Hive, key, value trong Registry
