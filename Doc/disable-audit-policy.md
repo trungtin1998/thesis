@@ -61,7 +61,7 @@ Ngày: 05/08/2020
   * Tại mail của quản trị viên sẽ có cảnh báo:
 ![Mail Alert](/Images/alert_audit_policy.png)
 
-## Bảng thống kê
+## K
 | Username | Địa chỉ IP | Hệ điều hành | Vai trò của tài khoản | Hành động thực hiện | Số lần thực hiện | Số lần thành công |
 |:-------:|:------:|:------:|:------:|:------:|:------:|:-------:|
 | Administrator | 192.168.255.100 | Windows Server 2008 | Administrator | Disable policy "Audit privilege use" | 2 | 2 |
