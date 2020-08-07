@@ -26,8 +26,8 @@ Description: Capturing the Windows's threats using ELK Stack and Python Script.
 * Test case 20 ldifde
 * Test case 21 timestomp
 * Test case 22 wevtutil
-* Test case 23 Bypass UAC khai thác eventvwr.exe
-* Test case 24 Disable Audit Policy
+* Test case 23 Disable Audit Policy 
+* Test case 24 Bypass UAC khai thác eventvwr.exe
 
 ## Mục tiêu khóa luận
 Xây dựng một hệ thống có thể phát hiện các tấn công máy tính dựa trên bằng chứng thực thi của từng tấn công và đưa ra cảnh báo thời gian thực khi có tấn công xảy ra.
