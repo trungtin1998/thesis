@@ -47,3 +47,12 @@ hành Windows Server bằng cách sử dụng các công cụ, phương pháp đ
 * Alert System là hệ thống giám sát, gửi liên tục các câu truy vấn DSL tới Log Server một phút một lần bằng cách sử dụng crontab. Kết quả trả về từ Log Server sẽ được phân tích, xử lý để đánh giá rằng có các tấn công máy tính đến hệ thống Windows Server hay không. Nếu có gửi cảnh báo thời gian thực đến mail của quản trị viên
 ![Mô tả thực nghiệm](./Images/mo-ta-thuc-nghiem.png)
 
+## Tự đánh giá điểm mạnh của project
+* Các câu Query DSL được đặt ở một thư mục riêng, tiện cho việc mở rộng khi xuất hiện các tấn công mới.
+* Các bằng chứng thực thi cho từng tấn công có khả năng phát hiện hiệu quả các loại tấn công đề ra.
+
+## Tự đánh giá điểm hạn chế
+* Tập luật và số lượng tấn công đã thực nghiệm còn hạn chế
+* Chưa phát hiện được tấn công mimikatz dạng Remote Login
+* Chưa phát hiện được tấn công WMIC dạng thu thập thông tin
+* Có xảy ra tình trạng cảnh báo giả đối với tấn công timestomp
