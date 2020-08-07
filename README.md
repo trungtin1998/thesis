@@ -30,7 +30,7 @@ Description: Capturing the Windows's threats using ELK Stack and Python Script.
 * Test case 24 Disable Audit Policy
 
 ## Mục tiêu khóa luận
-* Xây dựng một hệ thống có thể phát hiện các tấn công máy tính dựa trên bằng chứng thực thi của từng tấn công và đưa ra cảnh báo thời gian thực khi có tấn công xảy ra.
+Xây dựng một hệ thống có thể phát hiện các tấn công máy tính dựa trên bằng chứng thực thi của từng tấn công và đưa ra cảnh báo thời gian thực khi có tấn công xảy ra.
 
 ## Tóm tắt các bước thực hiện
 1. Thử nghiệm các tấn công máy tính trong môi trường Windows và đưa ra bằng chứng thực thi của từng tấn công dựa vào Event Log
@@ -39,12 +39,11 @@ Description: Capturing the Windows's threats using ELK Stack and Python Script.
 4. Đánh giá về mô hình thực nghiệm và đề xuất thêm hướng phát triển cho hệ thống.
 
 ## Mô tả hệ thống
-* Các máy trong hệ thống bao gồm: Máy attacker, các máy Windows Server,
-log server, Alert System và quản trị viên.
-  * Máy attacker sẽ tấn công vào các máy sử dụng hệ điều
+Các máy trong hệ thống bao gồm: Máy attacker, hệ thống máy victim, Log Server, Alert System và administrator.
+* Máy attacker sẽ tấn công vào các máy sử dụng hệ điều
 hành Windows Server bằng cách sử dụng các công cụ, phương pháp đã nêu ở trên.
-  * Các máy Windows Server đóng vai trò là victim. Các máy này sẽ bật Audit Policy và cài đặt Sysmon để thu thập được chi tiết về các hoạt động trong hệ thống hơn. Ngoài ra chúng sẽ được cài đặt Winlogbeat, có vai trò đẩy log từ các máy Windows Server về Log Server.
-  * Toàn bộ log từ các máy victim này sẽ được đẩy về Log Server - nơi lưu trữ log tập trung. Chúng cũng sẽ thực hiện nhiệm vụ trả về kết quả các câu truy vấn DSL từ Alert System gửi lên. Log server cài đặt ELK, được dùng đánh chỉ mục sau đó đưa vào lưu trữ. Ngoài ra Elasticsearch còn cung cấp Query DSL, bộ ngôn ngữ cung cấp khả năng filter log tuyệt vời.
-  * Alert System là hệ thống giám sát, gửi liên tục các câu truy vấn DSL tới Log Server một phút một lần bằng cách sử dụng crontab. Kết quả trả về từ Log Server sẽ được phân tích, xử lý để đánh giá rằng có các tấn công máy tính đến hệ thống Windows Server hay không. Nếu có gửi cảnh báo thời gian thực đến mail của quản trị viên
+* Các máy Windows Server đóng vai trò là victim. Các máy này sẽ bật Audit Policy và cài đặt Sysmon để thu thập được chi tiết về các hoạt động trong hệ thống hơn. Ngoài ra chúng sẽ được cài đặt Winlogbeat, có vai trò đẩy log từ các máy Windows Server về Log Server.
+* Toàn bộ log từ các máy victim này sẽ được đẩy về Log Server - nơi lưu trữ log tập trung. Chúng cũng sẽ thực hiện nhiệm vụ trả về kết quả các câu truy vấn DSL từ Alert System gửi lên. Log server cài đặt ELK, được dùng đánh chỉ mục sau đó đưa vào lưu trữ. Ngoài ra Elasticsearch còn cung cấp Query DSL, bộ ngôn ngữ cung cấp khả năng filter log tuyệt vời.
+* Alert System là hệ thống giám sát, gửi liên tục các câu truy vấn DSL tới Log Server một phút một lần bằng cách sử dụng crontab. Kết quả trả về từ Log Server sẽ được phân tích, xử lý để đánh giá rằng có các tấn công máy tính đến hệ thống Windows Server hay không. Nếu có gửi cảnh báo thời gian thực đến mail của quản trị viên
 ![Mô tả thực nghiệm](./Images/mo-ta-thuc-nghiem.png)
 
