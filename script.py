@@ -19,7 +19,7 @@ LOG = "/home/trungtin/Documents/Thesis/thesis/log/log.txt"
 
 # Gmail Information
 gmail_user = 'sonthantuvea@gmail.com'
-gmail_password = 'trungtin1512'
+gmail_password = '#redacted'
 send_to = 'nguyenvana310225@gmail.com'
 
 
